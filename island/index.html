@@ -18,7 +18,8 @@
 				<a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
 				<a-asset-item id="cl" src="./assets/island.json"></a-asset-item>
 			</a-assets>
-			<a-entity position="0 0 0" blend-model="#ci" altspace-cursor-collider="enabled: false" class="n-mesh-collider"></a-entity>
+
+			<a-entity position="0 0 0" blend-model="#ci" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment;"></a-entity>
 			<a-entity position="0 0 0" collada-model="#sco" collide-mesh altspace-cursor-collider="enabled: false"></a-entity>
 			<a-entity position="0 2 0" collada-model="#sign" collide-mesh altspace-cursor-collider="enabled: false"></a-entity>
 			<a-plane altspace-cursor-collider="enabled: false" material="src: url(./assets/water10.jpg); repeat: 30 30;" height="130" width="130" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.7" transparent=true>
@@ -205,15 +206,15 @@
 				var el = document.querySelector('a-entity');
 					var object3D = el.object3D;
 					if(object3D.children.length){
-						var mesh = object3D.children[0];
+						//var mesh = object3D.children[0];
 						//If you attach native components to an entity, it will not use a default collider
-			mesh.userData.altspace = mesh.userData.altspace || {};
-			mesh.userData.altspace.collider = mesh.userData.altspace.collider || {};
-			mesh.userData.altspace.collider.enabled = false;
+			//mesh.userData.altspace = mesh.userData.altspace || {};
+			//mesh.userData.altspace.collider = mesh.userData.altspace.collider || {};
+			//mesh.userData.altspace.collider.enabled = false;
 
-			altspace.addNativeComponent(mesh, this.name);
+			//altspace.addNativeComponent(mesh, this.name);
 					} else {
-						setTimeout(checkFinishedLoading, 500);
+						//setTimeout(checkFinishedLoading, 500);
 					}
 			}
 
