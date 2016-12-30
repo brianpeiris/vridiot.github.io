@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+  <meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
+  <meta http-equiv="pragma" content="no-cache">
+
+	<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+	<script src="https://cdn.rawgit.com/AltspaceVR/aframe-altspace-component/v1.2.0/dist/aframe-altspace-component.min.js"></script>
+
+</head>
+<body>
+
+<a-scene altspace ='fullspace: true'>
+	<a-assets>
+
+		<img id='sk' src='EMap.jpg'/>
+		<a-asset-item id="sco" src="gh.obj"></a-asset-item>
+    <a-asset-item id="scm" src="gh.mtl"></a-asset-item>
+	</a-assets>
+
+<a-sky src="#sk" radius="2500" position="0 0 0" rotation="0 -90 0"></a-sky>
+
+<a-entity position="0 0.05 0" obj-model="obj: #sco; mtl: #scm" altspace-cursor-collider="enabled: false"></a-entity>
+
+</body></html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+  <meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
+  <meta http-equiv="pragma" content="no-cache">
+
+	<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+	<script src="https://rawgit.com/ngokevin/kframe/master/dist/kframe.min.js"></script>
+  <script src="https://rawgit.com/mayognaise/aframe-draw-shader/master/dist/aframe-draw-shader.min.js"></script>
+  <script src="https://cdn.rawgit.com/AltspaceVR/aframe-altspace-component/v1.1.0/dist/aframe-altspace-component.min.js"></script>
+
+	<script>
+    /**
+     * noise component example
+     */
+    AFRAME.registerComponent('noise', {
+      dependencies: [ ],
+      schema: { },
+      init () {
+        this.el.addEventListener('draw-render', this.render.bind(this))
+      },
+      update () { },
+      remove () { },
+      pause () { },
+      play () { },
+      render (e) {
+        var ctx = e.detail.ctx,
+            texture = e.detail.texture,
+            w = ctx.canvas.width,
+            h = ctx.canvas.height,
+            idata = ctx.createImageData(w, h),
+            buffer32 = new Uint32Array(idata.data.buffer),
+            len = buffer32.length,
+            i = 0
+        for(; i < len;)
+            buffer32[i++] = ((255 * Math.random())|0) << 24
+        ctx.putImageData(idata, 0, 0)
+        // texture upate
+        texture.needsUpdate = true
+      }
+    })
+  </script>
+
+</head>
+<body>
+
+<a-scene altspace ='fullspace: true'>
+	<a-assets>
+
+		<img id='sk' src='env.jpg'/>
+		<img id='innering' src='innering.png'/>
+		<a-asset-item id="wf-obj" src="wf.obj"></a-asset-item>
+    <a-asset-item id="wf-mtl" src="wf.mtl"></a-asset-item>
+		<a-asset-item id="trees-o" src="trees.obj"></a-asset-item>
+		<a-asset-item id="trees-m" src="trees.mtl"></a-asset-item>
+	  <canvas id="my-canvas" crossorigin="anonymous"></canvas>
+	</a-assets>
+
+	<a-sky src="#sk" radius="2500" position="0 -400 0"></a-sky>
+
+
+<!--<a-entity position="0 -359 0" obj-model="obj: #wf-obj; mtl: #wf-mtl"></a-entity>>
+
+</a-scene>
+</body></html>
