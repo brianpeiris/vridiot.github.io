@@ -209,11 +209,12 @@
 							async: true,
 							success : function(text)
 							{
+								console.log(text);
 								if(lastupdate == ""){
 									lastupdate = text;
 								} else {
 									if(lastupdate != text){
-										window.location.reload(true);
+										location.reload(true);
 									}
 								}
 							}
