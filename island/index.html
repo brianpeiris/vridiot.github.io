@@ -208,10 +208,25 @@
 				}
 				}, 1000);
 			});
-				setInterval(function(e){
-					var el = document.querySelector('a-entity');
+				var mesh = this.el.getOrCreateObject3D('mesh', PlaceholderMesh);
+
+			function checkFinishedLoading(){
+				var el = document.querySelector('a-entity');
 					var object3D = el.object3D;
-					console.log(object3D.children);
+					if(object3D.children.length){
+						var mesh = object3D.children[0];
+						//If you attach native components to an entity, it will not use a default collider
+			mesh.userData.altspace = mesh.userData.altspace || {};
+			mesh.userData.altspace.collider = mesh.userData.altspace.collider || {};
+			mesh.userData.altspace.collider.enabled = false;
+
+			altspace.addNativeComponent(mesh, this.name);
+					} else {
+						setTimeout(checkFinishedLoading, 500);
+					}
+			}
+
+				setInterval(function(e){
 					$.ajax({ type: "GET",   
 							url: "http://island.jacobralph.org/lastupdate.txt",   
 							async: true,
