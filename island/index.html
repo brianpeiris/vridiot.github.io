@@ -2,7 +2,7 @@
 <html lang='en'>
 	<head>
 		<title>Island</title>
-		<script src="http://livejs.com/live.js"></script>
+		<script src="https://livejs.com/live.js"></script>
 		<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
 		<script src="https://cdn.rawgit.com/AltspaceVR/aframe-altspace-component/v1.3.0/dist/aframe-altspace-component.min.js"></script>
 		<script src="https://cdn.rawgit.com/AltspaceVR/AltspaceSDK/master/dist/altspace.js"></script>
@@ -121,7 +121,6 @@ var object3D = this.el.object3D;
 			var forward = false;
 
 			function animate() {
-				stats.begin();
 
 				// monitored code goes here
 				if(terrain != undefined && terrain != null && terrain2 != undefined && terrain2 != null){
@@ -146,7 +145,6 @@ var object3D = this.el.object3D;
 						//terrain2.position.z = terrain2.position.z - 0.005;
 					}
 				}
-				stats.end();
 
 				requestAnimationFrame( animate );
 			}
