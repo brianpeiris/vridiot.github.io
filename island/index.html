@@ -205,6 +205,7 @@
 			function checkFinishedLoading(){
 				var el = document.querySelector('a-entity');
 					var object3D = el.object3D;
+					console.log(object3D);
 					if(object3D.children.length){
 						var mesh = object3D.children[0];
 			mesh.userData.altspace = mesh.userData.altspace || {};
