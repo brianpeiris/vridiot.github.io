@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+  <meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
+  <meta http-equiv="pragma" content="no-cache">
+
+	<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+	<script src="https://cdn.rawgit.com/AltspaceVR/aframe-altspace-component/v1.3.0/dist/aframe-altspace-component.min.js"></script>
+
+</head>
+<body>
+
+<a-scene altspace ='fullspace: true'>
+	<a-assets>
+		<a-asset-item id="sco" src="island.dae"></a-asset-item>
+	</a-assets>
+
+<a-entity position="0 0 0" collada-model="#sco" n-mesh-collider altspace-cursor-collider="enabled: false"></a-entity>
+<a-plane color="#3c898c" height="100" width="100" rotation="-90 0 0" position="0 0.5 0" opacity="0.5">
+<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0 0.4 0" repeat="indefinite"></a-animation>
+</a-plane>
+
+
+</body></html>
