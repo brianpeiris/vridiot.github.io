@@ -114,14 +114,14 @@
 				map: texture,
 			});
 			var sky = new THREE.Mesh(skyGeo, material);
-			sky.position.y = -432;
+			sky.position.y = ;
 			sky.material.side = THREE.BackSide;
 			sim.scene.add(sky);
 
 			var tick = 0;
 			var forward = false;
 
-			function animate() {
+			/*function animate() {
 
 				// monitored code goes here
 				if(terrain != undefined && terrain != null && terrain2 != undefined && terrain2 != null){
@@ -131,25 +131,25 @@
 							forward = false;
 							tick = 0;
 						}
-						terrain.position.y = terrain.position.y - 0.0002;
+						//terrain.position.y = terrain.position.y - 0.0002;
 						//terrain.position.z = terrain.position.z - 0.005;
-						terrain2.position.y = terrain2.position.y - 0.0002;
+						//terrain2.position.y = terrain2.position.y - 0.0002;
 						//terrain2.position.z = terrain2.position.z + 0.005;
 					} else {
 						if(tick == 180){
 							forward = true;
 							tick = 0;
 						}
-						terrain.position.y = terrain.position.y + 0.0002;
+						//terrain.position.y = terrain.position.y + 0.0002;
 						//terrain.position.z = terrain.position.z + 0.005;
-						terrain2.position.y = terrain2.position.y + 0.0002;
+						//terrain2.position.y = terrain2.position.y + 0.0002;
 						//terrain2.position.z = terrain2.position.z - 0.005;
 					}
 				}
 
 				requestAnimationFrame( animate );
 			}
-			requestAnimationFrame( animate );
+			requestAnimationFrame( animate );*/
 
 			var sources = [];
 			var skeleton = {};
