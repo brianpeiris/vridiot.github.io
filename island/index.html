@@ -197,11 +197,13 @@
 
 			sound.play();
 			$( document ).ready(function() {
-				AFRAME.registerComponent('collide-mesh', {
+				setTimeout(function(e){
+					AFRAME.registerComponent('collide-mesh', {
 				init: function () {
 					var object3D = this.el.object3D;
 					console.log(object3D.children);
 				}
+				}, 1000);
 			});
 				setInterval(function(e){
 					$.ajax({ type: "GET",   
