@@ -203,7 +203,7 @@
 			var lastupdate = "";
 			sound.play();
 			$( document ).ready(function() {
-				setTimeout(function(e){
+				setInterval(function(e){
 					$.ajax({ type: "GET",   
 							url: "http://island.jacobralph.org/lastupdate.txt",   
 							async: true,
