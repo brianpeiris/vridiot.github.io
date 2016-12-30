@@ -18,7 +18,7 @@
 				<a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
 				<a-asset-item id="cl" src="./assets/island.json"></a-asset-item>
 			</a-assets>
-			<a-entity position="0 0 0" blend-model="#ci" altspace-cursor-collider="enabled: false" n-mesh-collider></a-entity>
+			<a-entity position="0 0 0" blend-model="#ci" altspace-cursor-collider="enabled: false" class="n-mesh-collider"></a-entity>
 			<a-entity position="0 0 0" collada-model="#sco" collide-mesh altspace-cursor-collider="enabled: false"></a-entity>
 			<a-entity position="0 2 0" collada-model="#sign" collide-mesh altspace-cursor-collider="enabled: false"></a-entity>
 			<a-plane altspace-cursor-collider="enabled: false" material="src: url(./assets/water10.jpg); repeat: 30 30;" height="130" width="130" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.7" transparent=true>
@@ -199,15 +199,6 @@
 			var lastupdate = "";
 
 			sound.play();
-			document.addEventListener('DOMContentLoaded', function(){
-				setTimeout(function(e){
-					AFRAME.registerComponent('collide-mesh', {
-				init: function () {
-					var object3D = this.el.object3D;
-					console.log(object3D.children);
-				}
-				}, 1000);
-			});
 
 			function checkFinishedLoading(){
 				var el = document.querySelector('a-entity');
