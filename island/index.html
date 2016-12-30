@@ -2,17 +2,20 @@
 <html lang='en'>
 	<head>
 		<title>Island</title>
+		<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+		<meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
+		<meta http-equiv="pragma" content="no-cache">
 		<script src="https://livejs.com/live.js"></script>
 		<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
 		<script src="https://cdn.rawgit.com/AltspaceVR/aframe-altspace-component/v1.3.0/dist/aframe-altspace-component.min.js"></script>
 		<script src="https://cdn.rawgit.com/AltspaceVR/AltspaceSDK/master/dist/altspace.js"></script>
 		<script>
-		AFRAME.registerComponent('collide-mesh', {
-  init: function () {
-var object3D = this.el.object3D;
-	  console.log(object3D.children);
-  }
-});
+			AFRAME.registerComponent('collide-mesh', {
+				init: function () {
+					var object3D = this.el.object3D;
+					console.log(object3D.children);
+				}
+			});
 		</script>
 	</head>
 
