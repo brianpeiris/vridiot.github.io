@@ -209,7 +209,7 @@
 					if(object3D.children[0].children.length && object3D.children.length){
 						for(var i = 0; i < object3D.children[0].children.length; i++){
 							var child = object3D.children[0].children[i];
-							for(int d = 0; d < child.children.length; d++){
+							for(var d = 0; d < child.children.length; d++){
 								var mesh = child.children[d];
 			mesh.userData.altspace = mesh.userData.altspace || {};
 			mesh.userData.altspace.collider = mesh.userData.altspace.collider || {};
