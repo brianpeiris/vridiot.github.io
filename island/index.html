@@ -205,7 +205,6 @@
 			function checkFinishedLoading(){
 				var el = document.getElementById("sco2");
 					var object3D = el.object3D;
-					console.log(object3D);
 					if(object3D.children.length && object3D.children[0].children.length){
 						for(var i = 0; i < object3D.children[0].children.length; i++){
 							var child = object3D.children[0].children[i];
@@ -214,7 +213,7 @@
 			mesh.userData.altspace = mesh.userData.altspace || {};
 			mesh.userData.altspace.collider = mesh.userData.altspace.collider || {};
 			mesh.userData.altspace.collider.enabled = false;
-
+					console.log(mesh);
 			altspace.addNativeComponent(mesh, "object");
 							}
 						}
