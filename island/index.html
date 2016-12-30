@@ -16,7 +16,7 @@
 			<a-assets>
 				<a-asset-item id="sco" src="./assets/island.dae"></a-asset-item>
 			</a-assets>
-			<a-entity geometry="primitive: box" material="color: #C03546" position="0 1 0"></a-entity>
+			<a-entity geometry="primitive: box" material="color: #C03546" position="0 1 0" n-box-collider></a-entity>
 			<a-entity position="0 0 0" collada-model="#sco" collide-mesh altspace-cursor-collider="enabled: false" transparent=true></a-entity>
 			<a-plane altspace-cursor-collider="enabled: false" material="src: url(./assets/water10.jpg); repeat: 30 30;" height="130" width="130" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.7" transparent=true>
 				<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.33 0.0" repeat="indefinite"></a-animation>
