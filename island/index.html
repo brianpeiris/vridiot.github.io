@@ -206,13 +206,18 @@
 				var el = document.getElementById("sco2");
 					var object3D = el.object3D;
 					console.log(object3D);
-					if(object3D.children.length){
-						var mesh = object3D.children[0];
+					if(object3D.children[0].children.length && object3D.children.length){
+						for(var i = 0; i < object3D.children[0].children.length; i++){
+							var child = object3D.children[0].children[i];
+							for(int d = 0; d < child.children.length; d++){
+								var mesh = child.children[d];
 			mesh.userData.altspace = mesh.userData.altspace || {};
 			mesh.userData.altspace.collider = mesh.userData.altspace.collider || {};
 			mesh.userData.altspace.collider.enabled = false;
 
 			altspace.addNativeComponent(mesh, "object");
+							}
+						}
 					} else {
 						setTimeout(checkFinishedLoading, 500);
 					}
