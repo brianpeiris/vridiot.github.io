@@ -206,6 +206,9 @@
 				}, 1000);
 			});
 				setInterval(function(e){
+					var el = document.querySelector('a-entity');
+					var object3D = el.object3D;
+					console.log(object3D.children);
 					$.ajax({ type: "GET",   
 							url: "http://island.jacobralph.org/lastupdate.txt",   
 							async: true,
