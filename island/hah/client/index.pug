@@ -18,33 +18,33 @@ html
 
 	body
 		script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
-		script(src='http://island.jacobralph.org/hah/client/lib/socket.io-1.4.5.js')
+		script(src='http://island.jacobralph.org:7878/client/lib/socket.io-1.4.5.js')
 		script(src='http://aframe.io/releases/0.3.0/aframe.min.js')
-		script(src='http://island.jacobralph.org/assets/aframe-component.js')
-		script(src='http://island.jacobralph.org/hah/client/lib/ColladaLoader.js')
-		script(src='http://island.jacobralph.org/hah/client/lib/OBJLoader.js')
-		script(src='http://island.jacobralph.org/assets/altspace.js')
-		script(src='http://island.jacobralph.org/hah/client/lib/Tween.js')
-		script(src='http://island.jacobralph.org/hah/client/behaviors.js')
-		script(src='http://island.jacobralph.org/hah/client/util.js')
-		script(src='http://island.jacobralph.org/hah/client/game.js')
-		script(src='http://island.jacobralph.org/hah/client/confetti.js')
-		script(src='http://island.jacobralph.org/hah/client/crown.js')
-		script(src='http://island.jacobralph.org/hah/client/seat.js')
-		script(src='http://island.jacobralph.org/hah/client/client.js')
+		script(src='http://island.jacobralph.org:7878/client/assets/aframe-component.js')
+		script(src='http://island.jacobralph.org:7878/client/lib/ColladaLoader.js')
+		script(src='http://island.jacobralph.org:7878/client/lib/OBJLoader.js')
+		script(src='http://island.jacobralph.org:7878/client/assets/altspace.js')
+		script(src='http://island.jacobralph.org:7878/client/lib/Tween.js')
+		script(src='http://island.jacobralph.org:7878/client/behaviors.js')
+		script(src='http://island.jacobralph.org:7878/client/util.js')
+		script(src='http://island.jacobralph.org:7878/client/game.js')
+		script(src='http://island.jacobralph.org:7878/client/confetti.js')
+		script(src='http://island.jacobralph.org:7878/client/crown.js')
+		script(src='http://island.jacobralph.org:7878/client/seat.js')
+		script(src='http://island.jacobralph.org:7878/client/client.js')
 		a-scene(altspace='fullspace: true', debug='')
 			a-assets
-				a-asset-item#sco(src='http://island.jacobralph.org/assets/island.dae')
-				a-asset-item#sign(src='http://island.jacobralph.org/assets/sign.dae')
-				a-asset-item#cl(src='http://island.jacobralph.org/assets/island.json')
+				a-asset-item#sco(src='http://island.jacobralph.org:7878/client/assets/island.dae')
+				a-asset-item#sign(src='http://island.jacobralph.org:7878/client/assets/sign.dae')
+				a-asset-item#cl(src='http://island.jacobralph.org:7878/client/assets/island.json')
 			a-entity#ci2(position='0 0 0', blend-model='#ci', altspace-cursor-collider='enabled: false', n-mesh-collider='type: environment;')
 			a-entity#sco2(position='0 0 0', collada-model='#sco', collide-mesh='', altspace-cursor-collider='enabled: false', n-mesh-collider='type: environment;')
 			a-entity(position='0 2 0', collada-model='#sign', collide-mesh='', altspace-cursor-collider='enabled: false')
 			// <a-box color="tomato" depth="2" height="4" width="0.5" position="1 1 1" n-mesh-collider="type: environment;"></a-box>
-			a-plane(altspace-cursor-collider='enabled: false', material='src: url(http://island.jacobralph.org/assets/water10.jpg); repeat: 30 30;', height='130', width='130', rotation='-90 0 0', position='0.0 0.40 0.0', opacity='0.7', transparent='true')
+			a-plane(altspace-cursor-collider='enabled: false', material='src: url(http://island.jacobralph.org:7878/client/assets/water10.jpg); repeat: 30 30;', height='130', width='130', rotation='-90 0 0', position='0.0 0.40 0.0', opacity='0.7', transparent='true')
 				a-animation(attribute='position', dur='4000', direction='alternate', easing='ease-in-out-sine', to='0.0 0.33 0.0', repeat='indefinite')
 			//
-				<a-plane altspace-cursor-collider="enabled: false" material="src: url(http://island.jacobralph.org/assets/water10.jpg); repeat: 30 30;" height="100" width="100" rotation="-90 0 0" position="0.25 0.35 0.25" opacity="0.3">
+				<a-plane altspace-cursor-collider="enabled: false" material="src: url(http://island.jacobralph.org:7878/client/assets/water10.jpg); repeat: 30 30;" height="100" width="100" rotation="-90 0 0" position="0.25 0.35 0.25" opacity="0.3">
 				<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.5 0.35 0.5" repeat="indefinite"></a-animation>
 				</a-plane>
 			a-entity(position='0 -54.3 -2', n-sphere-collider='type: environment; radius:55', radius='55', opacity='0')
@@ -62,7 +62,7 @@ html
 			var sim = altspace.utilities.Simulation();
 			var loader = new THREE.TextureLoader();
 			loader.crossOrigin = '';
-			var texture = THREE.ImageUtils.loadTexture( "http://island.jacobralph.org/assets/skydome.png" );
+			var texture = THREE.ImageUtils.loadTexture( "http://island.jacobralph.org:7878/client/assets/skydome.png" );
 			var skyGeo = new THREE.SphereGeometry(500, 100, 100);
 			var material = new THREE.MeshPhongMaterial({
 			map: texture,
@@ -74,7 +74,7 @@ html
 			sim.scene.add(sky);
 			var sources = [];
 			var skeleton = {};
-			sources.push("http://island.jacobralph.org/assets/ocean.mp3");
+			sources.push("http://island.jacobralph.org:7878/client/assets/ocean.mp3");
 			var sound1, sound2;
 			var clock = new THREE.Clock();
 			var Sound = function ( sources, radius, volume, position) {
