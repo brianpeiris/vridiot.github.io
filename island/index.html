@@ -60,7 +60,7 @@
 <a-entity
 		geometry="primitive: box" material="color: lightblue" depth="2" height="2" width="2" position="-40 1 5"
 		n-sound="src: ./assets/ocean.mp3; autoplay: true; rolloff: logarithmic; minDistance: 0.1; volume: 1; maxDistance: 100"
-		altspace-cursor-collider="enabled: true">
+		altspace-cursor-collider="enabled: true" id="loop" onclick="document.querySelector('#loop').components['n-sound'].pauseSound()">
 </a-entity>
 		</a-scene>
 		<script>
