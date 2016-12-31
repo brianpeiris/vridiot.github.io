@@ -16,17 +16,17 @@ html
 			script.
 				var ga = function () {};
 
-		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
-		script(src='https://aframe.io/releases/0.3.0/aframe.min.js')
-		script(src='https://island.jacobralph.org/assets/aframe-component.js')
+		script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+		script(src='http://aframe.io/releases/0.3.0/aframe.min.js')
+		script(src='http://island.jacobralph.org/assets/aframe-component.js')
 
 	body
 		script(src='/static/bundle.js')
 		a-scene(altspace='fullspace: true', debug='')
 			a-assets
-				a-asset-item#sco(src='https://island.jacobralph.org//assets/island.dae')
-				a-asset-item#sign(src='https://island.jacobralph.org//assets/sign.dae')
-				a-asset-item#cl(src='https://island.jacobralph.org//assets/island.json')
+				a-asset-item#sco(src='http://island.jacobralph.org/assets/island.dae')
+				a-asset-item#sign(src='http://island.jacobralph.org/assets/sign.dae')
+				a-asset-item#cl(src='http://island.jacobralph.org/assets/island.json')
 			a-entity#ci2(position='0 0 0', blend-model='#ci', altspace-cursor-collider='enabled: false', n-mesh-collider='type: environment;')
 			a-entity#sco2(position='0 0 0', collada-model='#sco', collide-mesh='', altspace-cursor-collider='enabled: false', n-mesh-collider='type: environment;')
 			a-entity(position='0 2 0', collada-model='#sign', collide-mesh='', altspace-cursor-collider='enabled: false')
