@@ -18,15 +18,15 @@ html
 
 		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
 		script(src='https://aframe.io/releases/0.3.0/aframe.min.js')
-		script(src='./assets/aframe-component.js')
+		script(src='https://island.jacobralph.org/assets/aframe-component.js')
 
 	body
 		script(src='/static/bundle.js')
 		a-scene(altspace='fullspace: true', debug='')
 			a-assets
-				a-asset-item#sco(src='./assets/island.dae')
-				a-asset-item#sign(src='./assets/sign.dae')
-				a-asset-item#cl(src='./assets/island.json')
+				a-asset-item#sco(src='https://island.jacobralph.org//assets/island.dae')
+				a-asset-item#sign(src='https://island.jacobralph.org//assets/sign.dae')
+				a-asset-item#cl(src='https://island.jacobralph.org//assets/island.json')
 			a-entity#ci2(position='0 0 0', blend-model='#ci', altspace-cursor-collider='enabled: false', n-mesh-collider='type: environment;')
 			a-entity#sco2(position='0 0 0', collada-model='#sco', collide-mesh='', altspace-cursor-collider='enabled: false', n-mesh-collider='type: environment;')
 			a-entity(position='0 2 0', collada-model='#sign', collide-mesh='', altspace-cursor-collider='enabled: false')
@@ -52,7 +52,7 @@ html
 			var sim = altspace.utilities.Simulation();
 			var loader = new THREE.TextureLoader();
 			loader.crossOrigin = '';
-			var texture = THREE.ImageUtils.loadTexture( "./assets/skydome.png" );
+			var texture = THREE.ImageUtils.loadTexture( "https://island.jacobralph.org//assets/skydome.png" );
 			var skyGeo = new THREE.SphereGeometry(500, 100, 100);
 			var material = new THREE.MeshPhongMaterial({
 			map: texture,
