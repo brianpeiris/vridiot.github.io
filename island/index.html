@@ -9,11 +9,9 @@
 		<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
 		<script src="./assets/aframe-component.js"></script>
 		<script src="./assets/altspace.js"></script>
-		<script src="http://b620b5c29b52b0906d6f-e14478edff9ea40410d3a0712065bea5.r29.cf1.rackcdn.com/CSS3DRenderer.js"></script>
 	</head>
 
 	<body>
-	<div id="container"></div>
 		<a-scene altspace ='fullspace: true' debug>
 			<a-assets>
 				<a-asset-item id="sco" src="./assets/island.dae"></a-asset-item>
@@ -39,45 +37,6 @@
 
 			var loader = new THREE.TextureLoader();
 			loader.crossOrigin = '';
-
-			var Element = function ( id, x, y, z, ry ) {
-
-				var div = document.createElement( 'div' );
-				div.style.width = '480px';
-				div.style.height = '360px';
-				div.style.backgroundColor = '#000';
-
-				var iframe = document.createElement( 'iframe' );
-				iframe.style.width = '480px';
-				iframe.style.height = '360px';
-				iframe.style.border = '0px';
-				iframe.src ='https://video-jukebox.firebaseapp.com/?room=-K_GW0mnmbtUB-qcTwCD';
-				div.appendChild( iframe );
-
-				var object = new THREE.CSS3DObject( div );
-				object.position.set( x, y, z );
-				object.rotation.y = ry;
-
-				return object;
-
-			};
-
-			init();
-			animate();
-
-			function init() {
-
-				var container = document.getElementById( 'container' );
-
-				var group = new THREE.Group();
-				group.add( new Element( 'njCDZWTI-xg', 10, 10, 10, 0 ) );
-				//group.add( new Element( 'HDh4uK9PvJU', 240, 0, 0, Math.PI / 2 ) );
-				//group.add( new Element( 'OX9I1KyNa8M', 0, 0, - 240, Math.PI ) );
-				//group.add( new Element( 'nhORZ6Ep_jE', - 240, 0, 0, - Math.PI / 2 ) );
-				sim.scene.add( group );
-
-
-			}
 
 			/*var skyBox = new THREE.Object3D();
 
