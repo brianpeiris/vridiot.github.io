@@ -16,11 +16,11 @@ html
 			script.
 				var ga = function () {};
 
+	body
 		script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
 		script(src='http://aframe.io/releases/0.3.0/aframe.min.js')
 		script(src='http://island.jacobralph.org/assets/aframe-component.js')
-
-	body
+		script(src='http://island.jacobralph.org/assets/altspace..js')
 		script(src='/static/bundle.js')
 		a-scene(altspace='fullspace: true', debug='')
 			a-assets
@@ -64,7 +64,7 @@ html
 			sim.scene.add(sky);
 			var sources = [];
 			var skeleton = {};
-			sources.push("./assets/ocean.mp3");
+			sources.push("http://island.jacobralph.org/assets/ocean.mp3");
 			var sound1, sound2;
 			var clock = new THREE.Clock();
 			var Sound = function ( sources, radius, volume, position) {

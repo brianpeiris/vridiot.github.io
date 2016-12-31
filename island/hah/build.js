@@ -4,11 +4,11 @@ var result = UglifyJS.minify(
 	[
 		'client/lib/socket.io-1.4.5.js',
 
-		'client/lib/three.min.js',
+		//'client/lib/three.min.js',
 		'client/lib/ColladaLoader.js',
 		'client/lib/OBJLoader.js',
 		'client/lib/MTLLoader.js',
-		'client/lib/altspace.js',
+		//'client/lib/altspace.js',
 
 		'client/lib/Tween.js',
 
