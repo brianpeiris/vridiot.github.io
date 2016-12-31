@@ -71,7 +71,7 @@
 				map: texture,
 			});
 			var sky = new THREE.Mesh(skyGeo, material);
-			sky.position.y = 0;
+			sky.position.y = -40;
 			sky.rotation.y = -125 * (Math.PI / 180);
 			sky.material.side = THREE.BackSide;
 			sim.scene.add(sky);
