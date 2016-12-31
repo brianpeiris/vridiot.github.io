@@ -21,7 +21,7 @@
 
 			<a-entity position="0 0 0" blend-model="#ci" id="ci2" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment;"></a-entity>
 			<a-entity position="0 0 0" collada-model="#sco" id="sco2" collide-mesh altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment;"></a-entity>
-			<a-entity position="0 2 0" collada-model="#sign" collide-mesh altspace-cursor-collider="enabled: false"></a-entity>
+			<a-entity position="0 3 0" collada-model="#sign" collide-mesh altspace-cursor-collider="enabled: false"></a-entity>
 			<!--<a-box color="tomato" depth="2" height="4" width="0.5" position="1 1 1" n-mesh-collider="type: environment;"></a-box>-->
 			<a-plane altspace-cursor-collider="enabled: false" material="src: url(./assets/water10.jpg); repeat: 30 30;" height="130" width="130" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.7" transparent=true>
 				<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.33 0.0" repeat="indefinite"></a-animation>
@@ -59,73 +59,6 @@
 			var loader = new THREE.TextureLoader();
 			loader.crossOrigin = '';
 
-			/*var skyBox = new THREE.Object3D();
-
-			//var texture3 = loader.load('./assets/TropicalSunnyDayRight2048.png');
-			var texture3 = loader.load('./assets/left.jpg');
-			var geometry3 = new THREE.PlaneGeometry(1536, 1536);
-			var material3 = new THREE.MeshLambertMaterial( { map: texture3 } );
-			material3.side = THREE.DoubleSide;
-			material3.setNeedsUpdate = true;
-			var skybox1 = new THREE.Mesh( geometry3, material3 );
-			skybox1.userData.altspace = {collider: {enabled: false}};
-			skybox1.position.y = -368;
-			skybox1.position.z = 768;
-			skyBox.add(skybox1);
-
-			//var texture4 = loader.load('./assets/TropicalSunnyDayLeft2048.png');
-			var texture4 = loader.load('./assets/right.jpg');
-			var geometry4 = new THREE.PlaneGeometry(1536, 1536);
-			var material4 = new THREE.MeshLambertMaterial( { map: texture4 } );
-			material4.side = THREE.DoubleSide;
-			material4.setNeedsUpdate = true;
-			var skybox2 = new THREE.Mesh( geometry4, material4 );
-			skybox2.userData.altspace = {collider: {enabled: false}};
-			skybox2.position.y = -368;
-			skybox2.position.z = -768;
-			skybox2.rotation.set(0, -180 * (Math.PI / 180), 0);
-			skyBox.add(skybox2);
-
-			//var texture5 = loader.load('./assets/TropicalSunnyDayFront2048.png');
-			var texture5 = loader.load('./assets/front.jpg');
-			var geometry5 = new THREE.PlaneGeometry(1536, 1536);
-			var material5 = new THREE.MeshLambertMaterial( { map: texture5 } );
-			material5.side = THREE.DoubleSide;
-			material5.setNeedsUpdate = true;
-			var skybox5 = new THREE.Mesh( geometry5, material5 );
-			skybox5.userData.altspace = {collider: {enabled: false}};
-			skybox5.position.y = -368;
-			skybox5.position.x = 768;
-			skybox5.rotation.set(0, 90 * (Math.PI / 180), 0);
-			skyBox.add(skybox5);
-
-			//var texture6 = loader.load('./assets/TropicalSunnyDayBack2048.png');
-			var texture6 = loader.load('./assets/back.jpg');
-			var geometry6 = new THREE.PlaneGeometry(1536, 1536);
-			var material6 = new THREE.MeshLambertMaterial( { map: texture6 } );
-			material6.side = THREE.DoubleSide;
-			material6.setNeedsUpdate = true;
-			var skybox6 = new THREE.Mesh( geometry6, material6 );
-			skybox6.userData.altspace = {collider: {enabled: false}};
-			skybox6.position.y = -368;
-			skybox6.position.x = -768;
-			skybox6.rotation.set(0, -90 * (Math.PI / 180), 0);
-			skyBox.add(skybox6);
-
-			//var texture7 = loader.load('./assets/TropicalSunnyDayUp2048.png');
-			var texture7 = loader.load('./assets/top.jpg');
-			var geometry7 = new THREE.BoxGeometry(1538, 1538, 1538);
-			var material7 = new THREE.MeshLambertMaterial( { map: texture7 } );
-			material7.side = THREE.DoubleSide;
-			material7.setNeedsUpdate = true;
-			var skybox7 = new THREE.Mesh( geometry7, material7 );
-			skybox7.userData.altspace = {collider: {enabled: false}};
-			skybox7.position.y = -378;
-			skybox7.rotation.set(-90 * (Math.PI / 180), 0, 90 * (Math.PI / 180));
-			skyBox.add(skybox7);
-			console.log(skyBox);
-			sim.scene.add(skyBox);*/
-
 			var texture = THREE.ImageUtils.loadTexture( "./assets/skydome.png" );
 			var skyGeo = new THREE.SphereGeometry(500, 100, 100);
 			var material = new THREE.MeshPhongMaterial({
@@ -136,39 +69,6 @@
 			sky.rotation.y = -125 * (Math.PI / 180);
 			sky.material.side = THREE.BackSide;
 			sim.scene.add(sky);
-
-			var tick = 0;
-			var forward = false;
-
-			/*function animate() {
-
-				// monitored code goes here
-				if(terrain != undefined && terrain != null && terrain2 != undefined && terrain2 != null){
-					tick++;
-					if(forward){
-						if(tick == 180){
-							forward = false;
-							tick = 0;
-						}
-						//terrain.position.y = terrain.position.y - 0.0002;
-						//terrain.position.z = terrain.position.z - 0.005;
-						//terrain2.position.y = terrain2.position.y - 0.0002;
-						//terrain2.position.z = terrain2.position.z + 0.005;
-					} else {
-						if(tick == 180){
-							forward = true;
-							tick = 0;
-						}
-						//terrain.position.y = terrain.position.y + 0.0002;
-						//terrain.position.z = terrain.position.z + 0.005;
-						//terrain2.position.y = terrain2.position.y + 0.0002;
-						//terrain2.position.z = terrain2.position.z - 0.005;
-					}
-				}
-
-				requestAnimationFrame( animate );
-			}
-			requestAnimationFrame( animate );*/
 
 			var sources = [];
 			var skeleton = {};
