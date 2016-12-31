@@ -242,7 +242,7 @@
 							var child = object3D.children[0].children[i];
 							for(var d = 0; d < child.children.length; d++){
 								var mesh = child.children[d];
-					var testBoxCollider = new NativeComponent('n-mesh-collider', {type:"environment"}, mesh).addTo(root);
+					var testBoxCollider = new NativeComponent('n-mesh-collider', {}, mesh).addTo(root);
 
 							}
 						}
