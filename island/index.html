@@ -8,6 +8,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
 		<script src="./assets/aframe-component.js"></script>
+		<script src="./assets/JSNativeComponents.js"></script>
 		<script src="./assets/altspace.js"></script>
 	</head>
 
@@ -224,6 +225,7 @@
 
 			sound.play();
 			document.addEventListener('DOMContentLoaded', function(){
+			var root = new THREE.Object3D();
 
 			function checkFinishedLoading(){
 				var el = document.getElementById("sco2");
@@ -234,11 +236,8 @@
 							var child = object3D.children[0].children[i];
 							for(var d = 0; d < child.children.length; d++){
 								var mesh = child.children[d];
-			mesh.userData.altspace = mesh.userData.altspace || {};
-			mesh.userData.altspace.collider = mesh.userData.altspace.collider || {};
-			mesh.userData.altspace.collider.enabled = false;
-					console.log(mesh);
-			altspace.addNativeComponent(mesh, "object");
+					var testBoxCollider = new NativeComponent('n-mesh-collider', {type:environment}, mesh).addTo(root);
+
 							}
 						}
 					} else {
