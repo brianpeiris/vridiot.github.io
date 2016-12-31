@@ -18,10 +18,20 @@ html
 
 	body
 		script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+		script(src='client/lib/socket.io-1.4.5.js')
 		script(src='http://aframe.io/releases/0.3.0/aframe.min.js')
 		script(src='http://island.jacobralph.org/assets/aframe-component.js')
+		script(src='client/lib/ColladaLoader.js')
+		script(src='client/lib/OBJLoader.js')
 		script(src='http://island.jacobralph.org/assets/altspace.js')
-		script(src='/static/bundle.js')
+		script(src='client/lib/Tween.js')
+		script(src='client/behaviors.js')
+		script(src='client/util.js')
+		script(src='client/game.js')
+		script(src='client/confetti.js')
+		script(src='client/crown.js')
+		script(src='client/seat.js')
+		script(src='client/client.js')
 		a-scene(altspace='fullspace: true', debug='')
 			a-assets
 				a-asset-item#sco(src='http://island.jacobralph.org/assets/island.dae')
