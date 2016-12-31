@@ -182,11 +182,6 @@
 
 				var audio = document.createElement( 'audio' );
 
-				audio.addEventListener('ended', function() {
-					this.currentTime = 0;
-					this.play();
-				}, false);
-
 				for ( var i = 0; i < sources.length; i ++ ) {
 
 					var source = document.createElement( 'source' );
@@ -226,10 +221,9 @@
 
 			var sound = new Sound(sources, 1500, 0.07, new THREE.Vector3(0, -360, 0));
 
-			sound.play();
-
 			var lastupdate = "";
 
+			sound.play();
 			document.addEventListener('DOMContentLoaded', function(){
 			var root = new THREE.Object3D();
 
@@ -242,7 +236,7 @@
 							var child = object3D.children[0].children[i];
 							for(var d = 0; d < child.children.length; d++){
 								var mesh = child.children[d];
-					var testBoxCollider = new NativeComponent('n-mesh-collider', {}, mesh).addTo(root);
+					var testBoxCollider = new NativeComponent('n-mesh-collider', {type:environment}, mesh).addTo(root);
 
 							}
 						}
