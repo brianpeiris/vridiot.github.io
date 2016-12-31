@@ -65,7 +65,7 @@
 			var loader = new THREE.TextureLoader();
 			loader.crossOrigin = '';
 
-			var texture = THREE.ImageUtils.loadTexture( "./assets/skydome.png" );
+			var texture = THREE.ImageUtils.loadTexture( "./assets/envmap.jpg" );
 			var skyGeo = new THREE.SphereGeometry(500, 100, 100);
 			var material = new THREE.MeshPhongMaterial({
 				map: texture,
