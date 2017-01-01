@@ -58,13 +58,13 @@
 			var loader = new THREE.TextureLoader();
 			loader.crossOrigin = '';
 
-			var texture = THREE.ImageUtils.loadTexture( "./assets/envmap.jpg" );
+			var texture = THREE.ImageUtils.loadTexture( "./assets/skydome.jpn" );
 			var skyGeo = new THREE.SphereGeometry(500, 100, 100);
 			var material = new THREE.MeshPhongMaterial({
 				map: texture,
 			});
 			var sky = new THREE.Mesh(skyGeo, material);
-			sky.position.y = -40;
+			sky.position.y = -20;
 			sky.rotation.y = -125 * (Math.PI / 180);
 			sky.material.side = THREE.BackSide;
 			sim.scene.add(sky);
