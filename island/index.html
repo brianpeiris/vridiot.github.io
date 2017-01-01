@@ -50,6 +50,8 @@
 <a-entity position="-34.3 1.0 0.1" depth="2.7" height="0.2" width="7.9" n-box-collider="type: environment; size: 7.9, 0.2, 3" ></a-entity>
 <a-entity position="-29.9 0.79 0.1" depth="2.7" height="0.2" width="1" n-box-collider="type: environment; size: 1, 0.2, 3" rotation="0 0 -25"></a-entity>
 
+<a-box position="10 2.5 0.0" depth="2.15" height="3.2" width="4" n-box-collider="type: environment; size: 4, 3.2, 2.15"></a-box>
+
 		</a-scene>
 		<script>
 
@@ -149,7 +151,7 @@
 				}, 5000);
 			});
 
-var geometry2 = new THREE.BoxGeometry(0.15,3.2,4);
+/*var geometry2 = new THREE.BoxGeometry(0.15,3.2,4);
 var material2 = new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.0});
 var box = new THREE.Mesh(geometry2, material2);
 box.position.y = 2.5;
@@ -179,7 +181,7 @@ var box5 = new THREE.Mesh(geometry5, material5);
 box5.position.y = 2.5;
 box5.position.x = 10;
 box5.rotation.y = 90 * (Math.PI / 180)
-sim.scene.add(box5);
+sim.scene.add(box5);*/
 
 		</script>
 	</body>
