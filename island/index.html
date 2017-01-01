@@ -8,6 +8,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
 		<script src="./assets/aframe-component.js"></script>
+		<script src="./assets/ColladaLoader.js"></script>
 		<script src="./assets/altspace.js"></script>
 	</head>
 
@@ -22,31 +23,48 @@
 			<a-entity position="0 0 0" blend-model="#ci" id="ci-a" altspace-cursor-collider="enabled: false"></a-entity>
 			<a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
 			<!--<a-entity position="0 3 0" collada-model="#sign" collide-mesh altspace-cursor-collider="enabled: false"></a-entity>-->
-			<a-plane altspace-cursor-collider="enabled: false" material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1500" width="1500" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.7" transparent=true>
-				<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.33 0.0" repeat="indefinite"></a-animation>
+			<a-plane altspace-cursor-collider="enabled: false" material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.7" transparent=true>
+				<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation>
 			</a-plane>
 
-<a-entity position="0 -54.3 -2" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="0 -54.6 -2" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="7 -54.6 1" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="4 -54.6 6" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-<a-entity position="7 -54.3 -11" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="7 -54.6 -11" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-<a-entity position="10 -54.3 0" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="11 -54.6 0" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="4 -54.6 -4" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="8 -54.6 -6" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="7 -54.6 4" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-<a-entity position="10 -54.3 10" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="10 -54.6 10" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-<a-entity position="9 -54.3 19" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="9 -54.6 18" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="11 -54.6 12" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="11 -54.6 8" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="7 -54.6 15" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="6 -54.6 21" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 <!-- --xy -->
 
-<a-entity position="-9 -54.3 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-9 -54.6 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-9 -54.6 -5" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-13 -54.6 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-<a-entity position="-9 -54.3 -15" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-9 -54.6 -12" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-5 -54.6 -16" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-13.5 -54.6 -15" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-<a-entity position="1 -54.3 -14" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="1 -54.6 -14" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-3 -54.6 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-<a-entity position="-28 -54.3 1" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-28 -54.6 1" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-25 -54.6 -2" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-25 -54.6 -4" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-25 -54.6 3" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-<a-entity position="-17 -54.3 -7" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-
+<a-entity position="-20 -54.6 -5" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+<a-entity position="-20 -54.6 -10" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 <a-entity position="-34.3 1.0 0.1" depth="2.7" height="0.2" width="7.9" n-box-collider="type: environment; size: 7.9, 0.2, 3" ></a-entity>
 <a-entity position="-29.9 0.79 0.1" depth="2.7" height="0.2" width="1" n-box-collider="type: environment; size: 1, 0.2, 3" rotation="0 0 -25"></a-entity>
 
