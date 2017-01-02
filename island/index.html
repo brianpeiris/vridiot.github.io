@@ -13,7 +13,7 @@
 	</head>
 
 	<body>
-	
+
 		<a-scene altspace ='fullspace: true' debug>
 			<a-assets>
 				<a-asset-item id="sco" src="./assets/island.dae"></a-asset-item>
@@ -168,38 +168,6 @@
 						   });
 				}, 5000);
 			});
-
-var geometry2 = new THREE.BoxGeometry(0.15,3.2,4);
-var material2 = new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.0});
-var box = new THREE.Mesh(geometry2, material2);
-box.position.y = 2.5;
-box.position.x = 10;
-
-sim.scene.add(box);
-
-var geometry3 = new THREE.BoxGeometry(0.15,3.2,4);
-var material3 = new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.0});
-var box2 = new THREE.Mesh(geometry3, material3);
-box2.position.y = 2.5;
-box2.position.x = 10;
-box2.rotation.y = -180 * (Math.PI / 180)
-sim.scene.add(box2);
-
-var geometry4 = new THREE.BoxGeometry(4,3.2,0.15);
-var material4 = new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.0});
-var box3 = new THREE.Mesh(geometry4, material4);
-box3.position.y = 2.5;
-box3.position.x = 10;
-box3.rotation.y = -90 * (Math.PI / 180)
-sim.scene.add(box3);
-
-var geometry5 = new THREE.BoxGeometry(4,3.2,0.15);
-var material5 = new THREE.MeshLambertMaterial({color: 0x0000ff, transparent: true, opacity: 0.0});
-var box5 = new THREE.Mesh(geometry5, material5);
-box5.position.y = 2.5;
-box5.position.x = 10;
-box5.rotation.y = 90 * (Math.PI / 180)
-sim.scene.add(box5);
 
 		</script>
 	</body>
