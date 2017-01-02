@@ -15,7 +15,7 @@
 
 <body>
 
-	<a-scene altspace ='fullspace: true' debug>
+	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: -island">
 		<a-assets>
 			<a-asset-item id="sco" src="./assets/island.dae"></a-asset-item>
 			<a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
@@ -25,59 +25,65 @@
 		<!--<a-entity position="0 0 0" blend-model="#ci" id="ci-a" altspace-cursor-collider="enabled: false" n-mesh-collider></a-entity>-->
 		<a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment"></a-entity>
 		<!--<a-entity position="0 3 0" collada-model="#sign" collide-mesh altspace-cursor-collider="enabled: false"></a-entity>-->
-		<a-plane  material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.7" transparent=true altspace-cursor-collider="enabled: false">
+		<a-plane  material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.7" transparent=true altspace-cursor-collider="enabled: false" n-mesh-collider="type: object">
 			<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation>
 		</a-plane>
 
-		<a-entity position="1 2 1" n-spawner='res: interactables/soccerball'></a-entity>
+		<a-entity position="38.56583 2 1" n-spawner='res: interactables/soccerball'></a-entity>
 
-		<a-entity position="-7.75 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
-		<a-entity position="-1.4 2.7 -8.8" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
-		<a-entity position="-15.5 2.7 -4.3" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
-		<a-entity position="-14.1 2.7 -10.2" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
-		<a-entity position="-26.55 2.7 -5.18" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
-		<a-entity position="-24.95 3.15 -0.51" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
+		<a-entity position="29.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
+		<a-entity position="36.16583 2.7 -8.8" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
+		<a-entity position="22.06583 2.7 -4.3" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
+		<a-entity position="23.46583 2.7 -10.2" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
+		<a-entity position="11.01583 2.7 -5.18" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
+		<a-entity position="-12.61583 3.15 -0.51" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 
-		<a-entity position="0 -54.4 -2" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="7 -54.4 1" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="4 -54.4 6" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="37.56583 -54.4 -2" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="44.56583 -54.4 1" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="41.56583 -54.4 6" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-		<a-entity position="7 -54.4 -11" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="44.56583 -54.4 -11" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
 		<a-entity position="11 -54.4 0" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="4 -54.4 -4" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="8 -54.4 -6" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="7 -54.4 4" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="41.56483 -54.4 -4" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="45.56583 -54.4 -6" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="44.56583 -54.4 4" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-		<a-entity position="10 -54.4 10" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="47.56583 -54.4 10" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-		<a-entity position="9 -54.4 18" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="11 -54.4 12" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="11 -54.4 8" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="7 -54.4 15" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="6 -54.4 21" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="46.56583 -54.4 18" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="48.56583 -54.4 12" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="48.56583 -54.4 8" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="44.56583 -54.4 15" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="43.56583 -54.4 21" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 		<!-- --xy -->
 
-		<a-entity position="-9 -54.4 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-9 -54.4 -5" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-13 -54.4 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="28.56583 -54.4 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="28.56583 -54.4 -5" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="24.56583 -54.4 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-		<a-entity position="-9 -54.4 -12" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-5 -54.4 -16" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-13.5 -54.4 -15" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="28.56583 -54.4 -12" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="29.56583 -54.4 -16" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="24.06583 -54.4 -15" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-		<a-entity position="1 -54.4 -14" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-3 -54.4 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="38.56583 -54.4 -14" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="34.56583 -54.4 -9" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-		<a-entity position="-28 -54.4 1" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-25 -54.4 -2" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-25 -54.4 -4" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-25 -54.4 3" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="9.56583 -54.4 1" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="12.56583 -54.4 -2" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="12.56583 -54.4 -4" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="12.56583 -54.4 3" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
 
-		<a-entity position="-20 -54.4 -5" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-20 -54.4 -10" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
-		<a-entity position="-34.3 1.0 0.1" depth="2.7" height="0.2" width="7.9" n-box-collider="type: environment; size: 7.9, 0.2, 3" ></a-entity>
-		<a-entity position="-29.9 0.79 0.1" depth="2.7" height="0.2" width="1" n-box-collider="type: environment; size: 1, 0.2, 3" rotation="0 0 -25"></a-entity>
+		<a-entity position="17.56583 -54.4 -5" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="17.56583 -54.4 -10" n-sphere-collider="type: environment; radius:55" radius="55" opacity="0"></a-entity>
+		<a-entity position="3.26583 1.0 0.1" depth="2.7" height="0.2" width="7.9" n-box-collider="type: environment; size: 7.9, 0.2, 3" ></a-entity>
+		<a-entity position="7.66583 0.79 0.1" depth="2.7" height="0.2" width="1" n-box-collider="type: environment; size: 1, 0.2, 3" rotation="0 0 -25"></a-entity>
+
+		<a-entity id="loop"
+		geometry="primitive: box" material="color: green" position="29.56583 1 10"
+		n-sound="src: http://island.jacobralph.org/assets/ocean.ogg; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 7"
+		altspace-cursor-collider="enabled: true" sync-n-sound>
+	</a-entity>
 
 	</a-scene>
 	<script>
@@ -103,7 +109,7 @@
 		sky.material.side = THREE.BackSide;
 		sim.scene.add(sky);
 
-		var sources = [];
+		/*var sources = [];
 		var skeleton = {};
 		sources.push("./assets/ocean.mp3");
 		var sound1, sound2;
@@ -158,7 +164,7 @@
 
 		var sound = new Sound(sources, 1500, 0.07, new THREE.Vector3(0, -360, 0));
 
-		sound.play();
+		sound.play();*/
 
 		var lastupdate = "";
 
