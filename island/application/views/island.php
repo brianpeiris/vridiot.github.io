@@ -21,7 +21,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 } ?>
 	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
 		<a-assets timeout="1000">
-			<a-asset-item id="sco" src="./assets/night/island.dae"></a-asset-item>
+			<a-asset-item id="sco" src="./assets/day/island.dae"></a-asset-item>
 			<a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
 			<!--<a-asset-item id="cl" src="./assets/island.json"></a-asset-item>-->
 		</a-assets>
@@ -155,7 +155,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
 
-		var texture = THREE.ImageUtils.loadTexture( "./assets/night/NightSky.jpg" );
+		var texture = THREE.ImageUtils.loadTexture( "./assets/skydome2.jpg" );
 		var skyGeo = new THREE.SphereGeometry(500, 100, 100);
 		var material = new THREE.MeshPhongMaterial({
 			map: texture,
