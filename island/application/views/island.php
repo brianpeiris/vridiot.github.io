@@ -14,23 +14,25 @@
 </head>
 
 <body>
-<?php $regex = "/AltspaceVR-App build-[0-9a-f]{7} Mobile/";
+<?php
 $type = "ogg";
 if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
     $type = "mp3";
 } ?>
 	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
-		<a-assets timeout="1000">
+		<a-assets timeout="10000">
 			<a-asset-item id="sco" src="./assets/day/island.dae"></a-asset-item>
 			<a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
-			<!--<a-asset-item id="cl" src="./assets/island.json"></a-asset-item>-->
+			<a-asset-item id="cl" src="./assets/collider.json"></a-asset-item>
 		</a-assets>
 
-		<!--<a-entity position="0 0 0" blend-model="#ci" id="ci-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment"></a-entity>-->
+		<a-entity position="0 0 0" blend-model="#ci" id="ci-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment"></a-entity>
 		<a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
-		<a-plane  material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.2" transparent=true altspace-cursor-collider="enabled: false" n-mesh-collider="type: object">
+
+		<a-plane  material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.2" transparent=true altspace-cursor-collider="enabled: false">
 			<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation>
 		</a-plane>
+
 		<a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="33.16583 2.7 -8.8" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="19.06583 2.7 -4.3" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
@@ -54,13 +56,13 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>; autoplay: true; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>
 
-		<a-entity position="11 -199.4 -2" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
+		<!--<a-entity position="11 -199.4 -2" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
 		<a-entity position="22 -199.4 -12" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
 		<a-entity position="34.56583 -199.4 -9" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
 		<a-entity position="41 -199.4 3" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
 		<a-entity position="43 -199.4 17" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
 		<a-entity position="0.26583 1.0 0.1" depth="2.7" height="0.2" width="7.9" n-box-collider="type: environment; size: 7.9, 0.2, 3" ></a-entity>
-		<a-entity position="4.66583 0.79 0.1" depth="2.7" height="0.2" width="1" n-box-collider="type: environment; size: 1, 0.2, 3" rotation="0 0 -25"></a-entity>
+		<a-entity position="4.66583 0.79 0.1" depth="2.7" height="0.2" width="1" n-box-collider="type: environment; size: 1, 0.2, 3" rotation="0 0 -25"></a-entity>-->
 
 		<a-entity id="loop"
 		opacity="0" position="26.6 1 10"
@@ -155,7 +157,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
 
-		var texture = THREE.ImageUtils.loadTexture( "./assets/skydome2.jpg" );
+		var texture = THREE.ImageUtils.loadTexture( "./assets/skydome.png" );
 		var skyGeo = new THREE.SphereGeometry(500, 100, 100);
 		var material = new THREE.MeshPhongMaterial({
 			map: texture,
@@ -166,63 +168,6 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		sky.rotation.y = -137.5 * (Math.PI / 180);
 		sky.material.side = THREE.BackSide;
 		sim.scene.add(sky);
-
-		/*var sources = [];
-		var skeleton = {};
-		sources.push("./assets/ocean.mp3");
-		var sound1, sound2;
-
-		var clock = new THREE.Clock();
-
-		var Sound = function ( sources, radius, volume, position) {
-
-			var audio = document.createElement( 'audio' );
-
-			audio.addEventListener('ended', function() {
-				audio.currentTime = 0;
-				audio.play();
-			}, false);
-
-			for ( var i = 0; i < sources.length; i ++ ) {
-
-				var source = document.createElement( 'source' );
-				source.src = sources[ i ];
-
-				audio.appendChild( source );
-
-			}
-
-			this.position = position;
-
-			audio.volume = volume;
-
-			this.play = function () {
-
-				audio.play();
-
-			}
-
-			this.update = function ( p2 ) {
-
-				var distance = this.position.distanceTo( p2 );
-
-				if ( distance <= radius ) {
-
-					audio.volume = volume * ( 1 - distance / radius );
-
-				} else {
-
-					audio.volume = 0;
-
-				}
-
-			}
-
-		}
-
-		var sound = new Sound(sources, 1500, 0.07, new THREE.Vector3(0, -360, 0));
-
-		sound.play();*/
 
 		var lastupdate = "";
 
