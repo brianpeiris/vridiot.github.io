@@ -143,7 +143,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		n-sound="src: http://island.jacobralph.org/assets/ocean.<?php echo $type; ?>; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" sync-n-sound>
 		</a-entity>
-		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false" transparent=true></a-entity>
+		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
 
 	</a-scene>
 	<script>
@@ -160,7 +160,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 					var mesh = count[i];
 					mesh.material.visible = false;
 					//mesh.needsUpdate = true;
-					mesh.material.needsUpdate = true;
+					//mesh.material.needsUpdate = true;
 				}
 			} else {
 				setTimeout(function(e){
@@ -212,7 +212,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 			}, 5000);
 		});
 
-		var loader = new THREE.OBJLoader();
+		/*var loader = new THREE.OBJLoader();
 		loader.load( './assets/PalmLeaf.obj', function ( object ) {
 			var material = new THREE.MeshBasicMaterial({
 				map:THREE.ImageUtils.loadTexture('./assets/leaf.png'), transparent: true
@@ -224,7 +224,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 	plane.position.y =  2;
 	plane.position.y =  -4;
 	sim.scene.add(plane);
-} );
+} );*/
 
 </script>
 </body>
