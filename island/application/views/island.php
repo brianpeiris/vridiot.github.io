@@ -32,7 +32,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 			<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation>
 		</a-plane>
 
-		<a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
+		 <a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="33.16583 2.7 -8.8" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="19.06583 2.7 -4.3" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="20.46583 2.7 -10.2" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
@@ -143,7 +143,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		n-sound="src: http://island.jacobralph.org/assets/ocean.<?php echo $type; ?>; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" sync-n-sound>
 		</a-entity>
-		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
+		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: true"></a-entity>
 
 	</a-scene>
 	<script>
