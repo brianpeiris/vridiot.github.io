@@ -152,23 +152,6 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		sim.scene.addEventListener('cursordown', function (data) {
 			console.log('Touched Point: X: ' + data.point.x + " Z: " + data.point.z);
 		});
-		function checkMesh(){
-			if(document.querySelector('#cl-a').object3D.children[0] != undefined && document.querySelector('#cl-a').object3D.children[0].children[0])
-			var count = document.querySelector('#cl-a').object3D.children[0].children[0].children;
-			if(count != undefined && count.length){
-				for(var i = 0; i < count.length; i++){
-					var mesh = count[i];
-					mesh.material.visible = false;
-					mesh.needsUpdate = true;
-					mesh.material.needsUpdate = true;
-				}
-			} else {
-				setTimeout(function(e){
-					checkMesh();
-				}, 1000);
-			}
-		}
-		checkMesh();
 
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
@@ -189,6 +172,26 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 
 		document.addEventListener('DOMContentLoaded', function(){
 
+			function checkMesh(){
+			if(document.querySelector('#cl-a').object3D.children[0] != undefined && document.querySelector('#cl-a').object3D.children[0].children[0])
+			var count = document.querySelector('#cl-a').object3D.children[0].children[0].children;
+			if(count != undefined && count.length){
+				for(var i = 0; i < count.length; i++){
+				console.log(mesh);
+					var mesh = count[i];
+					mesh.material.visible = false;
+					mesh.needsUpdate = true;
+					mesh.material.needsUpdate = true;
+				console.log(mesh);
+				}
+			} else {
+				setTimeout(function(e){
+					checkMesh();
+				}, 1000);
+			}
+		}
+		checkMesh();
+
 			setInterval(function(e){
 				$.ajax({ type: "GET",
 					url: "http://island.jacobralph.org/lastupdate.txt",
@@ -207,7 +210,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 			}, 5000);
 		});
 
-		/*var loader = new THREE.OBJLoader();
+		var loader = new THREE.OBJLoader();
 		loader.load( './assets/PalmLeaf.obj', function ( object ) {
 			var material = new THREE.MeshBasicMaterial({
 				map:THREE.ImageUtils.loadTexture('./assets/leaf.png'), transparent: true
@@ -218,7 +221,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 	plane.overdraw = true;
 	plane.position.y =  2;
 	plane.position.y =  -4;
-	sim.scene.add(plane);*/
+	sim.scene.add(plane);
 } );
 
 </script>
