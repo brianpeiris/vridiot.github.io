@@ -143,7 +143,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		n-sound="src: http://island.jacobralph.org/assets/ocean.<?php echo $type; ?>; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" sync-n-sound>
 		</a-entity>
-		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: true"></a-entity>
+		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
 
 	</a-scene>
 	<script>
