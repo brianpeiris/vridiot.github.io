@@ -17,7 +17,7 @@
 <?php
 $type = "ogg";
 if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
-    $type = "mp3";
+    $type = "ogg";
 } ?>
 	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
 		<a-assets timeout="10000">
