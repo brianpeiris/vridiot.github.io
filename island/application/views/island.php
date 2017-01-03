@@ -153,7 +153,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 			console.log('Touched Point: X: ' + data.point.x + " Z: " + data.point.z);
 		});
 		function checkMesh(){
-			if(document.querySelector('#cl-a').object3D.children[0] != undefined && document.querySelector('#cl-a').object3D.children.length > 0 && document.querySelector('#cl-a').object3D.children[0].children[0] && document.querySelector('#cl-a').object3D.children[0].children,length > 0)
+			if(document.querySelector('#cl-a').object3D.children[0] != undefined && document.querySelector('#cl-a').object3D.children.length > 0 && document.querySelector('#cl-a').object3D.children[0].children[0] && document.querySelector('#cl-a').object3D.children[0].children,length > 0){
 			var count = document.querySelector('#cl-a').object3D.children[0].children[0].children;
 			if(count != undefined && count.length){
 				for(var i = 0; i < count.length; i++){
@@ -169,6 +169,11 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 					checkMesh();
 				}, 1000);
 			}
+		} else {
+			setTimeout(function(e){
+					checkMesh();
+				}, 1000);
+		}
 		}
 		checkMesh();
 
