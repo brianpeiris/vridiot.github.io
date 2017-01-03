@@ -161,7 +161,6 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 					var mesh = count[i];
 					//mesh.material.opacity = 0;
 					//mesh.material.transparent = true;
-					mesh.visible = false;
 					mesh.material.visible = false;
 					mesh.needsUpdate = true;
 					mesh.material.needsUpdate = true;
