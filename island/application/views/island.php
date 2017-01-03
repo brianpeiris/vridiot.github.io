@@ -32,7 +32,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 			<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation>
 		</a-plane>
 
-		<a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
+		<!--<a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="33.16583 2.7 -8.8" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="19.06583 2.7 -4.3" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="20.46583 2.7 -10.2" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
@@ -53,7 +53,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		altspace-cursor-collider="enabled: true" id="fire6" sync-n-sound></a-entity>
 
 		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>; autoplay: true; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
-		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>
+		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>-->
 
 		<!--<a-entity position="11 -199.4 -2" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
 		<a-entity position="22 -199.4 -12" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
@@ -63,7 +63,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		<a-entity position="0.26583 1.0 0.1" depth="2.7" height="0.2" width="7.9" n-box-collider="type: environment; size: 7.9, 0.2, 3" ></a-entity>
 		<a-entity position="4.66583 0.79 0.1" depth="2.7" height="0.2" width="1" n-box-collider="type: environment; size: 1, 0.2, 3" rotation="0 0 -25"></a-entity>-->
 
-		<a-entity id="loop"
+		<!--<a-entity id="loop"
 		opacity="0" position="26.6 1 10"
 		n-sound="src: http://island.jacobralph.org/assets/ocean.<?php echo $type; ?>; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" sync-n-sound>
@@ -143,7 +143,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		n-sound="src: http://island.jacobralph.org/assets/ocean.<?php echo $type; ?>; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" sync-n-sound>
 		</a-entity>
-		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
+		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>-->
 
 	</a-scene>
 	<script>
