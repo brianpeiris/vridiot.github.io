@@ -2,9 +2,9 @@
 <html lang='en'>
 <head>
 	<title>Island</title>
-	<!--meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+	<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
 	<meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
-	<meta http-equiv="pragma" content="no-cache">-->
+	<meta http-equiv="pragma" content="no-cache">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
 	<script src="./assets/aframe-component-beta.js"></script>
@@ -64,7 +64,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		<a-entity position="0.26583 1.0 0.1" depth="2.7" height="0.2" width="7.9" n-box-collider="type: environment; size: 7.9, 0.2, 3" ></a-entity>
 		<a-entity position="4.66583 0.79 0.1" depth="2.7" height="0.2" width="1" n-box-collider="type: environment; size: 1, 0.2, 3" rotation="0 0 -25"></a-entity>-->
 
-		<!--<a-entity id="loop"
+		<a-entity id="loop"
 		opacity="0" position="26.6 1 10"
 		n-sound="src: http://island.jacobralph.org/assets/ocean.<?php echo $type; ?>; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" sync-n-sound>
@@ -143,7 +143,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		opacity="0" position="26 1 19"
 		n-sound="src: http://island.jacobralph.org/assets/ocean.<?php echo $type; ?>; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" sync-n-sound>
-		</a-entity>-->
+		</a-entity>
 
 	</a-scene>
 	<script>
@@ -152,6 +152,25 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		sim.scene.addEventListener('cursordown', function (data) {
 			console.log('Touched Point: X: ' + data.point.x + " Z: " + data.point.z);
 		});
+		function checkMesh(){
+			if(document.querySelector('#cl-a').object3D.children[0] != undefined && document.querySelector('#cl-a').object3D.children.length > 0 && document.querySelector('#cl-a').object3D.children[0].children[0] && document.querySelector('#cl-a').object3D.children[0].children,length > 0)
+			var count = document.querySelector('#cl-a').object3D.children[0].children[0].children;
+			if(count != undefined && count.length){
+				for(var i = 0; i < count.length; i++){
+					var mesh = count[i];
+					//mesh.material.opacity = 0;
+					//mesh.material.transparent = true;
+					mesh.material.visible = false;
+					mesh.needsUpdate = true;
+					mesh.material.needsUpdate = true;
+				}
+			} else {
+				setTimeout(function(e){
+					checkMesh();
+				}, 1000);
+			}
+		}
+		checkMesh();
 
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
@@ -171,26 +190,6 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		var lastupdate = "";
 
 		document.addEventListener('DOMContentLoaded', function(){
-
-			function checkMesh(){
-			if(document.querySelector('#cl-a').object3D.children[0] != undefined && document.querySelector('#cl-a').object3D.children[0].children[0])
-			var count = document.querySelector('#cl-a').object3D.children[0].children[0].children;
-			if(count != undefined && count.length){
-				for(var i = 0; i < count.length; i++){
-				console.log(mesh);
-					var mesh = count[i];
-					mesh.material.visible = false;
-					mesh.needsUpdate = true;
-					mesh.material.needsUpdate = true;
-				console.log(mesh);
-				}
-			} else {
-				setTimeout(function(e){
-					checkMesh();
-				}, 1000);
-			}
-		}
-		checkMesh();
 
 			setInterval(function(e){
 				$.ajax({ type: "GET",
