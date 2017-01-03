@@ -159,7 +159,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 				for(var i = 0; i < count.length; i++){
 					var mesh = count[i];
 					mesh.material.visible = false;
-					mesh.needsUpdate = true;
+					//mesh.needsUpdate = true;
 					mesh.material.needsUpdate = true;
 				}
 			} else {
