@@ -142,8 +142,8 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		opacity="0" position="26 1 19"
 		n-sound="src: http://island.jacobralph.org/assets/ocean.<?php echo $type; ?>; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" sync-n-sound>
-		</a-entity>
-		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>-->
+		</a-entity>-->
+		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
 
 	</a-scene>
 	<script>
@@ -152,7 +152,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		sim.scene.addEventListener('cursordown', function (data) {
 			console.log('Touched Point: X: ' + data.point.x + " Z: " + data.point.z);
 		});
-		function checkMesh(){
+		/*function checkMesh(){
 			if(document.querySelector('#cl-a').object3D != undefined && document.querySelector('#cl-a').object3D.children[0] != undefined && document.querySelector('#cl-a').object3D.children.length > 0 && document.querySelector('#cl-a').object3D.children[0].children[0] != undefined && document.querySelector('#cl-a').object3D.children[0].children.length > 0){
 			var count = document.querySelector('#cl-a').object3D.children[0].children[0].children;
 			if(count != undefined && count.length){
@@ -173,7 +173,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 				}, 1000);
 		}
 		}
-		checkMesh();
+		checkMesh();*/
 
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
