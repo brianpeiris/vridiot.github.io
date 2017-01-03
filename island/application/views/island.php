@@ -26,10 +26,10 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 			<a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
 		</a-assets>
 
-		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
+		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false" transparent=true></a-entity>
 		<a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
 
-		<a-plane  material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.2" transparent=true altspace-cursor-collider="enabled: false">
+		<a-plane transparent=true material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.2" transparent=true altspace-cursor-collider="enabled: false">
 			<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation>
 		</a-plane>
 
@@ -160,8 +160,9 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 				console.log(mesh);
 					var mesh = count[i];
 					mesh.material.opacity = 0;
-					mesh.needsUpdate = true;
 					mesh.material.transparent = true;
+					mesh.material.depthWrite = false;
+					mesh.needsUpdate = true;
 					mesh.material.needsUpdate = true;
 				console.log(mesh);
 				}
