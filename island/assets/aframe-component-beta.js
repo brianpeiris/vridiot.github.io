@@ -308,7 +308,6 @@
                 var t = this.el.object3DMap.mesh;
                 t && (t instanceof THREE.Mesh ? e(t) : t.traverse(function(t) {
                     t instanceof THREE.Mesh && e(t)
-                    console.log(t);
                 }.bind(this)))
             },
             _initObj: function() {

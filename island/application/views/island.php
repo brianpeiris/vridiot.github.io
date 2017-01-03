@@ -21,12 +21,12 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 } ?>
 	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
 		<a-assets timeout="10000">
+			<a-asset-item id="cl" src="./assets/collider.dae"></a-asset-item>
 			<a-asset-item id="sco" src="./assets/day/island.dae"></a-asset-item>
 			<a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
-			<a-asset-item id="cl" src="./assets/collider.json"></a-asset-item>
 		</a-assets>
 
-		<a-entity position="0 0 0" blend-model="#ci" id="ci-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment"></a-entity>
+		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
 		<a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
 
 		<a-plane  material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.2" transparent=true altspace-cursor-collider="enabled: false">
@@ -147,12 +147,31 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 
 	</a-scene>
 	<script>
-
 		var sim = altspace.utilities.Simulation();
 
 		sim.scene.addEventListener('cursordown', function (data) {
 			console.log('Touched Point: X: ' + data.point.x + " Z: " + data.point.z);
 		});
+		function checkMesh(){
+			if(document.querySelector('#cl-a').object3D.children[0] != undefined && document.querySelector('#cl-a').object3D.children[0].children[0])
+			var count = document.querySelector('#cl-a').object3D.children[0].children[0].children;
+			if(count != undefined && count.length){
+				for(var i = 0; i < count.length; i++){
+				console.log(mesh);
+					var mesh = count[i];
+					mesh.material.opacity = 0;
+					mesh.needsUpdate = true;
+					mesh.material.transparent = true;
+					mesh.material.needsUpdate = true;
+				console.log(mesh);
+				}
+			} else {
+				setTimeout(function(e){
+					checkMesh();
+				}, 1000);
+			}
+		}
+		checkMesh();
 
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
@@ -179,7 +198,6 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 					async: true,
 					success : function(text)
 					{
-								//console.log(text);
 								if(lastupdate == ""){
 									lastupdate = text;
 								} else {
