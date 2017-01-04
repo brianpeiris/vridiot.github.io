@@ -62,7 +62,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		<a-entity position="9.61583 3.15 -0.51"  n-sound="src: http://island.jacobralph.org/assets/fire.<?php echo $type; ?>; autoplay: true; volume: 3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" id="fire6" sync-n-sound></a-entity>
 
-		<!--a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>; autoplay: true; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
+		<!--<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>; autoplay: true; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>-->
 
 
