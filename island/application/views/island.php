@@ -39,11 +39,11 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 
 		<a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
 
-		<a-plane transparent=true material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.2" transparent=true altspace-cursor-collider="enabled: false">
+		<a-plane transparent=true material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.1" transparent=true altspace-cursor-collider="enabled: false">
 			<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation>
 		</a-plane>
 
-		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/afternoon/nobody.<?php echo $type; ?>; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
+		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>; volume: 0.2; autoplay: false; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" id="song" sync-n-sound soundLoaded></a-entity>
 
 		 <a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
@@ -176,10 +176,43 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 
 				});
 
-		setTimeout(function(e){
-					var song = document.querySelector('#song');
-					song.el.setAttribute('n-sound', 'src', 'http://island.jacobralph.org/assets/playlist/evening/bomb.<?php echo $type; ?>');
-				}, 10000);
+		var songs = [];
+		var time = Date.now() / 1000;
+		var currentlyPlaying = "http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>";
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>", length: 234});
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/evening/bomb.<?php echo $type; ?>", length: 259});
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/evening/black.<?php echo $type; ?>", length: 231});
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/evening/wise.<?php echo $type; ?>", length: 255});
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/afternoon/coconut.<?php echo $type; ?>", length: 231});
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/afternoon/nobody.<?php echo $type; ?>", length: 223});
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/afternoon/pina.<?php echo $type; ?>", length: 277});
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/afternoon/pocket.<?php echo $type; ?>", length: 233});
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/afternoon/riptide.<?php echo $type; ?>", length: 204});
+		songs.push({url: "http://island.jacobralph.org/assets/playlist/afternoon/river.<?php echo $type; ?>", length: 229});
+
+		var song = document.querySelector('#song');
+		var firstLoad = false;
+		song.addEventListener("n-sound-loaded", function(e){
+			song.components['n-sound'].playSound();
+			if(!firstLoad){
+				firstLoad = true;
+				setTimeout(switchSong, 234 * 1000);
+				time = Date.now() / 1000;
+			}
+		});
+
+		function switchSong(){
+					var currentSong = document.querySelector('#song');
+					if(currentSong.getAttribute('n-sound').src == currentlyPlaying && ((Date.now() / 1000) - time) > 200){
+						var index = Math.floor(Math.random() * songs.length);
+						var newSong = songs[index];
+						currentSong.setAttribute('n-sound', 'src', newSong.url);
+						currentlyPlaying = newSong.url;
+						setTimeout(switchSong, newSong.length * 1000);
+						time = Date.now() / 1000;
+						currentSong.components['n-sound'].playSound();
+					}
+		}
 
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
