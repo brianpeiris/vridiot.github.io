@@ -21,16 +21,6 @@
   ga('send', 'pageview');
 
 </script>
-	<script type="text/javascript">
-	/*AFRAME.registerComponent('playSound', {
-			init: function (time) {
-				this.el.addEventListener('n-sound-loaded', function () {
-					this.components['n-sound'].playSound();
-					setTimeout()
-				});
-			}
-		});*/
-		</script>
 </head>
 
 <body>
@@ -54,7 +44,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		</a-plane>
 
 		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/afternoon/nobody.<?php echo $type; ?>; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
-		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>
+		altspace-cursor-collider="enabled: true" id="song" sync-n-sound soundLoaded></a-entity>
 
 		 <a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="33.16583 2.7 -8.8" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
@@ -183,10 +173,13 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 					var object = this.object3D;
 					var mesh = object.children[0].children[0].children[0];
 					mesh.material.visible = false;
-					//mesh.needsUpdate = true;
-					//mesh.material.needsUpdate = true;
 
 				});
+
+		setTimeout(function(e){
+					var song = document.querySelector('#song');
+					song.el.setAttribute('n-sound', 'src', 'http://island.jacobralph.org/assets/playlist/evening/bomb.<?php echo $type; ?>');
+				}, 10000);
 
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
