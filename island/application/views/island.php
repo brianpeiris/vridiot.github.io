@@ -66,7 +66,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>-->
 
 
-		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/afternoon/nobody.<?php echo $type; ?>; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
+		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/afternoon/nobody.<?php echo $type; ?>; autoplay: true; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>
 
 		<!--<a-entity position="11 -199.4 -2" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
