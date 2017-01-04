@@ -146,6 +146,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
 
 	</a-scene>
+	
 	<script>
 		var sim = altspace.utilities.Simulation();
 
