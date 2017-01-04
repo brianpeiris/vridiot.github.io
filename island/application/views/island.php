@@ -27,7 +27,7 @@
 <?php
 $type = "ogg";
 if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
-    $type = "ogg";
+    $type = "mp3";
 } ?>
 	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
 		<a-assets timeout="10000">
@@ -41,6 +41,16 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		<a-plane transparent=true material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.2" transparent=true altspace-cursor-collider="enabled: false">
 			<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation>
 		</a-plane>
+
+		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/afternoon/nobody.<?php echo $type; ?>; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
+		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>
+
+		<?php
+$type = "ogg";
+if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
+    $type = "ogg";
+} ?>
+	
 
 		 <a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="33.16583 2.7 -8.8" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
@@ -64,11 +74,6 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 
 		<!--<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>; autoplay: true; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>-->
-
-
-		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/afternoon/nobody.<?php echo $type; ?>; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
-		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>
-
 		<!--<a-entity position="11 -199.4 -2" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
 		<a-entity position="22 -199.4 -12" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
 		<a-entity position="34.56583 -199.4 -9" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
