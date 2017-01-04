@@ -11,6 +11,16 @@
 	<script src="./assets/altspace.js"></script>
 	<script src="https://cdn.rawgit.com/mrdoob/three.js/r74/examples/js/loaders/MTLLoader.js"></script>
 	<script src="https://cdn.rawgit.com/mrdoob/three.js/r74/examples/js/loaders/OBJLoader.js"></script>
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-89786610-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 	<script type="text/javascript">
 	/*AFRAME.registerComponent('playSound', {
 			init: function (time) {
@@ -27,7 +37,7 @@
 <?php
 $type = "ogg";
 if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
-    $type = "mp3";
+    $type = "ogg";
 } ?>
 	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
 		<a-assets timeout="10000">
@@ -44,13 +54,6 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 
 		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/afternoon/nobody.<?php echo $type; ?>; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>
-
-		<?php
-$type = "ogg";
-if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
-    $type = "ogg";
-} ?>
-	
 
 		 <a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
 		<a-entity position="33.16583 2.7 -8.8" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
