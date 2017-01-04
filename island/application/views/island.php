@@ -1,3 +1,14 @@
+<?php
+$type = "ogg";
+if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
+	echo '<script type="text/javascript>console.log("'.$_SERVER['HTTP_USER_AGENT'].'");</script>';
+    $type = "ogg";
+} 
+$time = "day";
+if (date('H') < 12) {
+   $time = "night";
+}
+?>
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -24,22 +35,16 @@
 </head>
 
 <body>
-<?php
-$type = "ogg";
-if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
-	echo '<script type="text/javascript>console.log("'.$_SERVER['HTTP_USER_AGENT'].'");</script>';
-    $type = "ogg";
-} ?>
 	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
 		<a-assets timeout="10000">
-			<a-asset-item id="sco" src="./assets/night/island.dae"></a-asset-item>
+			<a-asset-item id="sco" src="./assets/<?php echo $time; ?>/island.dae"></a-asset-item>
 			<a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
 			<a-asset-item id="cl" src="./assets/collider.dae"></a-asset-item>
 		</a-assets>
 
 		<a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
 
-		<a-plane transparent=true material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.1" transparent=true altspace-cursor-collider="enabled: false">
+		<a-plane transparent=true material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="0.05" transparent=true altspace-cursor-collider="enabled: false">
 			<a-animation attribute="position" dur="4000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation>
 		</a-plane>
 
@@ -216,8 +221,8 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
-
-		var texture = THREE.ImageUtils.loadTexture( "./assets/night/NightSky.jpg" );
+		<?php $box = "skydome.png"; if($time == "night") { $box = "NightSky.jpg"; } ?>
+		var texture = THREE.ImageUtils.loadTexture( "./assets/<?php echo $time; ?>/<?php echo $box; ?>" );
 		var skyGeo = new THREE.SphereGeometry(500, 100, 100);
 		var material = new THREE.MeshPhongMaterial({
 			map: texture,
@@ -250,6 +255,14 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 						});
 			}, 5000);
 		});
+
+		setTimeout(function(e){
+			var d = new Date();
+			var n = d.getUTCHours();
+			if((n < 12 && "<?php echo $time; ?>" != "night") || n > 12 && "<?php echo $time; ?>" != "day"){
+				window.location.reload();
+			}
+		}, 15000);
 
 		/*var loader = new THREE.OBJLoader();
 		loader.load( './assets/PalmLeaf.obj', function ( object ) {
