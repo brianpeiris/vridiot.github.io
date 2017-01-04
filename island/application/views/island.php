@@ -37,6 +37,7 @@
 <?php
 $type = "ogg";
 if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
+	echo '<script type="text/javascript>console.log("'.$_SERVER['HTTP_USER_AGENT'].");</script>';
     $type = "ogg";
 } ?>
 	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
