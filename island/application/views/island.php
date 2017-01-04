@@ -21,7 +21,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 } ?>
 	<a-scene altspace ='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
 		<a-assets timeout="10000">
-			<a-asset-item id="sco" src="./assets/day/island.dae"></a-asset-item>
+			<a-asset-item id="sco" src="./assets/night/island.dae"></a-asset-item>
 			<a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
 			<a-asset-item id="cl" src="./assets/collider.dae"></a-asset-item>
 		</a-assets>
@@ -152,33 +152,22 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		sim.scene.addEventListener('cursordown', function (data) {
 			console.log('Touched Point: X: ' + data.point.x + " Z: " + data.point.z);
 		});
-		/*function checkMesh(){
-			if(document.querySelector('#cl-a').object3D != undefined && document.querySelector('#cl-a').object3D.children[0] != undefined && document.querySelector('#cl-a').object3D.children.length > 0 && document.querySelector('#cl-a').object3D.children[0].children[0] != undefined && document.querySelector('#cl-a').object3D.children[0].children.length > 0){
-			var count = document.querySelector('#cl-a').object3D.children[0].children[0].children;
-			if(count != undefined && count.length){
-				for(var i = 0; i < count.length; i++){
-					var mesh = count[i];
+		var mesh = document.querySelector('#cl-a');
+
+		mesh.addEventListener('model-loaded', function () {
+					console.log(this.object3D);
+					var object = this.object3D;
+					var mesh = object.children[0].children[0].children[0];
 					mesh.material.visible = false;
 					//mesh.needsUpdate = true;
 					//mesh.material.needsUpdate = true;
-				}
-			} else {
-				setTimeout(function(e){
-					checkMesh();
-				}, 1000);
-			}
-		} else {
-			setTimeout(function(e){
-					checkMesh();
-				}, 1000);
-		}
-		}
-		checkMesh();*/
+
+				});
 
 		var loader = new THREE.TextureLoader();
 		loader.crossOrigin = '';
 
-		var texture = THREE.ImageUtils.loadTexture( "./assets/skydome.png" );
+		var texture = THREE.ImageUtils.loadTexture( "./assets/night/NightSky.jpg" );
 		var skyGeo = new THREE.SphereGeometry(500, 100, 100);
 		var material = new THREE.MeshPhongMaterial({
 			map: texture,
