@@ -11,6 +11,16 @@
 	<script src="./assets/altspace.js"></script>
 	<script src="https://cdn.rawgit.com/mrdoob/three.js/r74/examples/js/loaders/MTLLoader.js"></script>
 	<script src="https://cdn.rawgit.com/mrdoob/three.js/r74/examples/js/loaders/OBJLoader.js"></script>
+	<script type="text/javascript">
+	/*AFRAME.registerComponent('playSound', {
+			init: function (time) {
+				this.el.addEventListener('n-sound-loaded', function () {
+					this.components['n-sound'].playSound();
+					setTimeout()
+				});
+			}
+		});*/
+		</script>
 </head>
 
 <body>
@@ -52,7 +62,11 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		<a-entity position="9.61583 3.15 -0.51"  n-sound="src: http://island.jacobralph.org/assets/fire.<?php echo $type; ?>; autoplay: true; volume: 3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" id="fire6" sync-n-sound></a-entity>
 
-		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>; autoplay: true; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
+		<!--a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.<?php echo $type; ?>; autoplay: true; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
+		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>-->
+
+
+		<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/afternoon/nobody.<?php echo $type; ?>; volume: 0.05; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine"
 		altspace-cursor-collider="enabled: true" id="song" sync-n-sound></a-entity>
 
 		<!--<a-entity position="11 -199.4 -2" n-sphere-collider="type: environment; radius:200" radius="200"></a-entity>
@@ -146,7 +160,7 @@ if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mobile') !== false) {
 		<a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
 
 	</a-scene>
-	
+
 	<script>
 		var sim = altspace.utilities.Simulation();
 
