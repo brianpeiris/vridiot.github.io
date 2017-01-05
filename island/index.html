@@ -41,7 +41,6 @@
         }
     </script>
 </head>
-
 <body>
     <a-scene altspace='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
         <a-assets timeout="10000">
@@ -118,8 +117,120 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var sim = altspace.utilities.Simulation();
+            var fontScale;
+if( /AltspaceVR-App build-[0-9a-f]{7} Mobile/.test(window.navigator.userAgent) ){
+    fontScale = 0.85;
+}
+else {
+    fontScale = 1.0;
+}
+function makeSafeFont(g, text, maxWidth)
+{
+    // get pixel width of longest line
+    var textWidth = Math.max.apply(null, text.map(function(s){return g.measureText(s).width;}));
+    // if longest line is longer than specified max width
+    if( textWidth > maxWidth )
+    {
+        // scale down font to bring width down to maxWidth
+        var font = g.font;
+        var fontSize = /[0-9.]+px/.exec(font)[0];
+        var fontSizeValue = parseFloat(fontSize);
+        fontSizeValue = (maxWidth/textWidth) * fontSizeValue;
+        font = font.replace(fontSize, fontSizeValue+'px');
 
+        g.font = font;
+    }
+}
+function generateTextMaterial(text, options)
+{
+    var texWidth = options.width || 256;
+    var fontStack = '"Palatino Linotype", "Book Antiqua", Palatino, serif';
+
+    // set up canvas
+    var bmp = document.createElement('canvas');
+    var ctx = bmp.getContext('2d');
+    bmp.width = texWidth;
+    bmp.height = options.height || texWidth;
+
+    ctx.fillStyle = options.backgroundColor;
+    ctx.fillRect(0, 0, texWidth, options.height || texWidth);
+
+    // TODO: We can simplify this code if the nameplates had a sane UV mapping
+    ctx.font = ''+((options.fontScale || 0.1)*bmp.height*fontScale)+'px '+fontStack;
+    makeSafeFont(ctx, [text], 0.9*texWidth*fontScale);
+    ctx.textAlign = 'center';
+    if (options.textBaseline) {
+        ctx.textBaseline = options.textBaseline;
+    }
+    if (options.fillStyle) {
+        ctx.fillStyle = options.fillStyle;
+    } else {
+        ctx.fillStyle = 'black';
+    }
+    if (options.single) {
+        ctx.lineWidth = 5;
+        ctx.strokeText(text, texWidth/2, bmp.height / 2);
+        ctx.fillText(text, texWidth/2, bmp.height / 2);
+    }
+    else {
+        ctx.fillText(text, texWidth/2, 35);
+        ctx.fillText(text, texWidth/2, 86);
+    }
+
+    return new THREE.MeshBasicMaterial({
+        map: new THREE.CanvasTexture(bmp)
+    });
+}
+
+function generateColorTextMaterial(text, w, h) {
+    var statusMat = generateTextMaterial(text, {
+        backgroundColor: 'transparent', height: 50 * h, width: 256 * w, single: true, fontScale: fontScale, textBaseline: 'middle', fillStyle: 'white'
+    });
+    statusMat.transparent = true;
+    statusMat.side = THREE.DoubleSide;
+    return statusMat;
+}
+
+            var sim = altspace.utilities.Simulation();
+            var geometry = new THREE.SphereGeometry( 1, 32, 32 );
+            var material = new THREE.MeshBasicMaterial( {color: 0x0077be} );
+            material.side = THREE.DoubleSide;
+            var sphere = new THREE.Mesh( geometry, material );
+            sphere.position.y = 2.7;
+            sim.scene.add( sphere );
+            var material1 = generateColorTextMaterial("Hey there! Hold still, we're loading. 0%", 4, 4);
+    var plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 0.2), material1);
+    plane.overdraw = true;
+    plane.material.side = THREE.DoubleSide;
+    plane.position.y = 2.7;
+    plane.position.z = -0.8;
+    sim.scene.add(plane);
+            THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
+                if(total > 15){
+                console.log( item, loaded, total );
+                var percent = loaded / total;
+                if(percent == 1){
+                    console.log("Loaded");
+                    var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. 60%", 4, 4);
+                    plane.material = material_new;
+                    plane.needsUpdate = true;
+                    setTimeout(function(e){
+                        var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. 80%", 4, 4);
+                    plane.material = material_new;
+                    plane.needsUpdate = true;
+                    }, 4000);
+                    setTimeout(function(e){
+                        sim.scene.remove(sphere);
+                        sim.scene.remove(plane);
+                    }, 8000);
+                } else {
+                    var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. " + Math.round(percent * 0.5) + "%", 4, 4);
+                    plane.material = material_new;
+                    plane.needsUpdate = true;
+                }
+            }
+
+            };
             sim.scene.addEventListener('cursordown', function(data) {
                 console.log('Touched Point: X: ' + data.point.x + " Z: " + data.point.z);
             });
@@ -135,13 +246,23 @@
             island.addEventListener('model-loaded', function() {
                 for(var i = 0; i < this.object3D.children[0].children.length; i++){
                     var meshy = this.object3D.children[0].children[i];
+                    /*if(meshy.name.indexOf("TSO_Circle") !== -1){
+                    console.log(meshy.name);
+                        var top = meshy.children[0];
+                        top.material.transparent = true;
+                        top.material.side = THREE.DoubleSide;
+                        var bottom = meshy.children[0].clone();
+                        bottom.material.transparent = true;
+                        bottom.material.side = THREE.DoubleSide;
+                        meshy.add(bottom);
+                    } else */
                     if(meshy.name.indexOf("TSO_") !== -1){
                         meshy.children[0].material.transparent = true;
-                        //meshy.children[0].material.side = THREE.FrontSide
-                        //meshy.children[0].renderOrder = (i / this.object3D.children[0].children.length);
+                        meshy.children[0].material.side = THREE.DoubleSide;
                     }
                 }
             });
+
             if (!mobile) {
             var songs = [];
             var time = Date.now() / 1000;
