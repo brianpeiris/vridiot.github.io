@@ -37,7 +37,7 @@
         var d = new Date();
         var n = d.getUTCHours();
         if (n < 12) {
-            timeOfDay = "night";
+            timeOfDay = "day";
         }
     </script>
 </head>
@@ -124,11 +124,34 @@
             var mesh = document.querySelector('#cl-a');
 
             mesh.addEventListener('model-loaded', function() {
-                console.log(this.object3D);
                 var object = this.object3D;
                 var mesh = object.children[0].children[0].children[0];
                 mesh.material.visible = false;
+            });
 
+            function hideCollision(){
+                var meshymesh = document.querySelector('#cl-a');
+                if(meshymesh != undefined && meshymesh.object3d != undefined && meshymesh.object3d.children != undefined && meshymesh.object3d.children.length && meshymesh.object3d.children[0].children != undefined && meshymesh.object3d.children[0].children.length && meshymesh.object3d.children[0].children[0].children != undefined && meshymesh.object3d.children[0].children[0].children.length){
+                    var checkMesh = meshymesh.object3d.children[0].children[0].children[0];
+                    if(checkMesh.material.visible){
+                        mesh.material.visible = false;
+                    } else {
+                        setTimeout(hideCollision, 5000);
+                    }
+                } else {
+                    setTimeout(hideCollision, 5000);
+                }
+            }
+            setTimeout(hideCollision, 10000);
+
+            var island = document.querySelector('#sco-a');
+            island.addEventListener('model-loaded', function() {
+                for(var i = 0; i < this.object3D.children[0].children.length; i++){
+                    var meshy = this.object3D.children[0].children[i];
+                    if(meshy.name.indexOf("TSO_") !== -1){
+                        meshy.children[0].material.transparent = true;
+                    }
+                }
             });
 
             var songs = [];
@@ -175,7 +198,6 @@
                 var firstLoad = false;
                 song.addEventListener("n-sound-loaded", function(e) {
                     song.components['n-sound'].playSound();
-                    console.log(song.components['n-sound']);
                     if (!firstLoad) {
                         firstLoad = true;
                         setTimeout(switchSong, 234 * 1000);
@@ -237,7 +259,7 @@
             setTimeout(function(e) {
                 var d = new Date();
                 var n = d.getUTCHours();
-                if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "day") {
+                if ((n < 12 && timeOfDay != "day") || n > 12 && timeOfDay != "day") {
                     window.location.reload();
                 }
             }, 15000);
