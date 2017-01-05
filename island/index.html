@@ -133,7 +133,7 @@
                     var meshy = this.object3D.children[0].children[i];
                     if(meshy.name.indexOf("TSO_") !== -1){
                         meshy.children[0].material.transparent = true;
-                        meshy.children[0].renderOrder = (i / this.object3D.children[0].children.length);
+                        //meshy.children[0].renderOrder = (i / this.object3D.children[0].children.length);
                     }
                 }
             });
