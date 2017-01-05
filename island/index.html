@@ -27,8 +27,10 @@
         ga('send', 'pageview');
         var mobile = false;
         var audio = "ogg";
+        var agent = "desktop";
         if (/AltspaceVR-App build-[0-9a-f]{7} Mobile/.test(navigator.userAgent)) {
             mobile = true;
+            agent = "mobile";
             audio = "ogg";
         }
         var timeOfDay = "day"
@@ -44,7 +46,7 @@
     <a-scene altspace='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
         <a-assets timeout="10000">
             <script>
-                document.write('<a-asset-item id="sco" src="./assets/' + timeOfDay + '/island.dae"></a-asset-item>');
+                document.write('<a-asset-item id="sco" src="./assets/' + agent '/' + timeOfDay + '/island.dae"></a-asset-item>');
             </script>
             <a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
             <a-asset-item id="cl" src="./assets/collider.dae"></a-asset-item>
@@ -57,7 +59,9 @@
         if (timeOfDay == "night") {
             op = "0.05";
         }
+        if (!mobile) {
         document.write('<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.05; autoplay: false; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine" altspace-cursor-collider="enabled: true" id="song" sync-n-sound soundLoaded></a-entity>');
+    }
         document.write('<a-plane transparent=true material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="'+op+'" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
         </script>
 
@@ -133,6 +137,7 @@
                     var meshy = this.object3D.children[0].children[i];
                     if(meshy.name.indexOf("TSO_") !== -1){
                         meshy.children[0].material.transparent = true;
+                        //meshy.children[0].material.side = THREE.FrontSide
                         //meshy.children[0].renderOrder = (i / this.object3D.children[0].children.length);
                     }
                 }
