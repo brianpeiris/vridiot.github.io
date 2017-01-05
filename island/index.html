@@ -10,8 +10,6 @@
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
     <script src="./assets/aframe-component-beta.js"></script>
     <script src="./assets/altspace.js"></script>
-    <script src="https://cdn.rawgit.com/mrdoob/three.js/r74/examples/js/loaders/MTLLoader.js"></script>
-    <script src="https://cdn.rawgit.com/mrdoob/three.js/r74/examples/js/loaders/OBJLoader.js"></script>
     <script>
         (function(i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -248,30 +246,7 @@
                     window.location.reload();
                 }
             }, 15000);
-
-            /*var loader = new THREE.OBJLoader();
-        loader.load( './assets/PalmLeaf.obj', function ( object ) {
-            var material = new THREE.MeshBasicMaterial({
-                map:THREE.ImageUtils.loadTexture('./assets/palmroof.png'), transparent: true, opacity: 1
-            });
-    //object.children[0].material = material;
-    //material.map.needsUpdate = true; //ADDED
-    //material.needsUpdate = true; //ADDED
-    material.side = THREE.DoubleSide;
-    var new_leaf = new THREE.Mesh(object.children[0].geometry, material)
-    //object.needsUpdate = true;
-    new_leaf.position.y = 2;
-    new_leaf.position.z = 2;
-    //sim.scene.add(new_leaf);
-    console.log("OBJ!!");
-    console.log(new_leaf);
-    var plane = new THREE.Mesh(new THREE.PlaneGeometry(2, 1), material);
-    plane.overdraw = true;
-    plane.position.y =  2;
-    plane.position.y =  -4;
-    sim.scene.add(plane);*/
         });
     </script>
 </body>
-
 </html>
