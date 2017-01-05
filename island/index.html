@@ -30,7 +30,7 @@
         var agent = "desktop";
         if (/AltspaceVR-App build-[0-9a-f]{7} Mobile/.test(navigator.userAgent)) {
             mobile = true;
-            agent = "mobile";
+            agent = "desktop";
             audio = "ogg";
         }
         var timeOfDay = "day"
@@ -62,7 +62,7 @@
         if (!mobile) {
         document.write('<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.05; autoplay: false; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine" altspace-cursor-collider="enabled: true" id="song" sync-n-sound soundLoaded></a-entity>');
     }
-        document.write('<a-plane transparent=true material="src: url(./assets/water10.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="'+op+'" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
+        document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="1001" width="1001" rotation="-90 0 0" position="0.0 0.40 0.0" opacity="'+op+'" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="0.0 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
         </script>
 
         <a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
