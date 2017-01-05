@@ -239,6 +239,17 @@
                 });
             }, 5000);
 
+            function hideCollision(){
+                var meshymesh = document.querySelector('#cl-a');
+                if(meshymesh != undefined && meshymesh.object3d != undefined && meshymesh.object3d.children != undefined && meshymesh.object3d.children.length && meshymesh.object3d.children[0].children != undefined && meshymesh.object3d.children[0].children.length && meshymesh.object3d.children[0].children[0].children != undefined && meshymesh.object3d.children[0].children[0].children.length){
+                    var checkMesh = meshymesh.object3d.children[0].children[0].children[0];
+                    if(checkMesh.material.visible){
+                        mesh.material.visible = false;
+                    }
+                }
+            }
+            setTimeout(hideCollision, 60000);
+
             setTimeout(function(e) {
                 var d = new Date();
                 var n = d.getUTCHours();
