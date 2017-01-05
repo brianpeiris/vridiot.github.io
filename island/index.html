@@ -30,7 +30,7 @@
         var agent = "desktop";
         if (/AltspaceVR-App build-[0-9a-f]{7} Mobile/.test(navigator.userAgent)) {
             mobile = true;
-            agent = "desktop";
+            agent = "mobile";
             audio = "ogg";
         }
         var timeOfDay = "day"
@@ -142,7 +142,7 @@
                     }
                 }
             });
-
+            if (!mobile) {
             var songs = [];
             var time = Date.now() / 1000;
             var currentlyPlaying = "http://island.jacobralph.org/assets/playlist/evening/waves." + audio;
@@ -182,7 +182,6 @@
                 url: "http://island.jacobralph.org/assets/playlist/afternoon/river." + audio,
                 length: 229
             });
-            if (!mobile) {
                 var song = document.querySelector('#song');
                 var firstLoad = false;
                 song.addEventListener("n-sound-loaded", function(e) {
