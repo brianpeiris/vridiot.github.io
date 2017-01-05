@@ -129,21 +129,6 @@
                 mesh.material.visible = false;
             });
 
-            function hideCollision(){
-                var meshymesh = document.querySelector('#cl-a');
-                if(meshymesh != undefined && meshymesh.object3d != undefined && meshymesh.object3d.children != undefined && meshymesh.object3d.children.length && meshymesh.object3d.children[0].children != undefined && meshymesh.object3d.children[0].children.length && meshymesh.object3d.children[0].children[0].children != undefined && meshymesh.object3d.children[0].children[0].children.length){
-                    var checkMesh = meshymesh.object3d.children[0].children[0].children[0];
-                    if(checkMesh.material.visible){
-                        mesh.material.visible = false;
-                    } else {
-                        setTimeout(hideCollision, 5000);
-                    }
-                } else {
-                    setTimeout(hideCollision, 5000);
-                }
-            }
-            setTimeout(hideCollision, 10000);
-
             var island = document.querySelector('#sco-a');
             island.addEventListener('model-loaded', function() {
                 for(var i = 0; i < this.object3D.children[0].children.length; i++){
