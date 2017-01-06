@@ -218,11 +218,11 @@ function generateColorTextMaterial(text, w, h) {
                         var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. 80%", 4, 4);
                     plane.material = material_new;
                     plane.needsUpdate = true;
-                    }, 4000);
+                    }, 5000);
                     setTimeout(function(e){
                         sim.scene.remove(sphere);
                         sim.scene.remove(plane);
-                    }, 8000);
+                    }, 10000);
                 } else {
                     var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. " + Math.round(percent * 0.5) + "%", 4, 4);
                     plane.material = material_new;
@@ -269,39 +269,39 @@ function generateColorTextMaterial(text, w, h) {
             var currentlyPlaying = "http://island.jacobralph.org/assets/playlist/evening/waves." + audio;
             songs.push({
                 url: "http://island.jacobralph.org/assets/playlist/evening/waves." + audio,
-                length: 234
-            });
-            songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/evening/black." + audio,
-                length: 231
-            });
-            songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/evening/wise." + audio,
-                length: 255
-            });
-            songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/coconut." + audio,
-                length: 231
-            });
-            songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/nobody." + audio,
-                length: 223
-            });
-            songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/pina." + audio,
-                length: 277
-            });
-            songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/pocket." + audio,
                 length: 233
             });
             songs.push({
+                url: "http://island.jacobralph.org/assets/playlist/evening/black." + audio,
+                length: 230
+            });
+            songs.push({
+                url: "http://island.jacobralph.org/assets/playlist/evening/wise." + audio,
+                length: 254
+            });
+            songs.push({
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/coconut." + audio,
+                length: 230
+            });
+            songs.push({
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/nobody." + audio,
+                length: 222
+            });
+            songs.push({
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/pina." + audio,
+                length: 276
+            });
+            songs.push({
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/pocket." + audio,
+                length: 232
+            });
+            songs.push({
                 url: "http://island.jacobralph.org/assets/playlist/afternoon/riptide." + audio,
-                length: 204
+                length: 203
             });
             songs.push({
                 url: "http://island.jacobralph.org/assets/playlist/afternoon/river." + audio,
-                length: 229
+                length: 228
             });
                 var song = document.querySelector('#song');
                 var firstLoad = false;
@@ -309,7 +309,7 @@ function generateColorTextMaterial(text, w, h) {
                     song.components['n-sound'].playSound();
                     if (!firstLoad) {
                         firstLoad = true;
-                        setTimeout(switchSong, 234 * 1000);
+                        setTimeout(switchSong, 233 * 1000);
                         time = Date.now() / 1000;
                     }
                 });
