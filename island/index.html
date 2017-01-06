@@ -37,7 +37,7 @@
         var d = new Date();
         var n = d.getUTCHours();
         if (n < 12) {
-            timeOfDay = "night";
+            timeOfDay = "day";
         }
     </script>
 </head>
@@ -207,7 +207,6 @@ function generateColorTextMaterial(text, w, h) {
     sim.scene.add(plane);
             THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
                 if(total > 15){
-                console.log( item, loaded, total );
                 var percent = loaded / total;
                 if(percent == 1){
                     console.log("Loaded");
@@ -379,7 +378,7 @@ function generateColorTextMaterial(text, w, h) {
             setTimeout(function(e) {
                 var d = new Date();
                 var n = d.getUTCHours();
-                if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "day") {
+                if ((n < 12 && timeOfDay != "day") || n > 12 && timeOfDay != "day") {
                     window.location.reload();
                 }
             }, 15000);
