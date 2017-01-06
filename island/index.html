@@ -258,7 +258,7 @@ function generateColorTextMaterial(text, w, h) {
                     console.log(meshy.name);
                         var top = meshy.children[0];
                         top.material.transparent = true;
-                        top.material.side = THREE.FrontSide;
+                        top.material.side = THREE.DoubleSide;
                     } else 
                     if(meshy.name.indexOf("TSO_") !== -1){
                         meshy.children[0].material.transparent = true;
