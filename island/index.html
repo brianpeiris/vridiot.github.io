@@ -30,7 +30,7 @@
         var agent = "desktop";
         if (/AltspaceVR-App build-[0-9a-f]{7} Mobile/.test(navigator.userAgent)) {
             mobile = true;
-            agent = "mobile";
+            agent = "desktop";
             audio = "mp3";
         }
         var timeOfDay = "day"
@@ -338,8 +338,8 @@
                         var currentTimeFromEnd = (playing.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
                         var difference = songLength - currentTimeFromEnd;
                         console.log("Diff:" + difference);
-                        song.components['n-sound'].seek(difference * 1000)
                         song.components['n-sound'].playSound();
+                        song.components['n-sound'].seek(difference * 1000)
                     }
                     if (!firstLoad) {
                         var playing = document.querySelector('#songSync');
