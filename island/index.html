@@ -41,6 +41,7 @@
         }
     </script>
 </head>
+
 <body>
     <a-scene altspace='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
         <a-assets timeout="10000">
@@ -54,14 +55,14 @@
         <a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
 
         <script>
-        var op = "0.2;";
-        if (timeOfDay == "night") {
-            op = "0.2";
-        }
-        if (!mobile) {
-        document.write('<a-entity position="40 1.7 -4.1" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.05; autoplay: false; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine" altspace-cursor-collider="enabled: true" id="song" color="#004010" soundLoaded></a-entity>');
-    }
-        document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.40 0.0" opacity="'+op+'" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
+            var op = "0.2;";
+            if (timeOfDay == "night") {
+                op = "0.2";
+            }
+            if (!mobile) {
+                document.write('<a-entity position="40 1.7 -4.1" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.05; autoplay: false; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine" altspace-cursor-collider="enabled: true" id="song" color="#004010" soundLoaded></a-entity>');
+            }
+            document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.40 0.0" opacity="' + op + '" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
         </script>
 
         <a-entity position="26.81583 2.7 -3.7" width="0.2" height="0.2" depth="0.2" n-object='res: effects/fire'></a-entity>
@@ -96,7 +97,7 @@
                 //document.write('<a-entity id="loop" geometry="primitive: box" material="color: red" position="15 1 12" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 document.write('<a-entity id="loop" position="1 1 15" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 //document.write('<a-entity id="loop" geometry="primitive: box" material="color: red" position="-5 1 5" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
-               // document.write('<a-entity id="loop" geometry="primitive: box" material="color: red" position="-2 1 -5" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+                // document.write('<a-entity id="loop" geometry="primitive: box" material="color: red" position="-2 1 -5" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 document.write('<a-entity id="loop" position="-1 1 -13" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 document.write('<a-entity id="loop" position="21 1 -30" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 //document.write('<a-entity id="loop" geometry="primitive: box" material="color: red" position="39 1 -29" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 1; loop: true; minDistance: 0.1; maxDistance: 15; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
@@ -120,126 +121,133 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var fontScale;
-if( /AltspaceVR-App build-[0-9a-f]{7} Mobile/.test(window.navigator.userAgent) ){
-    fontScale = 0.85;
-}
-else {
-    fontScale = 1.0;
-}
-function makeSafeFont(g, text, maxWidth)
-{
-    // get pixel width of longest line
-    var textWidth = Math.max.apply(null, text.map(function(s){return g.measureText(s).width;}));
-    // if longest line is longer than specified max width
-    if( textWidth > maxWidth )
-    {
-        // scale down font to bring width down to maxWidth
-        var font = g.font;
-        var fontSize = /[0-9.]+px/.exec(font)[0];
-        var fontSizeValue = parseFloat(fontSize);
-        fontSizeValue = (maxWidth/textWidth) * fontSizeValue;
-        font = font.replace(fontSize, fontSizeValue+'px');
+            if (/AltspaceVR-App build-[0-9a-f]{7} Mobile/.test(window.navigator.userAgent)) {
+                fontScale = 0.85;
+            } else {
+                fontScale = 1.0;
+            }
 
-        g.font = font;
-    }
-}
-function generateTextMaterial(text, options)
-{
-    var texWidth = options.width || 256;
-    var fontStack = '"Palatino Linotype", "Book Antiqua", Palatino, serif';
+            function makeSafeFont(g, text, maxWidth) {
+                // get pixel width of longest line
+                var textWidth = Math.max.apply(null, text.map(function(s) {
+                    return g.measureText(s).width;
+                }));
+                // if longest line is longer than specified max width
+                if (textWidth > maxWidth) {
+                    // scale down font to bring width down to maxWidth
+                    var font = g.font;
+                    var fontSize = /[0-9.]+px/.exec(font)[0];
+                    var fontSizeValue = parseFloat(fontSize);
+                    fontSizeValue = (maxWidth / textWidth) * fontSizeValue;
+                    font = font.replace(fontSize, fontSizeValue + 'px');
 
-    // set up canvas
-    var bmp = document.createElement('canvas');
-    var ctx = bmp.getContext('2d');
-    bmp.width = texWidth;
-    bmp.height = options.height || texWidth;
-
-    ctx.fillStyle = options.backgroundColor;
-    ctx.fillRect(0, 0, texWidth, options.height || texWidth);
-
-    // TODO: We can simplify this code if the nameplates had a sane UV mapping
-    ctx.font = ''+((options.fontScale || 0.1)*bmp.height*fontScale)+'px '+fontStack;
-    makeSafeFont(ctx, [text], 0.9*texWidth*fontScale);
-    ctx.textAlign = 'center';
-    if (options.textBaseline) {
-        ctx.textBaseline = options.textBaseline;
-    }
-    if (options.fillStyle) {
-        ctx.fillStyle = options.fillStyle;
-    } else {
-        ctx.fillStyle = 'black';
-    }
-    if (options.single) {
-        ctx.lineWidth = 5;
-        ctx.strokeText(text, texWidth/2, bmp.height / 2);
-        ctx.fillText(text, texWidth/2, bmp.height / 2);
-    }
-    else {
-        ctx.fillText(text, texWidth/2, 35);
-        ctx.fillText(text, texWidth/2, 86);
-    }
-
-    return new THREE.MeshBasicMaterial({
-        map: new THREE.CanvasTexture(bmp)
-    });
-}
-
-function generateColorTextMaterial(text, w, h) {
-    var statusMat = generateTextMaterial(text, {
-        backgroundColor: 'transparent', height: 50 * h, width: 256 * w, single: true, fontScale: fontScale, textBaseline: 'middle', fillStyle: 'white'
-    });
-    statusMat.transparent = true;
-    statusMat.side = THREE.DoubleSide;
-    return statusMat;
-}
-
-            var sim = altspace.utilities.Simulation();
-            var geometry = new THREE.SphereGeometry( 1, 32, 32 );
-            var material = new THREE.MeshBasicMaterial( {color: 0x0077be} );
-            material.side = THREE.DoubleSide;
-            var sphere = new THREE.Mesh( geometry, material );
-            sphere.position.y = 2.7;
-            sim.scene.add( sphere );
-            var material1 = generateColorTextMaterial("Hey there! Hold still, we're loading. 0%", 4, 4);
-    var plane = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.3), material1);
-    plane.overdraw = true;
-    plane.material.side = THREE.DoubleSide;
-    //plane.position.y = 2.7;
-    plane.position.z = 0.7;
-    plane.rotation.y = 180 * Math.PI/180;
-    //sim.scene.add(plane);
-    var skeleton;
-    var head;
-    var promises = [altspace.getThreeJSTrackingSkeleton()];
-        Promise.all(promises).then(function (array) {
-            skeleton = array[0];
-            sim.scene.add(skeleton);
-            head = skeleton.getJoint('Head');
-            head.add(plane);
-        });
-            THREE.DefaultLoadingManager.onProgress = function ( item, loaded, total ) {
-                if(total > 15){
-                var percent = loaded / total;
-                if(percent == 1){
-                    console.log("Loaded");
-                    var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. 60%", 4, 4);
-                    plane.material = material_new;
-                    plane.needsUpdate = true;
-                    setTimeout(function(e){
-                        var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. 80%", 4, 4);
-                    plane.material = material_new;
-                    plane.needsUpdate = true;
-                    }, 5000);
-                    setTimeout(function(e){
-                        sim.scene.remove(sphere);
-                        head.remove(plane);
-                    }, 10000);
-                } else {
-                    var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. " + Math.round(percent * 0.5) + "%", 4, 4);
-                    plane.material = material_new;
-                    plane.needsUpdate = true;
+                    g.font = font;
                 }
             }
+
+            function generateTextMaterial(text, options) {
+                var texWidth = options.width || 256;
+                var fontStack = '"Palatino Linotype", "Book Antiqua", Palatino, serif';
+
+                // set up canvas
+                var bmp = document.createElement('canvas');
+                var ctx = bmp.getContext('2d');
+                bmp.width = texWidth;
+                bmp.height = options.height || texWidth;
+
+                ctx.fillStyle = options.backgroundColor;
+                ctx.fillRect(0, 0, texWidth, options.height || texWidth);
+
+                // TODO: We can simplify this code if the nameplates had a sane UV mapping
+                ctx.font = '' + ((options.fontScale || 0.1) * bmp.height * fontScale) + 'px ' + fontStack;
+                makeSafeFont(ctx, [text], 0.9 * texWidth * fontScale);
+                ctx.textAlign = 'center';
+                if (options.textBaseline) {
+                    ctx.textBaseline = options.textBaseline;
+                }
+                if (options.fillStyle) {
+                    ctx.fillStyle = options.fillStyle;
+                } else {
+                    ctx.fillStyle = 'black';
+                }
+                if (options.single) {
+                    ctx.lineWidth = 5;
+                    ctx.strokeText(text, texWidth / 2, bmp.height / 2);
+                    ctx.fillText(text, texWidth / 2, bmp.height / 2);
+                } else {
+                    ctx.fillText(text, texWidth / 2, 35);
+                    ctx.fillText(text, texWidth / 2, 86);
+                }
+
+                return new THREE.MeshBasicMaterial({
+                    map: new THREE.CanvasTexture(bmp)
+                });
+            }
+
+            function generateColorTextMaterial(text, w, h) {
+                var statusMat = generateTextMaterial(text, {
+                    backgroundColor: 'transparent',
+                    height: 50 * h,
+                    width: 256 * w,
+                    single: true,
+                    fontScale: fontScale,
+                    textBaseline: 'middle',
+                    fillStyle: 'white'
+                });
+                statusMat.transparent = true;
+                statusMat.side = THREE.DoubleSide;
+                return statusMat;
+            }
+
+            var sim = altspace.utilities.Simulation();
+            var geometry = new THREE.SphereGeometry(1, 32, 32);
+            var material = new THREE.MeshBasicMaterial({
+                color: 0x0077be
+            });
+            material.side = THREE.DoubleSide;
+            var sphere = new THREE.Mesh(geometry, material);
+            sphere.position.y = 2.7;
+            sim.scene.add(sphere);
+            var material1 = generateColorTextMaterial("Hey there! Hold still, we're loading. 0%", 4, 4);
+            var plane = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.3), material1);
+            plane.overdraw = true;
+            plane.material.side = THREE.DoubleSide;
+            //plane.position.y = 2.7;
+            plane.position.z = 0.7;
+            plane.rotation.y = 180 * Math.PI / 180;
+            //sim.scene.add(plane);
+            var skeleton;
+            var head;
+            var promises = [altspace.getThreeJSTrackingSkeleton()];
+            Promise.all(promises).then(function(array) {
+                skeleton = array[0];
+                sim.scene.add(skeleton);
+                head = skeleton.getJoint('Head');
+                head.add(plane);
+            });
+            THREE.DefaultLoadingManager.onProgress = function(item, loaded, total) {
+                if (total > 15) {
+                    var percent = loaded / total;
+                    if (percent == 1) {
+                        console.log("Loaded");
+                        var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. 60%", 4, 4);
+                        plane.material = material_new;
+                        plane.needsUpdate = true;
+                        setTimeout(function(e) {
+                            var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. 80%", 4, 4);
+                            plane.material = material_new;
+                            plane.needsUpdate = true;
+                        }, 5000);
+                        setTimeout(function(e) {
+                            sim.scene.remove(sphere);
+                            head.remove(plane);
+                        }, 10000);
+                    } else {
+                        var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. " + Math.round(percent * 0.5) + "%", 4, 4);
+                        plane.material = material_new;
+                        plane.needsUpdate = true;
+                    }
+                }
             };
             sim.scene.addEventListener('cursordown', function(data) {
                 console.log('Touched Point: X: ' + data.point.x + " Z: " + data.point.z);
@@ -247,7 +255,7 @@ function generateColorTextMaterial(text, w, h) {
             var mesh = document.querySelector('#cl-a');
 
             mesh.addEventListener('model-loaded', function() {
-                setTimeout(function(e){
+                setTimeout(function(e) {
                     var meshy = document.querySelector('#cl-a');
                     var object = meshy.object3D;
                     var mesh = object.children[0].children[0].children[0];
@@ -257,15 +265,15 @@ function generateColorTextMaterial(text, w, h) {
 
             var island = document.querySelector('#sco-a');
             island.addEventListener('model-loaded', function() {
-                for(var i = 0; i < this.object3D.children[0].children.length; i++){
+                for (var i = 0; i < this.object3D.children[0].children.length; i++) {
                     var meshy = this.object3D.children[0].children[i];
-                    if(meshy.name.indexOf("TSO_Circle") !== -1){
-                    console.log(meshy.name);
+                    if (meshy.name.indexOf("TSO_Circle") !== -1) {
+                        console.log(meshy.name);
                         var top = meshy.children[0];
                         top.material.transparent = true;
                         top.material.side = THREE.DoubleSide;
                     } else
-                    if(meshy.name.indexOf("TSO_") !== -1){
+                    if (meshy.name.indexOf("TSO_") !== -1) {
                         meshy.children[0].material.transparent = true;
                         meshy.children[0].material.side = THREE.DoubleSide;
                     }
@@ -273,98 +281,108 @@ function generateColorTextMaterial(text, w, h) {
             });
 
             if (!mobile) {
-            var songs = [];
-            songs.push({
-                color: "#004010",
-                url: "http://island.jacobralph.org/assets/playlist/evening/waves",
-                length: 233
-            });
-            songs.push({
-                color: "#005e00",
-                url: "http://island.jacobralph.org/assets/playlist/evening/black",
-                length: 230
-            });
-            songs.push({
-                color: "#005e00",
-                url: "http://island.jacobralph.org/assets/playlist/evening/wise",
-                length: 254
-            });
-            songs.push({
-                color: "#4e8c23",
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/coconut",
-                length: 230
-            });
-            songs.push({
-                color: "#420666",
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/nobody",
-                length: 222
-            });
-            songs.push({
-                color: "#e29d9d",
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/pina",
-                length: 276
-            });
-            songs.push({
-                color: "#c3f4e5",
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/pocket",
-                length: 232
-            });
-            songs.push({
-                color: "#998b7d",
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/riptide",
-                length: 203
-            });
-            songs.push({
-                color: "#439639",
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/river",
-                length: 228
-            });
+                var songs = [];
+                songs.push({
+                    color: "#004010",
+                    url: "http://island.jacobralph.org/assets/playlist/evening/waves",
+                    length: 233
+                });
+                songs.push({
+                    color: "#005e00",
+                    url: "http://island.jacobralph.org/assets/playlist/evening/black",
+                    length: 230
+                });
+                songs.push({
+                    color: "#005e00",
+                    url: "http://island.jacobralph.org/assets/playlist/evening/wise",
+                    length: 254
+                });
+                songs.push({
+                    color: "#4e8c23",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/coconut",
+                    length: 230
+                });
+                songs.push({
+                    color: "#420666",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/nobody",
+                    length: 222
+                });
+                songs.push({
+                    color: "#e29d9d",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/pina",
+                    length: 276
+                });
+                songs.push({
+                    color: "#c3f4e5",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/pocket",
+                    length: 232
+                });
+                songs.push({
+                    color: "#998b7d",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/riptide",
+                    length: 203
+                });
+                songs.push({
+                    color: "#439639",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/river",
+                    length: 228
+                });
                 var song = document.querySelector('#song');
 
                 var firstLoad = false;
                 song.addEventListener("n-sound-loaded", function(e) {
-                    if(firstLoad){
+                    if (firstLoad) {
+                        var songLength = getTimeForColor(playing.getAttribute('material').color);
+                        var currentTimeFromEnd = (currentlyPlaying.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
+                        var difference = songLength - currentTimeFromEnd;
+                        console.log("Diff:" + difference);
+                        song.components['n-sound'].seek(difference * 1000)
                         song.components['n-sound'].playSound();
                     }
                     if (!firstLoad) {
                         var playing = document.querySelector('#songSync');
-                if(playing.getAttribute('material').color != getColorForURL(song.getAttribute('n-sound').src)){
-                        song.setAttribute('n-sound', 'src', getURLForColor(playing.getAttribute('material').color) + '.' + audio);
-                }
+                        if (playing.getAttribute('material').color != getColorForURL(song.getAttribute('n-sound').src)) {
+                            song.setAttribute('n-sound', 'src', getURLForColor(playing.getAttribute('material').color) + '.' + audio);
+                        }
                         firstLoad = true;
-                        setInterval(switchSong, 5000);
+                        setInterval(switchSong, 1000);
                     }
                 });
 
-                function getColorForURL(URL){
-                    for(i = 0; i < songs.length; i++){
+                function getColorForURL(URL) {
+                    for (i = 0; i < songs.length; i++) {
                         var object = songs[i];
-                        if(URL.indexOf(object.url) !== -1){
+                        if (URL.indexOf(object.url) !== -1) {
                             return object.color;
                         }
                     }
-                    
+
                     return false;
                 }
 
-                function getURLForColor(color){
-                    for(i = 0; i < songs.length; i++){
+                function getURLForColor(color) {
+                    for (i = 0; i < songs.length; i++) {
                         var object = songs[i];
-                        if(object.color === color){
+                        if (object.color === color) {
                             return object.url;
                         }
                     }
                     return false;
                 }
 
+                function getTimeForColor(color) {
+                    for (i = 0; i < songs.length; i++) {
+                        var object = songs[i];
+                        if (object.color === color) {
+                            return object.length;
+                        }
+                    }
+                    return 0;
+                }
+
                 function switchSong() {
                     var currentlyPlaying = document.querySelector('#songSync');
                     var currentSong = document.querySelector('#song');
-                    console.log(currentSong.getAttribute('n-sound').src);
-                    console.log(getURLForColor(currentlyPlaying.getAttribute('material').color)+ "." + audio);
-                    console.log(currentlyPlaying.getAttribute('scale').x);
-                    console.log((Date.now() / 1000000000000));
-                    console.log(currentlyPlaying.components['sync'].isMine);
                     if (currentSong.getAttribute('n-sound').src == getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio && currentlyPlaying.getAttribute('scale').x < (Date.now() / 1000000000000) && currentlyPlaying.components['sync'].isMine) {
                         console.log("Yep!");
                         var index = Math.floor(Math.random() * songs.length);
@@ -372,7 +390,7 @@ function generateColorTextMaterial(text, w, h) {
                         currentSong.setAttribute('n-sound', 'src', newSong.url + "." + audio);
                         currentlyPlaying.setAttribute('material', 'color', newSong.color);
                         currentlyPlaying.setAttribute('scale', (((Date.now() / 1000) + newSong.length) / 1000000000) + " 0 0");
-                    } else if(currentSong.getAttribute('n-sound').src != getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio){
+                    } else if (currentSong.getAttribute('n-sound').src != getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio) {
                         currentSong.setAttribute('n-sound', 'src', getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio);
                     }
                 }
@@ -415,16 +433,16 @@ function generateColorTextMaterial(text, w, h) {
                 });
             }, 5000);
 
-            function hideCollision(){
+            function hideCollision() {
                 var meshymesh = document.querySelector('#cl-a');
-                if(meshymesh != undefined && meshymesh.object3d != undefined && meshymesh.object3d.children != undefined && meshymesh.object3d.children.length && meshymesh.object3d.children[0].children != undefined && meshymesh.object3d.children[0].children.length && meshymesh.object3d.children[0].children[0].children != undefined && meshymesh.object3d.children[0].children[0].children.length){
+                if (meshymesh != undefined && meshymesh.object3d != undefined && meshymesh.object3d.children != undefined && meshymesh.object3d.children.length && meshymesh.object3d.children[0].children != undefined && meshymesh.object3d.children[0].children.length && meshymesh.object3d.children[0].children[0].children != undefined && meshymesh.object3d.children[0].children[0].children.length) {
                     var checkMesh = meshymesh.object3d.children[0].children[0].children[0];
-                    if(checkMesh.material.visible){
+                    if (checkMesh.material.visible) {
                         mesh.material.visible = false;
                     }
                 }
             }
-            
+
             setTimeout(hideCollision, 60000);
 
             setTimeout(function(e) {
@@ -437,4 +455,5 @@ function generateColorTextMaterial(text, w, h) {
         });
     </script>
 </body>
+
 </html>
