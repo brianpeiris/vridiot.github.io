@@ -332,6 +332,8 @@
                 var firstLoad = false;
                 song.addEventListener("n-sound-loaded", function(e) {
                     if (firstLoad) {
+                        var currentlyPlaying = document.querySelector('#songSync');
+                        var currentSong = document.querySelector('#song');
                         var songLength = getTimeForColor(playing.getAttribute('material').color);
                         var currentTimeFromEnd = (currentlyPlaying.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
                         var difference = songLength - currentTimeFromEnd;
