@@ -387,11 +387,6 @@ function generateColorTextMaterial(text, w, h) {
             });
 
             var sky = new THREE.Mesh(skyGeo, material);
-            if (timeOfDay == "night") {
-                sky.position.y = 0;;
-            } else {
-                sky.position.y = -80;
-            }
             sky.position.x = 37.56583;
             sky.rotation.y = -137.5 * (Math.PI / 180);
             sky.material.side = THREE.BackSide;
