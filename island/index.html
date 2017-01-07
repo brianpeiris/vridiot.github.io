@@ -363,13 +363,15 @@ function generateColorTextMaterial(text, w, h) {
                     console.log(getURLForColor(currentlyPlaying.getAttribute('material').color)+ "." + audio);
                     console.log(currentlyPlaying.getAttribute('scale').x);
                     console.log((Date.now() / 1000000000000));
-                    if ((currentSong.getAttribute('n-sound').src == getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio && currentlyPlaying.getAttribute('scale').x < (Date.now() / 1000000000000))) {
+                    if (currentSong.getAttribute('n-sound').src == getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio && currentlyPlaying.getAttribute('scale').x < (Date.now() / 1000000000000)) {
                         console.log("Yep!");
                         var index = Math.floor(Math.random() * songs.length);
                         var newSong = songs[index];
                         currentSong.setAttribute('n-sound', 'src', newSong.url + "." + audio);
                         currentlyPlaying.setAttribute('material', 'color', newSong.color);
                         currentlyPlaying.setAttribute('scale', (((Date.now() / 1000) + newSong.length) / 1000000000) + " 0 0");
+                    } else if(currentSong.getAttribute('n-sound').src != getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio){
+                        currentSong.setAttribute('n-sound', 'src', getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio);
                     }
                 }
             }
