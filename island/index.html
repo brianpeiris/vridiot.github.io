@@ -264,7 +264,7 @@ function generateColorTextMaterial(text, w, h) {
                         var top = meshy.children[0];
                         top.material.transparent = true;
                         top.material.side = THREE.DoubleSide;
-                    } else 
+                    } else
                     if(meshy.name.indexOf("TSO_") !== -1){
                         meshy.children[0].material.transparent = true;
                         meshy.children[0].material.side = THREE.DoubleSide;
@@ -347,7 +347,7 @@ function generateColorTextMaterial(text, w, h) {
 
             var loader = new THREE.TextureLoader();
             loader.crossOrigin = '';
-            var box = "skydome.png";
+            var box = "skydome.jpg";
             if (timeOfDay == "night") {
                 box = "NightSky.jpg";
             }
