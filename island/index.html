@@ -33,7 +33,7 @@
             agent = "mobile";
             audio = "mp3";
         }
-        var timeOfDay = "night"
+        var timeOfDay = "day"
         var d = new Date();
         var n = d.getUTCHours();
         if (n < 12) {
@@ -59,7 +59,7 @@
             op = "0.2";
         }
         if (!mobile) {
-        document.write('<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.05; autoplay: false; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine" altspace-cursor-collider="enabled: true" id="song" sync-n-sound soundLoaded></a-entity>');
+        document.write('<a-entity position="40 1.7 -4.1" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.05; autoplay: false; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine" altspace-cursor-collider="enabled: true" id="song" color="#004010" soundLoaded></a-entity>');
     }
         document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.40 0.0" opacity="'+op+'" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
         </script>
@@ -113,7 +113,7 @@
 
         <a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
 
-        <a-entity url="http://island.jacobralph.org/assets/playlist/evening/waves." time="0" id="songSync" sync-url sync-time></a-entity>
+        <a-entity material="color: #004010" scale="0 0 0" id="songSync" sync-transform sync-color></a-entity>
 
     </a-scene>
 
@@ -274,41 +274,49 @@ function generateColorTextMaterial(text, w, h) {
 
             if (!mobile) {
             var songs = [];
-            var time = Date.now() / 1000;
             songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/evening/waves.",
+                color: "#004010",
+                url: "http://island.jacobralph.org/assets/playlist/evening/waves",
                 length: 233
             });
             songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/evening/black.",
+                color: "#005e00",
+                url: "http://island.jacobralph.org/assets/playlist/evening/black",
                 length: 230
             });
             songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/evening/wise.",
+                color: "#005e00",
+                url: "http://island.jacobralph.org/assets/playlist/evening/wise",
                 length: 254
             });
             songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/coconut.",
+                color: "#4e8c23",
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/coconut",
                 length: 230
             });
             songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/nobody.",
+                color: "#420666",
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/nobody",
                 length: 222
             });
             songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/pina.",
+                color: "#e29d9d",
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/pina",
                 length: 276
             });
             songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/pocket.",
+                color: "#c3f4e5",
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/pocket",
                 length: 232
             });
             songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/riptide.",
+                color: "#998b7d",
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/riptide",
                 length: 203
             });
             songs.push({
-                url: "http://island.jacobralph.org/assets/playlist/afternoon/river.",
+                color: "#439639",
+                url: "http://island.jacobralph.org/assets/playlist/afternoon/river",
                 length: 228
             });
                 var song = document.querySelector('#song');
@@ -318,29 +326,50 @@ function generateColorTextMaterial(text, w, h) {
                         song.components['n-sound'].playSound();
                     if (!firstLoad) {
                         var playing = document.querySelector('#songSync');
-                if(playing.getAttribute('url') + audio != song.getAttribute('src')){
-                        song.setAttribute('n-sound', 'src', playing.getAttribute('url') + audio);
+                if(playing.getAttribute('material').color != getColorForURL(song.getAttribute('n-sound').src)){
+                        song.setAttribute('n-sound', 'src', getURLForColor(playing.getAttribute('material').color) + '.' + audio);
                 }
                         firstLoad = true;
                         setInterval(switchSong, 5000);
                     }
                 });
 
+                function getColorForURL(URL){
+                    for(i = 0; i < songs.length; i++){
+                        var object = songs[i];
+                        if(URL.indexOf(object.url) !== -1){
+                            return object.color;
+                        }
+                    }
+                    
+                    return false;
+                }
+
+                function getURLForColor(color){
+                    for(i = 0; i < songs.length; i++){
+                        var object = songs[i];
+                        if(object.color === color){
+                            return object.url;
+                        }
+                    }
+                    return false;
+                }
+
                 function switchSong() {
                     var currentlyPlaying = document.querySelector('#songSync');
                     var currentSong = document.querySelector('#song');
                     console.log("Switching Song");
                     console.log(currentSong.getAttribute('n-sound').src);
-                    console.log(currentlyPlaying.getAttribute('url') + audio);
-                    console.log(currentlyPlaying.getAttribute('time'));
-                    console.log((Date.now() / 1000));
-                    if (currentSong.getAttribute('n-sound').src == currentlyPlaying.getAttribute('url') + audio && currentlyPlaying.getAttribute('time') < (Date.now() / 1000)) {
+                    console.log(getURLForColor(currentlyPlaying.getAttribute('material').color)+ "." + audio);
+                    console.log(currentlyPlaying.getAttribute('scale').x);
+                    console.log((Date.now() / 1000000000000));
+                    if ((currentSong.getAttribute('n-sound').src == getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio && currentlyPlaying.getAttribute('scale').x < (Date.now() / 1000000000000))) {
                         console.log("Yep!");
                         var index = Math.floor(Math.random() * songs.length);
                         var newSong = songs[index];
-                        currentSong.setAttribute('n-sound', 'src', newSong.url + audio);
-                        currentlyPlaying.setAttribute('url', newSong.url);
-                        currentlyPlaying.setAttribute('time', ((Date.now() / 1000) + newSong.length));
+                        currentSong.setAttribute('n-sound', 'src', newSong.url + "." + audio);
+                        currentlyPlaying.setAttribute('material', 'color', newSong.color);
+                        currentlyPlaying.setAttribute('scale', (((Date.now() / 1000) + newSong.length) / 1000000000) + " 0 0");
                     }
                 }
             }
@@ -401,7 +430,7 @@ function generateColorTextMaterial(text, w, h) {
             setTimeout(function(e) {
                 var d = new Date();
                 var n = d.getUTCHours();
-                if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "night") {
+                if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "day") {
                     window.location.reload();
                 }
             }, 15000);
