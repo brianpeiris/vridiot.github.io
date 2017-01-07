@@ -323,7 +323,9 @@ function generateColorTextMaterial(text, w, h) {
 
                 var firstLoad = false;
                 song.addEventListener("n-sound-loaded", function(e) {
+                    if(firstLoad){
                         song.components['n-sound'].playSound();
+                    }
                     if (!firstLoad) {
                         var playing = document.querySelector('#songSync');
                 if(playing.getAttribute('material').color != getColorForURL(song.getAttribute('n-sound').src)){
@@ -358,7 +360,6 @@ function generateColorTextMaterial(text, w, h) {
                 function switchSong() {
                     var currentlyPlaying = document.querySelector('#songSync');
                     var currentSong = document.querySelector('#song');
-                    console.log("Switching Song");
                     console.log(currentSong.getAttribute('n-sound').src);
                     console.log(getURLForColor(currentlyPlaying.getAttribute('material').color)+ "." + audio);
                     console.log(currentlyPlaying.getAttribute('scale').x);
