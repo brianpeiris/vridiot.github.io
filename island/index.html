@@ -56,7 +56,7 @@
         <script>
         var op = "0.2;";
         if (timeOfDay == "night") {
-            op = "0.05";
+            op = "0.2";
         }
         if (!mobile) {
         document.write('<a-entity position="42.5 2.5 -2.9" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.05; autoplay: false; loop: true; minDistance: 0.1; maxDistance:20; rolloff: cosine" altspace-cursor-collider="enabled: true" id="song" sync-n-sound soundLoaded></a-entity>');
@@ -247,9 +247,12 @@ function generateColorTextMaterial(text, w, h) {
             var mesh = document.querySelector('#cl-a');
 
             mesh.addEventListener('model-loaded', function() {
-                var object = this.object3D;
-                var mesh = object.children[0].children[0].children[0];
-                mesh.material.visible = false;
+                setTimeout(function(e){
+                    var meshy = document.querySelector('#cl-a');
+                    var object = meshy.object3D;
+                    var mesh = object.children[0].children[0].children[0];
+                    mesh.material.visible = false;
+                }, 500);
             });
 
             var island = document.querySelector('#sco-a');
@@ -355,7 +358,11 @@ function generateColorTextMaterial(text, w, h) {
             });
 
             var sky = new THREE.Mesh(skyGeo, material);
-            sky.position.y = -80;
+            if (timeOfDay == "night") {
+                sky.position.y = 0;;
+            } else {
+                sky.position.y = -80;
+            }
             sky.position.x = 37.56583;
             sky.rotation.y = -137.5 * (Math.PI / 180);
             sky.material.side = THREE.BackSide;
