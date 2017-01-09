@@ -50,9 +50,13 @@
             </script>
             <a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
             <a-asset-item id="cl" src="./assets/collider.dae"></a-asset-item>
+            <script>
+                document.write('<a-asset-item id="radio" src="./assets/' + agent + '/' + timeOfDay + '/radio.dae"></a-asset-item>');
+            </script>
         </a-assets>
 
         <a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
+        <a-entity position="0 0 0" collada-model="#radio" id="radio-a" altspace-cursor-collider="enabled: true"></a-entity>
 
         <script>
             var op = "0.2;";
@@ -286,15 +290,23 @@
                         meshy.children[0].material.transparent = true;
                         meshy.children[0].material.side = THREE.DoubleSide;
                     } 
-                    /*obj_3d.children[0].addEventListener("cursordown", function(e){
-                            console.log("Clicked");
-                            var playing = document.querySelector('#song');
-                            if(playing.getAttribute('n-sound').volume){
-                                playing.setAttribute('n-sound', 'volume', 0);
-                            } else {
-                                playing.setAttribute('n-sound', 'volume', 0.6);
-                            }
-                        })*/
+                }
+            });
+            var paused = false;
+            document.querySelector('#radio-a').addEventListener('click', function () {
+                var playing = document.querySelector('#song');
+                if(paused){
+                    var sync = document.querySelector('#songSync');
+                    var songLength = getTimeForColor(sync.getAttribute('material').color);
+                    var currentTimeFromEnd = (sync.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
+                    var difference = songLength - currentTimeFromEnd;
+                    console.log(difference);
+                    playing.components['n-sound'].seek(difference * 1000);
+                    playing.components['n-sound'].playSound();
+                    paused = false;
+                } else {
+                    playing.components['n-sound'].pauseSound();
+                    paused = true;
                 }
             });
 
@@ -508,13 +520,20 @@
                         var difference = songLength - currentTimeFromEnd;
                         console.log("Diff:" + difference);
                         song.setAttribute('n-sound', 'volume', 0.6);
+                        paused = false;
+                        song.components['n-sound'].seek(difference * 1000);
                         song.components['n-sound'].playSound();
-                        song.components['n-sound'].seek(difference * 1000)
                     }
                     if (!firstLoad) {
                         var playing = document.querySelector('#songSync');
                         if (playing.getAttribute('material').color != getColorForURL(song.getAttribute('n-sound').src)) {
                             song.setAttribute('n-sound', 'src', getURLForColor(playing.getAttribute('material').color) + '.' + audio);
+                            paused = false;
+                            var songLength = getTimeForColor(playing.getAttribute('material').color);
+                            var currentTimeFromEnd = (playing.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
+                            var difference = songLength - currentTimeFromEnd;
+                            song.components['n-sound'].seek(difference * 1000);
+                            song.components['n-sound'].playSound();
                         }
                         firstLoad = true;
                         setInterval(switchSong, 1000);
