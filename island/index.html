@@ -120,6 +120,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             var fontScale;
             if (/AltspaceVR-App build-[0-9a-f]{7} Mobile/.test(window.navigator.userAgent)) {
                 fontScale = 0.85;
@@ -216,8 +217,10 @@
             plane.position.z = 0.7;
             plane.rotation.y = 180 * Math.PI / 180;
             //sim.scene.add(plane);
+
             var skeleton;
             var head;
+
             var promises = [altspace.getThreeJSTrackingSkeleton()];
             Promise.all(promises).then(function(array) {
                 skeleton = array[0];
@@ -225,6 +228,7 @@
                 head = skeleton.getJoint('Head');
                 head.add(plane);
             });
+
             THREE.DefaultLoadingManager.onProgress = function(item, loaded, total) {
                 if (total > 15) {
                     var percent = loaded / total;
@@ -249,9 +253,16 @@
                     }
                 }
             };
+
+            setTimeout(function(e) {
+                sim.scene.remove(sphere);
+                head.remove(plane);
+            }, 60000);
+
             sim.scene.addEventListener('cursordown', function(data) {
                 console.log('Touched Point: X: ' + data.point.x + " Z: " + data.point.z);
             });
+
             var mesh = document.querySelector('#cl-a');
 
             mesh.addEventListener('model-loaded', function() {
@@ -327,6 +338,77 @@
                     url: "http://island.jacobralph.org/assets/playlist/afternoon/river",
                     length: 228
                 });
+                songs.push({
+                    color: "#ff6f1d",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/stolen",
+                    length: 313
+                });
+                songs.push({
+                    color: "#ff6f11",
+                    url: "http://island.jacobralph.org/assets/playlist/evening/salm-a",
+                    length: 305
+                });
+                songs.push({
+                    color: "#ff6f12",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/youth",
+                    length: 211
+                });
+                songs.push({
+                    color: "#ff6f13",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/wicked",
+                    length: 197
+                });
+                songs.push({
+                    color: "#ff6f14",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/rub",
+                    length: 195
+                });
+                songs.push({
+                    color: "#ff6f15",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/love",
+                    length: 230
+                });
+                songs.push({
+                    color: "#ff6f16",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/crazy",
+                    length: 197
+                });
+                songs.push({
+                    color: "#ff6f17",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/clearly",
+                    length: 197
+                });
+                songs.push({
+                    color: "#ff6f18",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/herbs",
+                    length: 198
+                });
+                songs.push({
+                    color: "#ff6f19",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/warriors",
+                    length: 247
+                });
+                songs.push({
+                    color: "#ff6f20",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/upsetters",
+                    length: 198
+                });
+                songs.push({
+                    color: "#ff6f21",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/johnny",
+                    length: 224
+                });
+                songs.push({
+                    color: "#ff6f22",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/ragga",
+                    length: 259
+                });
+                songs.push({
+                    color: "#ff6f22",
+                    url: "http://island.jacobralph.org/assets/playlist/afternoon/bad",
+                    length: 249
+                });
+
                 var song = document.querySelector('#song');
 
                 var firstLoad = false;
