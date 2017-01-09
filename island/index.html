@@ -287,7 +287,7 @@
                     } else if (meshy.name.indexOf("TSO_") !== -1) {
                         meshy.children[0].material.transparent = true;
                         meshy.children[0].material.side = THREE.DoubleSide;
-                    } else if(meshy.name.idexOf("Cube_006") !== -1){
+                    } else if(meshy.name.indexOf("Cube_006") !== -1){
                         meshy.addEventListener("cursordown", function(e){
                             var playing = document.querySelector('#song');
                             if(playing.getAttribute('n-sound').volume){
