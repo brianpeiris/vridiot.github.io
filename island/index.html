@@ -60,7 +60,7 @@
                 op = "0.2";
             }
             if (!mobile) {
-                document.write('<a-entity position="40 1.7 -4.1" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.5; autoplay: false; loop: true; minDistance: 0.1; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010" soundLoaded></a-entity>');
+                document.write('<a-entity position="40 1.7 -4.1" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.6; autoplay: false; loop: true; minDistance: 0.1; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010" soundLoaded></a-entity>');
             }
             document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.40 0.0" opacity="' + op + '" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
         </script>
@@ -278,15 +278,24 @@
             island.addEventListener('model-loaded', function() {
                 for (var i = 0; i < this.object3D.children[0].children.length; i++) {
                     var meshy = this.object3D.children[0].children[i];
+                    console.log(meshy.name);
                     if (meshy.name.indexOf("TSO_Circle") !== -1) {
                         console.log(meshy.name);
                         var top = meshy.children[0];
                         top.material.transparent = true;
                         top.material.side = THREE.DoubleSide;
-                    } else
-                    if (meshy.name.indexOf("TSO_") !== -1) {
+                    } else if (meshy.name.indexOf("TSO_") !== -1) {
                         meshy.children[0].material.transparent = true;
                         meshy.children[0].material.side = THREE.DoubleSide;
+                    } else if(meshy.name.idexOf("Cube_006") !== -1){
+                        meshy.addEventListener("cursordown", function(e){
+                            var playing = document.querySelector('#song');
+                            if(playing.getAttribute('n-sound').volume){
+                                playing.setAttribute('n-sound', 'volume', 0);
+                            } else {
+                                playing.setAttribute('n-sound', 'volume', 0.6);
+                            }
+                        })
                     }
                 }
             });
@@ -500,6 +509,7 @@
                         var currentTimeFromEnd = (playing.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
                         var difference = songLength - currentTimeFromEnd;
                         console.log("Diff:" + difference);
+                        song.setAttribute('n-sound', 'volume', 0.6);
                         song.components['n-sound'].playSound();
                         song.components['n-sound'].seek(difference * 1000)
                     }
@@ -574,7 +584,6 @@
 
             var sky = new THREE.Mesh(skyGeo, material);
             sky.position.x = 37.56583;
-            sky.rotation.y = -137.5 * (Math.PI / 180);
             sky.material.side = THREE.BackSide;
             sim.scene.add(sky);
 
