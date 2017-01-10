@@ -84,7 +84,7 @@
                 document.write('<a-entity position="20.46583 2.7 -10.2" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine" altspace-cursor-collider="enabled: true" id="fire1" sync-n-sound></a-entity>');
                 document.write('<a-entity position="8.01583 2.7 -5.18" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine" altspace-cursor-collider="enabled: true" id="fire1" sync-n-sound></a-entity>');
                 document.write('<a-entity position="9.61583 3.15 -0.51" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine" altspace-cursor-collider="enabled: true" id="fire1" sync-n-sound></a-entity>');
-                
+
                 document.write('<a-entity id="loop" position="23 1 14" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.5; loop: true; minDistance: 0.1; maxDistance: 21; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 document.write('<a-entity id="loop" position="1 1 15" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.5; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 document.write('<a-entity id="loop" position="-1 1 -13" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.5; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
@@ -197,9 +197,9 @@
             var plane = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.3), material1);
             plane.overdraw = true;
             plane.material.side = THREE.DoubleSide;
-            //plane.position.y = 2.7;
-            plane.position.z = 0.7;
-            plane.rotation.y = 180 * Math.PI / 180;
+            plane.position.y = 2.7;
+            plane.position.z = -0.7;
+            //plane.rotation.y = 180 * Math.PI / 180;
             sim.scene.add(plane);
 
             THREE.DefaultLoadingManager.onProgress = function(item, loaded, total) {
