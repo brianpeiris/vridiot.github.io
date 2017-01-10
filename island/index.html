@@ -213,45 +213,34 @@
             var sphere = new THREE.Mesh(geometry, material);
             sphere.position.y = 2.7;
             sim.scene.add(sphere);
-            var material1 = generateColorTextMaterial("Hey there! Hold still, we're loading. 0%", 4, 4);
+            var material1 = generateColorTextMaterial("Hey there! Loading: 0%", 4, 4);
             var plane = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.3), material1);
             plane.overdraw = true;
             plane.material.side = THREE.DoubleSide;
             //plane.position.y = 2.7;
             plane.position.z = 0.7;
             plane.rotation.y = 180 * Math.PI / 180;
-            //sim.scene.add(plane);
-
-            var skeleton;
-            var head;
-
-            var promises = [altspace.getThreeJSTrackingSkeleton()];
-            Promise.all(promises).then(function(array) {
-                skeleton = array[0];
-                sim.scene.add(skeleton);
-                head = skeleton.getJoint('Head');
-                head.add(plane);
-            });
+            sim.scene.add(plane);
 
             THREE.DefaultLoadingManager.onProgress = function(item, loaded, total) {
                 if (total > 15) {
                     var percent = loaded / total;
                     if (percent == 1) {
                         console.log("Loaded");
-                        var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. 60%", 4, 4);
+                        var material_new = generateColorTextMaterial("Hey there! Loading: 60%", 4, 4);
                         plane.material = material_new;
                         plane.needsUpdate = true;
                         setTimeout(function(e) {
-                            var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. 80%", 4, 4);
+                            var material_new = generateColorTextMaterial("Hey there! Loading: 80%", 4, 4);
                             plane.material = material_new;
                             plane.needsUpdate = true;
                         }, 5000);
                         setTimeout(function(e) {
                             sim.scene.remove(sphere);
-                            head.remove(plane);
+                            sim.scene.remove(plane);
                         }, 10000);
                     } else {
-                        var material_new = generateColorTextMaterial("Hey there! Hold still, we're loading. " + Math.round(percent * 0.5) + "%", 4, 4);
+                        var material_new = generateColorTextMaterial("Hey there! Loading: " + Math.round(percent * 0.5) + "%", 4, 4);
                         plane.material = material_new;
                         plane.needsUpdate = true;
                     }
@@ -300,9 +289,9 @@
                     var songLength = getTimeForColor(sync.getAttribute('material').color);
                     var currentTimeFromEnd = (sync.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
                     var difference = songLength - currentTimeFromEnd;
-                    console.log(difference);
-                    playing.components['n-sound'].seek(difference * 1000);
                     playing.components['n-sound'].playSound();
+                    console.log(difference);
+                    playing.components['n-sound'].seek(difference);
                     paused = false;
                 } else {
                     playing.components['n-sound'].pauseSound();
@@ -521,8 +510,9 @@
                         console.log("Diff:" + difference);
                         song.setAttribute('n-sound', 'volume', 0.6);
                         paused = false;
-                        song.components['n-sound'].seek(difference * 1000);
+                        console.log(difference);
                         song.components['n-sound'].playSound();
+                        song.components['n-sound'].seek(difference);
                     }
                     if (!firstLoad) {
                         var playing = document.querySelector('#songSync');
@@ -532,8 +522,9 @@
                             var songLength = getTimeForColor(playing.getAttribute('material').color);
                             var currentTimeFromEnd = (playing.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
                             var difference = songLength - currentTimeFromEnd;
-                            song.components['n-sound'].seek(difference * 1000);
                             song.components['n-sound'].playSound();
+                            console.log(difference);
+                            song.components['n-sound'].seek(difference);
                         }
                         firstLoad = true;
                         setInterval(switchSong, 1000);
