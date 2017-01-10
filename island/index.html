@@ -63,9 +63,7 @@
             if (timeOfDay == "night") {
                 op = "0.2";
             }
-            //if (!mobile) {
-                document.write('<a-entity position="40 1.7 -4.1" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.6; autoplay: false; loop: true; minDistance: 0.1; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010" soundLoaded></a-entity>');
-            //}
+            document.write('<a-entity position="40 1.7 -4.1" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 0.6; autoplay: false; loop: true; minDistance: 0.1; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010" soundLoaded></a-entity>');
             document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.40 0.0" opacity="' + op + '" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
         </script>
 
@@ -199,7 +197,6 @@
             plane.material.side = THREE.DoubleSide;
             plane.position.y = 2.7;
             plane.position.z = -0.7;
-            //plane.rotation.y = 180 * Math.PI / 180;
             sim.scene.add(plane);
 
             THREE.DefaultLoadingManager.onProgress = function(item, loaded, total) {
@@ -279,7 +276,6 @@
                 }
             });
 
-            //if (!mobile) {
                 var songs = [];
                 songs.push({
                     color: "#004010",
@@ -387,22 +383,12 @@
                     length: 224
                 });
                 songs.push({
-                    color: "#ff6f22",
-                    url: "http://island.jacobralph.org/assets/playlist/afternoon/ragga",
-                    length: 259
-                });
-                songs.push({
                     color: "#ff6f23",
                     url: "http://island.jacobralph.org/assets/playlist/afternoon/bad",
                     length: 249
                 });
                 songs.push({
                     color: "#ff6f24",
-                    url: "http://island.jacobralph.org/assets/playlist/afternoon/island",
-                    length: 223
-                });
-                songs.push({
-                    color: "#ff6f25",
                     url: "http://island.jacobralph.org/assets/playlist/afternoon/island",
                     length: 223
                 });
@@ -562,7 +548,7 @@
                     var currentSong = document.querySelector('#song');
                     if (currentSong.getAttribute('n-sound').src == getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio && currentlyPlaying.getAttribute('scale').x < (Date.now() / 1000000000000) && currentlyPlaying.components['sync'].isMine) {
                         console.log("Yep!");
-                        var index = Math.floor(Math.random() * songs.length);
+                        var index = Math.floor(Math.random()*(songs.length-0+1)+0);
                         var newSong = songs[index];
                         currentSong.setAttribute('n-sound', 'src', newSong.url + "." + audio);
                         currentlyPlaying.setAttribute('material', 'color', newSong.color);
@@ -571,7 +557,6 @@
                         currentSong.setAttribute('n-sound', 'src', getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio);
                     }
                 }
-            //}
 
             var loader = new THREE.TextureLoader();
             loader.crossOrigin = '';
