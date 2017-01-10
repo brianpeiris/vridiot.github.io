@@ -185,7 +185,7 @@
             }
 
             var sim = altspace.utilities.Simulation();
-            var geometry = new THREE.SphereGeometry(1, 32, 32);
+            var geometry = new THREE.SphereGeometry(1.3, 32, 32);
             var material = new THREE.MeshBasicMaterial({
                 color: 0x0077be
             });
@@ -601,7 +601,7 @@
 
             setTimeout(hideCollision, 60000);
 
-            setTimeout(function(e) {
+            setInterval(function(e) {
                 var d = new Date();
                 var n = d.getUTCHours();
                 if ((n < 12 && timeOfDay != "day") || n > 12 && timeOfDay != "day") {
