@@ -229,7 +229,7 @@
 
             setTimeout(function(e) {
                 sim.scene.remove(sphere);
-                head.remove(plane);
+                sim.scene.remove(plane);
             }, 60000);
 
             sim.scene.addEventListener('cursordown', function(data) {
