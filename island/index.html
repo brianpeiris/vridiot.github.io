@@ -50,15 +50,13 @@
             </script>
             <a-asset-item id="sign" src="./assets/sign.dae"></a-asset-item>
             <a-asset-item id="cl" src="./assets/collider.dae"></a-asset-item>
-            <a-asset-item id="rasta" src="./assets/rasta.dae"></a-asset-item>
             <script>
                 document.write('<a-asset-item id="radio" src="./assets/' + agent + '/' + timeOfDay + '/radio.dae"></a-asset-item>');
             </script>
         </a-assets>
 
         <a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
-        <a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
-        <a-entity position="0 0 0" collada-model="#rasta" id="rasta-a" altspace-cursor-collider="enabled: false"></a-entity>
+        <a-entity position="0 0 0" collada-model="#radio" id="radio-a" altspace-cursor-collider="enabled: true"></a-entity>
 
         <script>
             var op = "0.2;";
