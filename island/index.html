@@ -241,6 +241,7 @@
                     var object = meshy.object3D;
                     var collider_mesh = object.children[0].children[0].children[0];
                     collider_mesh.material.visible = false;
+                    collider_mesh.material.needsUpdate = true;
                 }, 500);
             });
 
@@ -600,6 +601,7 @@
                     var checkMesh = meshymesh.object3d.children[0].children[0].children[0];
                     if (checkMesh.material.visible) {
                         mesh.material.visible = false;
+                        mesh.material.needsUpdate = true;
                     }
                 }
             }
