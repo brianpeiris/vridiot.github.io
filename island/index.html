@@ -37,7 +37,7 @@
         var d = new Date();
         var n = d.getUTCHours();
         if (n < 12) {
-            timeOfDay = "day";
+            timeOfDay = "night";
         }
     </script>
 </head>
@@ -262,6 +262,25 @@
                     paused = true;
                 }
             });
+
+            function shuffle(array) {
+              var currentIndex = array.length, temporaryValue, randomIndex ;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+}
+
+return array;
+}
 
             var songs = [{
                     color: "#004010",
@@ -496,7 +515,6 @@
                         var currentTimeFromEnd = (playing.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
                         var difference = songLength - currentTimeFromEnd;
                         song.components['n-sound'].playSound();
-                        console.log(difference);
                         song.components['n-sound'].seek(difference);
                     }
                     firstLoad = true;
@@ -534,13 +552,21 @@
                 return 0;
             }
 
+            songs = shuffle(songs);
+
+            var currentIndex = 0;
+
             function switchSong() {
                 var currentlyPlaying = document.querySelector('#songSync');
                 var currentSong = document.querySelector('#song');
                 if (currentSong.getAttribute('n-sound').src == getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio && currentlyPlaying.getAttribute('scale').x < (Date.now() / 1000000000000) && currentlyPlaying.components['sync'].isMine) {
                     console.log("Yep!");
-                    var index = Math.floor(Math.random() * (songs.length - 0 + 1) + 0);
-                    var newSong = songs[index];
+                    if(currentIndex < (songs.length - 1)){
+                        songs = shuffle(songs);
+                        currentIndex = 0;
+                    }
+                    var newSong = songs[currentIndex];
+                    currentIndex++
                     currentSong.setAttribute('n-sound', 'src', newSong.url + "." + audio);
                     currentlyPlaying.setAttribute('material', 'color', newSong.color);
                     currentlyPlaying.setAttribute('scale', (((Date.now() / 1000) + newSong.length) / 1000000000) + " 0 0");
@@ -588,7 +614,7 @@
             setInterval(function(e) {
                 var d = new Date();
                 var n = d.getUTCHours();
-                if ((n < 12 && timeOfDay != "day") || n > 12 && timeOfDay != "day") {
+                if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "day") {
                     window.location.reload();
                 }
             }, 15000);
