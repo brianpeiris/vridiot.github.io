@@ -56,9 +56,9 @@
         </a-assets>
 
         <a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
-
+        <a-entity position="0 0 0" collada-model="#radio" id="radio-a" altspace-cursor-collider="enabled: true"></a-entity>
         <script>
-            document.write('<a-entity position="40 1.7 -4.1" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: 0.2; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010" soundLoaded></a-entity>');
+            document.write('<a-entity position="40 1.7 -4.1" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: 0.2; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
             var op = "0.2;";
             if (timeOfDay == "night") {
                 op = "0.2";
