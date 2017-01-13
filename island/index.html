@@ -62,7 +62,7 @@
         var minDistance = "0.2";
             if (timeOfDay == "night") {
                 op = "0.2";
-                minDistance = "0.4";
+                minDistance = "1";
             }
             document.write('<a-entity position="39.91627 1.72097 -4.12075" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: '+minDistance+'; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
             document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.40 0.0" opacity="' + op + '" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
