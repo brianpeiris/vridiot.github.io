@@ -58,13 +58,13 @@
         <a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
         <a-entity position="0 0 0" collada-model="#radio" id="radio-a" altspace-cursor-collider="enabled: true"></a-entity>
         <script>
-        var op = "0.2";
-        var minDistance = "0.2";
+            var op = "0.2";
+            var minDistance = "0.2";
             if (timeOfDay == "night") {
                 op = "0.2";
                 minDistance = "1";
             }
-            document.write('<a-entity position="39.91627 1.72097 -4.12075" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: '+minDistance+'; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
+            document.write('<a-entity position="39.91627 1.72097 -4.12075" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: ' + minDistance + '; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
             document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.40 0.0" opacity="' + op + '" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
 
             document.write('<a-entity position="26.81583 2.7 -3.8" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
@@ -266,23 +266,24 @@
             });
 
             function shuffle(array) {
-              var currentIndex = array.length, temporaryValue, randomIndex ;
+                var currentIndex = array.length,
+                    temporaryValue, randomIndex;
 
-  // While there remain elements to shuffle...
-  while (0 !== currentIndex) {
+                // While there remain elements to shuffle...
+                while (0 !== currentIndex) {
 
-    // Pick a remaining element...
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex -= 1;
+                    // Pick a remaining element...
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex -= 1;
 
-    // And swap it with the current element.
-    temporaryValue = array[currentIndex];
-    array[currentIndex] = array[randomIndex];
-    array[randomIndex] = temporaryValue;
-}
+                    // And swap it with the current element.
+                    temporaryValue = array[currentIndex];
+                    array[currentIndex] = array[randomIndex];
+                    array[randomIndex] = temporaryValue;
+                }
 
-return array;
-}
+                return array;
+            }
 
             var songs = [{
                     color: "#4e8c23",
@@ -437,66 +438,66 @@ return array;
             ];
             if (timeOfDay == "night") {
                 songs = [{
-                    color: "#004010",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/waves",
-                    length: 232
-                },
-                {
-                    color: "#005e00",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/black",
-                    length: 216
-                },
-                {
-                    color: "#005e00",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/wise",
-                    length: 253
-                },
-                {
-                    color: "#ff6f11",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/salm-a",
-                    length: 304
-                },
-                {
-                    color: "#ff6f28",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/crystal",
-                    length: 258
-                },
-                {
-                    color: "#ff6f29",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/dr",
-                    length: 161
-                },
-                {
-                    color: "#ff6f30",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/gin",
-                    length: 211
-                },
-                {
-                    color: "#ff6f31",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/jammin",
-                    length: 199
-                },
-                {
-                    color: "#ff6f39",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/loverman",
-                    length: 202
-                },
-                {
-                    color: "#ff6f43",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/gstring",
-                    length: 265
-                },
-                {
-                    color: "#ff6f44",
-                    url: "http://island.jacobralph.org/assets/playlist/evening/bad",
-                    length: 249
-                },
-                {
-                    color: "#ff6f45",
-                    url: "http://island.jacobralph.org/assets/playlist/afternoon/santeria",
-                    length: 183
-                }
-            ];
+                        color: "#004010",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/waves",
+                        length: 232
+                    },
+                    {
+                        color: "#005e00",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/black",
+                        length: 216
+                    },
+                    {
+                        color: "#005e00",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/wise",
+                        length: 253
+                    },
+                    {
+                        color: "#ff6f11",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/salm-a",
+                        length: 304
+                    },
+                    {
+                        color: "#ff6f28",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/crystal",
+                        length: 258
+                    },
+                    {
+                        color: "#ff6f29",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/dr",
+                        length: 161
+                    },
+                    {
+                        color: "#ff6f30",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/gin",
+                        length: 211
+                    },
+                    {
+                        color: "#ff6f31",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/jammin",
+                        length: 199
+                    },
+                    {
+                        color: "#ff6f39",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/loverman",
+                        length: 202
+                    },
+                    {
+                        color: "#ff6f43",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/gstring",
+                        length: 265
+                    },
+                    {
+                        color: "#ff6f44",
+                        url: "http://island.jacobralph.org/assets/playlist/evening/bad",
+                        length: 249
+                    },
+                    {
+                        color: "#ff6f45",
+                        url: "http://island.jacobralph.org/assets/playlist/afternoon/santeria",
+                        length: 183
+                    }
+                ];
             }
             var song = document.querySelector('#song');
 
@@ -570,7 +571,7 @@ return array;
                 var currentSong = document.querySelector('#song');
                 if (currentSong.getAttribute('n-sound').src == getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio && currentlyPlaying.getAttribute('scale').x < (Date.now() / 1000000000000) && currentlyPlaying.components['sync'].isMine) {
                     console.log("Yep!");
-                    if(currentIndex < (songs.length - 1)){
+                    if (currentIndex < (songs.length - 1)) {
                         songs = shuffle(songs);
                         currentIndex = 0;
                     }
