@@ -204,11 +204,11 @@
                             var material_new = generateColorTextMaterial("Hey there! Loading: 80%", 4, 4);
                             plane.material = material_new;
                             plane.needsUpdate = true;
-                        }, 5000);
+                        }, 4000);
                         setTimeout(function(e) {
                             sim.scene.remove(sphere);
                             sim.scene.remove(plane);
-                        }, 10000);
+                        }, 8000);
                     } else {
                         var material_new = generateColorTextMaterial("Hey there! Loading: " + Math.round(percent * 0.5) + "%", 4, 4);
                         plane.material = material_new;
