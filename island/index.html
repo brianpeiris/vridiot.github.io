@@ -3,9 +3,9 @@
 
 <head>
     <title>Island</title>
-    <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+    <!--<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
     <meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
-    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
     <script src="./assets/aframe-component-beta.js"></script>
@@ -33,7 +33,7 @@
             agent = "mobile";
             audio = "mp3";
         }
-        var timeOfDay = "night"
+        var timeOfDay = "day"
         var d = new Date();
         var n = d.getUTCHours();
         if (n < 12) {
@@ -618,7 +618,7 @@ return array;
             setInterval(function(e) {
                 var d = new Date();
                 var n = d.getUTCHours();
-                if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "night") {
+                if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "day") {
                     window.location.reload();
                 }
             }, 15000);
