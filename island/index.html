@@ -643,6 +643,8 @@ sphere1234.position.y = 2;
             var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
             socket.on('position', function(data) {
                 if(data && data.position){
+                    console.log("Updating Position");
+                    console.log(data.position);
                     sphere1234.position.y = data.position.y;
                     sphere1234.position.x = data.position.x;
                     sphere1234.position.z = data.position.z;
