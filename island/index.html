@@ -619,6 +619,7 @@ var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
 var sphere1234 = new THREE.Mesh( geometry, material );
 sphere1234.position.z = 1;
 sphere1234.position.y = 2;
+var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
             var skeleton;
             var head;
             var should_send = false;
@@ -633,23 +634,12 @@ sphere1234.position.y = 2;
                                     {
                 if(userInfo && userInfo.displayName && (userInfo.displayName == "Jacob" || userInfo.displayName == "enderthexen")){
                  head = skeleton.getJoint('Middle', "Right", 2);//head is an Object3D
-                 var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
                  if(head != undefined){
                  head.add(sphere1234);
                  should_send = true;
              }
         } else {
             sim.scene.add( sphere1234 );
-            var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
-            /*socket.on('position', function(data) {
-                if(data && data.position){
-                    console.log("Updating Position");
-                    console.log(data.position);
-                    sphere1234.position.y = data.position.y;
-                    sphere1234.position.x = data.position.x;
-                    sphere1234.position.z = data.position.z;
-                }
-            });*/
         }
             });
 
@@ -666,10 +656,10 @@ if(head != undefined){
          }
                  }, 100);
         socket.on('position', function(data) {
-            console.log("Receiving");
                  if(data){
-                    console.log("Updating Position");
-                    console.log(data);
+                    sphere1234.y = data.y;
+                    sphere1234.x = data.x;
+                    sphere1234.z = data.z;
                 }
             });
 
