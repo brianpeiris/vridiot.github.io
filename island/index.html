@@ -3,11 +3,11 @@
 
 <head>
     <title>Island</title>
-    <!--<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
-    <meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
-    <meta http-equiv="pragma" content="no-cache">-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js"></script>
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+    <!--<script src="https://rawgit.com/mrdoob/three.js/baff49679505eb90d84a1effa0afc80a90eb434e/examples/js/loaders/GLTFLoader.js"></script>-->
+    <script src="https://rawgit.com/oOblik/AltspaceVR-Native-Components-JS/master/js/JSNativeComponents.js"></script>
     <script src="./assets/aframe-component-beta.js"></script>
     <script src="./assets/altspace.js"></script>
     <script>
@@ -64,6 +64,7 @@
                 op = "0.2";
                 minDistance = "1";
             }
+
             document.write('<a-entity position="39.91627 1.72097 -4.12075" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: ' + minDistance + '; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
             document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.40 0.0" opacity="' + op + '" transparent=true altspace-cursor-collider="enabled: false"> <a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.35 0.0" repeat="indefinite"></a-animation> </a-plane>');
 
@@ -88,13 +89,12 @@
 
         <a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
 
-        <a-entity material="color: #004010" scale="0 0 0" id="songSync" sync-transform sync-color></a-entity>
-
+        <a-entity material="color: #004010" scale="0 0 0" id="songSync" sync-transform sync-color sync></a-entity>
     </a-scene>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
+            var socket = io.connect('http://island.jacobralph.org:25543/');
             //Pretty text from HaH (https://github.com/AltspaceVR/HaH)
             var fontScale;
             if (mobile) {
@@ -222,6 +222,14 @@
                 sim.scene.remove(plane);
             }, 60000);
 
+            /*var loader = new THREE.GLTFLoader;
+            var url = './assets/' + agent + '/' + timeOfDay + '/island.gltf';
+            loader.load( url, function(data) {
+                var island = data.scene.children[0];
+                sim.scene.add(island);
+                console.log(island);
+            });*/
+
             var mesh = document.querySelector('#cl-a');
 
             mesh.addEventListener('model-loaded', function() {
@@ -235,6 +243,7 @@
             });
 
             var island = document.querySelector('#sco-a');
+
             island.addEventListener('model-loaded', function() {
                 for (var i = 0; i < this.object3D.children[0].children.length; i++) {
                     var meshy = this.object3D.children[0].children[i];
@@ -248,6 +257,7 @@
                     }
                 }
             });
+
             var paused = false;
             document.querySelector('#radio-a').addEventListener('click', function() {
                 var playing = document.querySelector('#song');
@@ -604,6 +614,46 @@
 
             var lastupdate = "";
 
+            var geometry = new THREE.SphereGeometry( 0.01, 12, 12 );
+var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+var sphere1234 = new THREE.Mesh( geometry, material );
+sphere1234.position.z = 1;
+sphere1234.position.y = 2;
+            var skeleton;
+            var head;
+            var promises = [altspace.getThreeJSTrackingSkeleton(), altspace.getEnclosure()];
+        Promise.all(promises).then(function (array) {
+
+            skeleton = array[0];
+            sim.scene.add(skeleton);
+            var connection = array[2];
+            altspace.getUser().then(function(userInfo)
+                                    {
+                if(userInfo && userInfo.displayName && (userInfo.displayName == "Jacob" || userInfo.displayName == "enderthexen")){
+                 head = skeleton.getJoint('Middle', "Right", 2);//head is an Object3D
+                 var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
+                 head.add(sphere1234);
+                 setInterval(function(e){
+                    socket.emit('update_position', { position: { x: head.position.x, y: head.position.y, z: head.position.z} });
+                 }, 100);
+        } else {
+            sim.scene.add( sphere1234 );
+            var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
+            socket.on('position', function(data) {
+                if(data && data.position){
+                    sphere1234.position.y = data.position.y;
+                    sphere1234.position.x = data.position.x;
+                    sphere1234.position.z = data.position.z;
+                }
+            });
+        }
+            });
+
+        }).catch(function (err) {
+            console.log('Failed to get Altspace browser properties', err);
+            altspace.open('Failed to get Altspace browser properties' + err);
+        });
+
             setInterval(function(e) {
                 $.ajax({
                     type: "GET",
@@ -628,6 +678,7 @@
                     window.location.reload();
                 }
             }, 15000);
+
         });
     </script>
 </body>
