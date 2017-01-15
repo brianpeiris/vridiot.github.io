@@ -94,7 +94,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            var socket = io.connect('http://hah.jacobralph.org:25543/');
+            //var socket = io.connect('http://hah.jacobralph.org:25543/');
             //Pretty text from HaH (https://github.com/AltspaceVR/HaH)
             var fontScale;
             if (mobile) {
@@ -614,54 +614,70 @@
 
             var lastupdate = "";
 
-            var geometry = new THREE.SphereGeometry( 0.01, 12, 12 );
-var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-var sphere1234 = new THREE.Mesh( geometry, material );
-sphere1234.position.z = 1;
-sphere1234.position.y = 2;
-var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
+            var geometry = new THREE.SphereGeometry(0.01, 12, 12);
+            var material = new THREE.MeshBasicMaterial({
+                color: 0xffff00
+            });
+            /*var sphere1234 = new THREE.Mesh(geometry, material);
+            sphere1234.position.z = 1;
+            sphere1234.position.y = 2;
+            sphere1234.opacity = 0;
             var skeleton;
             var head;
             var should_send = false;
 
             var promises = [altspace.getThreeJSTrackingSkeleton(), altspace.getEnclosure()];
-        Promise.all(promises).then(function (array) {
+            Promise.all(promises).then(function(array) {
 
-            skeleton = array[0];
-            sim.scene.add(skeleton);
-            var connection = array[2];
-            altspace.getUser().then(function(userInfo)
-                                    {
-                if(userInfo && userInfo.displayName && (userInfo.displayName == "Jacob" || userInfo.displayName == "enderthexen")){
-                 head = skeleton.getJoint('Middle', "Right", 2);//head is an Object3D
-                 if(head != undefined){
-                 head.add(sphere1234);
-                 should_send = true;
-             }
-        } else {
-            sim.scene.add( sphere1234 );
-        }
+                skeleton = array[0];
+                sim.scene.add(skeleton);
+                var connection = array[2];
+                altspace.getUser().then(function(userInfo) {
+                    if (userInfo && userInfo.displayName && (userInfo.displayName == "Jacob" || userInfo.displayName == "enderthexen")) {
+                        head = skeleton.getJoint('Middle', "Right", 2); //head is an Object3D
+                        if (head != undefined) {
+                            var colliderBox = new NativeComponent('n-mesh-collider', {
+                                type: "environment",
+                                convex: true
+                            }, sphere1234);
+                            sphere1234.position.y = 0;
+                            sphere1234.position.z = 0;
+                            head.add(sphere1234);
+                            should_send = true;
+                        }
+                    } else {
+                        var colliderBox = new NativeComponent('n-mesh-collider', {
+                            type: "environment",
+                            convex: true
+                        }, sphere1234);
+                        sim.scene.add(sphere1234);
+                    }
+                });
+
+            }).catch(function(err) {
+                console.log('Failed to get Altspace browser properties', err);
+                altspace.open('Failed to get Altspace browser properties' + err);
             });
-
-        }).catch(function (err) {
-            console.log('Failed to get Altspace browser properties', err);
-            altspace.open('Failed to get Altspace browser properties' + err);
-        });
-                 setInterval(function(e){
-                    if(should_send){
-if(head != undefined){
-                 
-                    socket.emit('update_position', { position: { x: head.position.x, y: head.position.y, z: head.position.z} });
-             }
-         }
-                 }, 100);
-        socket.on('position', function(data) {
-                 if(data && !should_send){
+            setInterval(function(e) {
+                if (should_send) {
+                    if (head != undefined) {
+                        socket.emit('update_position', {
+                            position: {
+                                x: head.position.x,
+                                y: head.position.y,
+                                z: head.position.z
+                            }
+                        });
+                    }
+                }
+            }, 150);
+            socket.on('position', function(data) {
+                if (data && !should_send) {
                     sphere1234.position.y = data.y;
                     sphere1234.position.x = data.x;
                     sphere1234.position.z = data.z;
                 }
-            });
+            });*/
 
             setInterval(function(e) {
                 $.ajax({
