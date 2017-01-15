@@ -634,8 +634,10 @@ sphere1234.position.y = 2;
                 if(userInfo && userInfo.displayName && (userInfo.displayName == "Jacob" || userInfo.displayName == "enderthexen")){
                  head = skeleton.getJoint('Middle', "Right", 2);//head is an Object3D
                  var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
+                 if(head != undefined){
                  head.add(sphere1234);
                  should_send = true;
+             }
         } else {
             sim.scene.add( sphere1234 );
             var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
