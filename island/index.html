@@ -656,10 +656,10 @@ if(head != undefined){
          }
                  }, 100);
         socket.on('position', function(data) {
-                 if(data){
-                    sphere1234.y = data.y;
-                    sphere1234.x = data.x;
-                    sphere1234.z = data.z;
+                 if(data && !should_send){
+                    sphere1234.position.y = data.y;
+                    sphere1234.position.x = data.x;
+                    sphere1234.position.z = data.z;
                 }
             });
 
