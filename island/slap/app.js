@@ -1,5 +1,4 @@
-var app = require('express')();  
-var io = require('socket.io').listen(25543);
+var io = require('socket.io')();
 var position_x = 0;
 var position_y = 0;
 var position_z = 0;
@@ -19,3 +18,4 @@ io.on('connection', function(socket) {
     });
 
 });
+io.listen(25543);
