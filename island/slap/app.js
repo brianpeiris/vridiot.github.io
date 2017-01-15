@@ -2,6 +2,7 @@ var io = require('socket.io')();
 var position_x = 0;
 var position_y = 0;
 var position_z = 0;
+console.log("Running!");
 io.on('connection', function(socket) {  
 	console.log("New Connection");
     socket.emit('position', { pos: {x: position_x, y: position_y, z: position_z} });
