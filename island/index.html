@@ -637,6 +637,12 @@ sphere1234.position.y = 2;
                  setInterval(function(e){
                     socket.emit('update_position', { position: { x: head.position.x, y: head.position.y, z: head.position.z} });
                  }, 100);
+                 socket.on('position', function(data) {
+                if(data && data.position){
+                    console.log("Updating Position");
+                    console.log(data.position);
+                }
+            });
              }
         } else {
             sim.scene.add( sphere1234 );
