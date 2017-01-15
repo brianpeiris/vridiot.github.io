@@ -631,11 +631,13 @@ sphere1234.position.y = 2;
                                     {
                 if(userInfo && userInfo.displayName && (userInfo.displayName == "Jacob" || userInfo.displayName == "enderthexen")){
                  head = skeleton.getJoint('Middle', "Right", 2);//head is an Object3D
+                 if(head != undefined){
                  var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
                  head.add(sphere1234);
                  setInterval(function(e){
                     socket.emit('update_position', { position: { x: head.position.x, y: head.position.y, z: head.position.z} });
                  }, 100);
+             }
         } else {
             sim.scene.add( sphere1234 );
             var colliderBox = new NativeComponent('n-mesh-collider', {type: "environment", convex: true}, sphere1234);
