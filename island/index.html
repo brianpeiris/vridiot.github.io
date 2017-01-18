@@ -67,9 +67,7 @@
 
             document.write('<a-entity position="39.91627 1.72097 -4.12075" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: ' + minDistance + '; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
 
-            document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.37 0.0" opacity="' + op + '" id="water1" altspace-cursor-collider="enabled: false"><a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.32 0.0" repeat="indefinite"></a-animation></a-plane>');
-
-            document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="38.56583 0.32 1.0" opacity="' + op + '" id="water2" altspace-cursor-collider="enabled: false"><a-animation attribute="position" dur="5000" direction="alternate" easing="ease-out-sine" to="38.56583 0.27 1.0" repeat="indefinite"></a-animation></a-plane>');
+            document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.35 0.0" opacity="' + op + '" id="water1" altspace-cursor-collider="enabled: false"><a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.30 0.0" repeat="indefinite"></a-animation></a-plane>');
 
             document.write('<a-entity position="26.81583 2.7 -3.8" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
             document.write('<a-entity position="33.13 2.7 -8.81" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
@@ -105,21 +103,6 @@
             } else {
                 fontScale = 1.0;
             }
-
-            function animate() {
-                var water1 = document.querySelector('#water1');
-                var water1_rot = water1.getAttribute('rotation');
-                water1_rot.z = water1_rot.z + 0.0015;
-                water1.setAttribute('rotation', water1_rot);
-
-                var water2 = document.querySelector('#water2');
-                var water2_rot = water2.getAttribute('rotation');
-                water2_rot.z = water2_rot.z - 0.002;
-                water2.setAttribute('rotation', water2_rot);
-
-                requestAnimationFrame(animate);
-            }
-            requestAnimationFrame(animate)
 
             function makeSafeFont(g, text, maxWidth) {
                 // get pixel width of longest line
@@ -194,9 +177,6 @@
             }
 
             var sim = altspace.utilities.Simulation();
-            setInterval(function(e) {
-                console.log(sim.scene);
-            }, 10000);
             var geometry = new THREE.SphereGeometry(1.6, 32, 32);
             var material = new THREE.MeshBasicMaterial({
                 color: 0x0077be
@@ -754,20 +734,16 @@
                 var canvas, ctx;
                 var hdr;
                 var tcanvas;
-
-                var doNothing = function() {};
-
+                var nothing = function() {};
                 var doHdr = function(_hdr) {
                     hdr = _hdr;
                 };
-
                 var doGCE = function(gce) {
                     canvas = document.createElement('canvas');
                     canvas.width = hdr.width;
                     canvas.height = hdr.height;
                     ctx = canvas.getContext('2d');
                 };
-
                 var doImg = function(img) {
 
                     var ct = img.lctFlag ? img.lct : hdr.gct;
