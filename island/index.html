@@ -6,8 +6,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js"></script>
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
-    <script src="./assets/gif-lib.js"></script>
-    <script src="./assets/GLGif.js"></script>
     <!--<script src="https://rawgit.com/mrdoob/three.js/baff49679505eb90d84a1effa0afc80a90eb434e/examples/js/loaders/GLTFLoader.js"></script>-->
     <script src="https://rawgit.com/oOblik/AltspaceVR-Native-Components-JS/master/js/JSNativeComponents.js"></script>
     <script src="./assets/aframe-component-beta.js"></script>
@@ -914,10 +912,49 @@
                     window.location.reload();
                 }
             }, 15000);
+var loader = new THREE.TextureLoader();
+var texts = [{ tex: loader.load('./assets/seagull-1.png') },
+{ tex: loader.load('./assets/seagull-2.png') },
+{ tex: loader.load('./assets/seagull-3.png') },
+{ tex: loader.load('./assets/seagull-4.png') },
+{ tex: loader.load('./assets/seagull-5.png') },
+{ tex: loader.load('./assets/seagull-6.png') },
+{ tex: loader.load('./assets/seagull-7.png') }];
+var current = 0;
+var material55 = new THREE.MeshBasicMaterial({ map : texts.tex[0], transparent: true });
+material.transparent = true;
+var plane55 = new THREE.Mesh(new THREE.PlaneGeometry(0.7503, 0.625), material55);
+plane55.material.side = THREE.DoubleSide;
+plane55.material.transparent = true;
+plane55.position.x = 37;
+plane55.position.y = 3;
 
-            var gif = loadGif("./assets/seagull.gif", function(){
-                console.log(gif);
-            });
+// rotation.z is rotation around the z-axis, measured in radians (rather than degrees)
+// Math.PI = 180 degrees, Math.PI / 2 = 90 degrees, etc.
+//plane55.rotation.z = 90 * Math.PI / 2;
+
+sim.scene.add(plane55);
+function animation(){
+    current++;
+    if(current > 6){
+        current = 0;
+    }
+    var texture55 = texts.tex[current];
+    texture55.needsUpdate = true;
+    var material66 = new THREE.MeshBasicMaterial({ map : texture55, transparent: true });
+    plane55.material = material66;
+    plane55.material.transparent = true;
+    plane55.material.needsUpdate = true;
+    plane55.needsUpdate = true;
+    console.log(plane55);
+    console.log("running animation");
+    setTimeout( function() {
+
+        requestAnimationFrame( animation );
+
+    }, 1000 / 14 );
+}
+requestAnimationFrame(animation);
 
         });
     </script>
