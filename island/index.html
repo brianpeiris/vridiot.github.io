@@ -41,6 +41,7 @@
         }
     </script>
 </head>
+
 <body>
     <a-scene altspace='fullspace: true' debug sync-system="author: john-and-jacob; app: island">
         <a-assets timeout="10000">
@@ -912,61 +913,94 @@
                     window.location.reload();
                 }
             }, 15000);
-var loader = new THREE.TextureLoader();
-var assetsLoadedCount = 0;
-var texts = [{ tex: loader.load('./assets/seagull-1.png', loadedTexture) },
-{ tex: loader.load('./assets/seagull-2.png', loadedTexture) },
-{ tex: loader.load('./assets/seagull-3.png', loadedTexture) },
-{ tex: loader.load('./assets/seagull-4.png', loadedTexture) },
-{ tex: loader.load('./assets/seagull-5.png', loadedTexture) },
-{ tex: loader.load('./assets/seagull-6.png', loadedTexture) },
-{ tex: loader.load('./assets/seagull-7.png', loadedTexture) }];
 
-function loadedTexture(){
-    console.log("Loaded Texutre");
-    assetsLoadedCount++;
-    if(assetsLoadedCount == 7){
-        runAnimation();
-    }
-}
+            var loader = new THREE.TextureLoader();
+            var assetsLoadedCount = 0;
+            var texts = [{
+                    tex: loader.load('./assets/seagull-1.png', loadedTexture)
+                },
+                {
+                    tex: loader.load('./assets/seagull-2.png', loadedTexture)
+                },
+                {
+                    tex: loader.load('./assets/seagull-3.png', loadedTexture)
+                },
+                {
+                    tex: loader.load('./assets/seagull-4.png', loadedTexture)
+                },
+                {
+                    tex: loader.load('./assets/seagull-5.png', loadedTexture)
+                },
+                {
+                    tex: loader.load('./assets/seagull-6.png', loadedTexture)
+                },
+                {
+                    tex: loader.load('./assets/seagull-7.png', loadedTexture)
+                }
+            ];
 
-function runAnimation(){
-var current = 0;
-var material55 = new THREE.MeshBasicMaterial({ map : texts[0].tex, transparent: true });
-material.transparent = true;
-var plane55 = new THREE.Mesh(new THREE.PlaneGeometry(0.7503, 0.625), material55);
-plane55.material.side = THREE.DoubleSide;
-plane55.material.transparent = true;
-plane55.position.x = 37;
-plane55.position.y = 3;
+            function loadedTexture() {
+                console.log("Loaded Texutre");
+                assetsLoadedCount++;
+                if (assetsLoadedCount == 7) {
+                    runAnimation();
+                }
+            }
 
-// rotation.z is rotation around the z-axis, measured in radians (rather than degrees)
-// Math.PI = 180 degrees, Math.PI / 2 = 90 degrees, etc.
-//plane55.rotation.z = 90 * Math.PI / 2;
+            function runAnimation() {
+                var current = 0;
+                var material55 = new THREE.MeshBasicMaterial({
+                    map: texts[0].tex,
+                    transparent: true
+                });
+                material.transparent = true;
+                var plane55 = new THREE.Mesh(new THREE.PlaneGeometry(0.7503, 0.625), material55);
+                plane55.material.side = THREE.DoubleSide;
+                plane55.material.transparent = true;
+                plane55.position.x = 37;
+                plane55.position.y = 12;
+                plane55.position.z = -30;
 
-sim.scene.add(plane55);
-function animation(){
-    current++;
-    if(current > 6){
-        current = 0;
-    }
-    var texture55 = texts[current].tex;
-    texture55.needsUpdate = true;
-    var material66 = new THREE.MeshBasicMaterial({ map : texture55, transparent: true });
-    plane55.material = material66;
-    plane55.material.transparent = true;
-    plane55.material.needsUpdate = true;
-    plane55.needsUpdate = true;
-    console.log(plane55);
-    console.log("running animation");
-    setTimeout( function() {
+                sim.scene.add(plane55);
 
-        requestAnimationFrame( animation );
+                function animation() {
+                    current++;
+                    if (current > 6) {
+                        current = 0;
+                    }
+                    var texture55 = texts[current].tex;
+                    texture55.needsUpdate = true;
+                    var material66 = new THREE.MeshBasicMaterial({
+                        map: texture55,
+                        transparent: true
+                    });
+                    plane55.material = material66;
+                    plane55.material.transparent = true;
+                    plane55.material.needsUpdate = true;
+                    plane55.needsUpdate = true;
+                    setTimeout(function() {
 
-    }, 1000 / 14 );
-}
-requestAnimationFrame(animation);
-}
+                        requestAnimationFrame(animation);
+
+                    }, 1000 / 14);
+                }
+                requestAnimationFrame(animation);
+
+                function animation_fly() {
+
+
+                    plane55.position.x = plane55.position.x - (9 / 45);
+                    if (plane55.position.x < -2000) {
+                        plane55.position.x = 2000;
+                    }
+                    setTimeout(function() {
+
+                        requestAnimationFrame(animation_fly);
+
+                    }, 1000 / 45);
+                }
+                requestAnimationFrame(animation_fly);
+            }
 
         });
     </script>
