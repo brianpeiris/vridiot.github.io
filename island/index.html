@@ -2,7 +2,7 @@
 <html lang='en'>
 
 <head>
-    <title>Island</title>
+    <title>Amber's Paradise Island</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js"></script>
     <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
@@ -730,10 +730,8 @@
                     var songLength = getTimeForColor(playing.getAttribute('material').color);
                     var currentTimeFromEnd = (playing.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
                     var difference = songLength - currentTimeFromEnd;
-                    console.log("Diff:" + difference);
                     song.setAttribute('n-sound', 'volume', 0.6);
                     paused = false;
-                    console.log(difference);
                     song.components['n-sound'].playSound();
                     song.components['n-sound'].seek(difference);
                 }
@@ -915,6 +913,10 @@
                     window.location.reload();
                 }
             }, 15000);
+
+            loadGif("./assets/seagull.gif", function(data){
+                console.log(data);
+            });
 
             //Basic Gif Loader
             function loadGif(img, onload) {
