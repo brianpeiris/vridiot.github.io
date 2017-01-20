@@ -66,30 +66,26 @@
                 minDistance = "1";
             }
 
-            document.write('<a-entity position="39.91627 1.72097 -4.12075" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: ' + minDistance + '; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
+             document.write('<a-entity position="39.91627 1.72097 -4.12075" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: ' + minDistance + '; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
 
             document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150; shader: flat;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.35 0.0" opacity="' + op + '" id="water1" altspace-cursor-collider="enabled: false"><a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.30 0.0" repeat="indefinite"></a-animation></a-plane>');
 
-            document.write('<template is="a-template" element="fire"><a-entity position="26.81583 2.7 -3.8" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity></template>');
-
-            document.write('<fire></fire>');
-            document.write('<fire position="33.13 2.7 -8.81"></fire>');
-            document.write('<fire position="19.1 2.7 -4.35"></fire>');
-            document.write('<fire position="20.46583 2.7 -10.1"></fire>');
-            document.write('<fire position="8.1 2.7 -5.18"></fire>');
-            document.write('<fire position="9.61583 3.15 -0.55"></fire>');
+            document.write('<a-entity position="26.81583 2.7 -3.8" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+            document.write('<a-entity position="33.13 2.7 -8.81" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+            document.write('<a-entity position="19.1 2.7 -4.35" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+            document.write('<a-entity position="20.46583 2.7 -10.1" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+            document.write('<a-entity position="8.1 2.7 -5.18" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+            document.write('<a-entity position="9.61583 3.15 -0.55" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
 
             if (!mobile) {
-                document.write('<template is="a-template" element="ocean"><a-entity id="loop" position="23 1 14" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 21; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity></template');
-
-                document.write('<ocean></ocean>');
-                document.write('<ocean position="1 1 15"></ocean>');
-                document.write('<ocean position="-1 1 -13"></ocean>');
-                document.write('<ocean position="21 1 -30"></ocean>');
-                document.write('<ocean position="47 1 -27"></ocean>');
-                document.write('<ocean position="63 1 -9"></ocean>');
-                document.write('<ocean position="60 1 17"></ocean>');
-                document.write('<ocean position="39 1 35"></ocean>');
+                document.write('<a-entity id="loop" position="23 1 14" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 21; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+                document.write('<a-entity id="loop" position="1 1 15" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+                document.write('<a-entity id="loop" position="-1 1 -13" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+                document.write('<a-entity id="loop" position="21 1 -30" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+                document.write('<a-entity id="loop" position="47 1 -27" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+                document.write('<a-entity id="loop" position="63 1 -9" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+                document.write('<a-entity id="loop" position="60 1 17" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+                document.write('<a-entity id="loop" position="39 1 35" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
             }
         </script>
 
