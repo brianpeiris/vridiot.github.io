@@ -57,6 +57,7 @@
 
         <a-entity position="0 0 0" collada-model="#sco" id="sco-a" altspace-cursor-collider="enabled: false"></a-entity>
         <a-entity position="0 0 0" collada-model="#radio" id="radio-a" altspace-cursor-collider="enabled: true"></a-entity>
+
         <script>
             var op = "0.2";
             var minDistance = "0.5";
@@ -67,30 +68,34 @@
 
             document.write('<a-entity position="39.91627 1.72097 -4.12075" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: ' + minDistance + '; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
 
-            document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.35 0.0" opacity="' + op + '" id="water1" altspace-cursor-collider="enabled: false"><a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.30 0.0" repeat="indefinite"></a-animation></a-plane>');
+            document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150; shader: flat;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.35 0.0" opacity="' + op + '" id="water1" altspace-cursor-collider="enabled: false"><a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.30 0.0" repeat="indefinite"></a-animation></a-plane>');
 
-            document.write('<a-entity position="26.81583 2.7 -3.8" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="33.13 2.7 -8.81" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="19.1 2.7 -4.35" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="20.46583 2.7 -10.1" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="8.1 2.7 -5.18" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="9.61583 3.15 -0.55" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+            document.write('<template is="a-template" element="fire"><a-entity position="26.81583 2.7 -3.8" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity></template>');
+
+            document.write('<fire></fire>');
+            document.write('<fire position="33.13 2.7 -8.81"></fire>');
+            document.write('<fire position="19.1 2.7 -4.35"></fire>');
+            document.write('<fire position="20.46583 2.7 -10.1"></fire>');
+            document.write('<fire position="8.1 2.7 -5.18"></fire>');
+            document.write('<fire position="9.61583 3.15 -0.55"></fire>');
 
             if (!mobile) {
-                document.write('<a-entity id="loop" position="23 1 14" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 21; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
-                document.write('<a-entity id="loop" position="1 1 15" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
-                document.write('<a-entity id="loop" position="-1 1 -13" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
-                document.write('<a-entity id="loop" position="21 1 -30" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
-                document.write('<a-entity id="loop" position="47 1 -27" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
-                document.write('<a-entity id="loop" position="63 1 -9" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
-                document.write('<a-entity id="loop" position="60 1 17" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
-                document.write('<a-entity id="loop" position="39 1 35" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+                document.write('<template is="a-template" element="ocean"><a-entity id="loop" position="23 1 14" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 21; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity></template');
+
+                document.write('<ocean></ocean>');
+                document.write('<ocean position="1 1 15"></ocean>');
+                document.write('<ocean position="-1 1 -13"></ocean>');
+                document.write('<ocean position="21 1 -30"></ocean>');
+                document.write('<ocean position="47 1 -27"></ocean>');
+                document.write('<ocean position="63 1 -9"></ocean>');
+                document.write('<ocean position="60 1 17"></ocean>');
+                document.write('<ocean position="39 1 35"></ocean>');
             }
         </script>
 
         <a-entity position="0 -0.05 0" collada-model="#cl" id="cl-a" altspace-cursor-collider="enabled: false" n-mesh-collider="type: environment; convex: false"></a-entity>
 
-        <a-entity material="color: #004010" scale="0 0 0" id="songSync" sync-transform sync-color sync></a-entity>
+        <a-entity material="color: #004010; shader: flat;" scale="0 0 0" id="songSync" sync-transform sync-color sync></a-entity>
     </a-scene>
 
     <script>
@@ -197,7 +202,6 @@
                 if (total > 15) {
                     var percent = loaded / total;
                     if (percent == 1) {
-                        console.log("Loaded");
                         var material_new = generateColorTextMaterial("Hey there! Loading: 60%", 4, 4);
                         plane.material = material_new;
                         plane.needsUpdate = true;
@@ -789,7 +793,6 @@
                 var currentlyPlaying = document.querySelector('#songSync');
                 var currentSong = document.querySelector('#song');
                 if (currentSong.getAttribute('n-sound').src == getURLForColor(currentlyPlaying.getAttribute('material').color) + "." + audio && currentlyPlaying.getAttribute('scale').x < (Date.now() / 1000000000000) && currentlyPlaying.components['sync'].isMine) {
-                    console.log("Yep!");
                     if (currentIndex < (songs.length - 1)) {
                         songs = shuffle(songs);
                         currentIndex = 0;
@@ -813,7 +816,7 @@
             var texture = THREE.ImageUtils.loadTexture("./assets/" + agent + "/" + timeOfDay + "/" + box);
             var skyGeo = new THREE.SphereGeometry(400, 100, 100);
             var material = new THREE.MeshPhongMaterial({
-                map: texture,
+                map: texture
             });
 
             var sky = new THREE.Mesh(skyGeo, material);
@@ -823,71 +826,69 @@
 
             var lastupdate = "";
 
-            /*var geometry = new THREE.SphereGeometry(0.01, 12, 12);
+            var geometry = new THREE.SphereGeometry(0.01, 12, 12);
             var material = new THREE.MeshBasicMaterial({
                 color: 0xffff00
             });
-            //material.opacity = 0;
+
             material.transparent = true;
-            var sphere1234 = new THREE.Mesh(geometry, material);
-            sphere1234.position.z = 1;
-            sphere1234.position.y = 2;
+            material.opacity = 0;
+            var bitch_slap = new THREE.Mesh(geometry, material);
+            bitch_slap.position.z = 1;
+            bitch_slap.position.y = 2;
             var skeleton;
-            var head;
+            var hand;
             var should_send = false;
 
+            //Gotta give her what she wants. Bwahahaha!
             var promises = [altspace.getThreeJSTrackingSkeleton(), altspace.getEnclosure()];
             Promise.all(promises).then(function(array) {
 
                 skeleton = array[0];
                 sim.scene.add(skeleton);
-                var connection = array[2];
                 altspace.getUser().then(function(userInfo) {
-                    if (userInfo && userInfo.displayName && (userInfo.displayName == "Jacob" || userInfo.displayName == "enderthexen")) {
-                        head = skeleton.getJoint('Middle', "Right", 2); //head is an Object3D
-                        if (head != undefined) {
-                            //var colliderBox = new NativeComponent('n-mesh-collider', {
-                                //type: "environment",
-                                //convex: true
-                            //}, sphere1234);
-                            sphere1234.position.y = 0;
-                            sphere1234.position.z = 0;
-                            head.add(sphere1234);
+                    if (userInfo && userInfo.displayName && (userInfo.displayName == "Cindy" || userInfo.displayName == "ch92048")) {
+                        hand = skeleton.getJoint('Middle', "Right", 2);
+                        if (hand != undefined) {
+                            bitch_slap.position.y = 0;
+                            bitch_slap.position.z = 0;
+                            hand.add(bitch_slap);
                             should_send = true;
                         }
                     } else {
                         var colliderBox = new NativeComponent('n-mesh-collider', {
                             type: "environment",
                             convex: true
-                        }, sphere1234);
-                        sim.scene.add(sphere1234);
+                        }, bitch_slap);
+                        sim.scene.add(bitch_slap);
                     }
                 });
 
             }).catch(function(err) {
-                console.log('Failed to get Altspace browser properties', err);
-                altspace.open('Failed to get Altspace browser properties' + err);
+                console.log('Well Jacob, you fucked something up: ', err);
             });
+
             setInterval(function(e) {
                 if (should_send) {
-                    if (head != undefined) {
+                    if (hand != undefined) {
                         socket.emit('update_position', {
                             position: {
-                                x: head.position.x,
-                                y: head.position.y,
-                                z: head.position.z
+                                x: hand.position.x,
+                                y: hand.position.y,
+                                z: hand.position.z
                             }
                         });
                     }
                 }
             }, 150);
+
             socket.on('position', function(data) {
                 if (data && !should_send) {
-                    sphere1234.position.y = data.y;
-                    sphere1234.position.x = data.x;
-                    sphere1234.position.z = data.z;
+                    bitch_slap.position.y = data.y;
+                    bitch_slap.position.x = data.x;
+                    bitch_slap.position.z = data.z;
                 }
-            });*/
+            });
 
             setInterval(function(e) {
                 $.ajax({
@@ -940,7 +941,6 @@
             ];
 
             function loadedTexture() {
-                console.log("Loaded Texutre");
                 assetsLoadedCount++;
                 if (assetsLoadedCount == 7) {
                     runAnimation();
@@ -953,8 +953,7 @@
                     map: texts[0].tex,
                     transparent: true
                 });
-                material.transparent = true;
-                var plane55 = new THREE.Mesh(new THREE.PlaneGeometry(0.7503, 0.625), material55);
+                 var plane55 = new THREE.Mesh(new THREE.PlaneGeometry(0.7503, 0.625), material55);
                 plane55.material.side = THREE.DoubleSide;
                 plane55.material.transparent = true;
                 plane55.position.x = 37;
