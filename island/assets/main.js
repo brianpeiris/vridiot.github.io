@@ -861,7 +861,9 @@ document.addEventListener('DOMContentLoaded', function() {
          var plane55 = new THREE.Mesh(new THREE.PlaneGeometry(0.7503, 0.625), material55);
          plane55.material.side = THREE.DoubleSide;
          plane55.material.transparent = true;
-         plane55.position.x = 37;
+         var diff = ((Date.now() - 1485117109000) / 400) % 1;
+         var correct_pos = 1037 - (2000 * diff);
+         plane55.position.x = correct_pos;
          plane55.position.y = 12;
          plane55.position.z = -30;
 
@@ -892,7 +894,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
          function animation_fly() {
 
-             plane55.position.x = plane55.position.x - (6 / 45);
+             plane55.position.x = plane55.position.x - (5 / 45);
              if (plane55.position.x < -1000) {
                  plane55.position.x = 1000;
              }
