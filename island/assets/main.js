@@ -737,7 +737,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
      //material.transparent = true;
      //material.opacity = 0;
-     var bitch_slap = new THREE.Mesh(geometry, material);
+     /*var bitch_slap = new THREE.Mesh(geometry, material);
      bitch_slap.position.z = 1;
      bitch_slap.position.y = 2;
      var skeleton;
@@ -792,7 +792,7 @@ document.addEventListener('DOMContentLoaded', function() {
              bitch_slap.position.x = data.x;
              bitch_slap.position.z = data.z;
          }
-     });
+     });*/
 
      setInterval(function(e) {
          $.ajax({
