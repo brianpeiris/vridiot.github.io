@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-     var socket = io.connect('http://hah.jacobralph.org:25543/');
+     //var socket = io.connect('http://hah.jacobralph.org:25543/');
      //Pretty text from HaH (https://github.com/AltspaceVR/HaH)
      var fontScale;
      if (mobile) {
