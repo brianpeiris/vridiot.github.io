@@ -646,7 +646,7 @@ document.addEventListener('DOMContentLoaded', function() {
                  var songLength = getTimeForColor(playing.getAttribute('material').color);
                  var currentTimeFromEnd = (playing.getAttribute('scale').x * 1000000000) - (Date.now() / 1000);
                  var difference = songLength - currentTimeFromEnd;
-                 song.components['n-sound'].playSound();
+                 //song.components['n-sound'].playSound();
                  song.components['n-sound'].seek(difference);
              }
              firstLoad = true;
@@ -814,11 +814,12 @@ document.addEventListener('DOMContentLoaded', function() {
      setInterval(function(e) {
          var d = new Date();
          var n = d.getUTCHours();
-         if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "day") {
+         if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "night") {
              window.location.reload();
          }
      }, 15000);
 
+     if (!mobile) {
      var loader = new THREE.TextureLoader();
      var assetsLoadedCount = 0;
      var texts = [{
@@ -854,14 +855,20 @@ document.addEventListener('DOMContentLoaded', function() {
      function runAnimation() {
 
          var current = 0;
+         var current2 = 1;
+         var current3 = 2;
          var material55 = new THREE.MeshBasicMaterial({
              map: texts[0].tex,
              transparent: true
          });
          var plane55 = new THREE.Mesh(new THREE.PlaneGeometry(0.7503, 0.625), material55);
          plane55.material.side = THREE.DoubleSide;
+         if(timeOfDay == "night"){
+            plane55.material.opacity = 0.5;
+         }
          plane55.material.transparent = true;
-         var diff = ((Date.now() - 1485117109000) / 400) % 1;
+         var diff = ((Date.now() - 1485117109000) / 500000) % 1;
+         console.log(diff);
          var correct_pos = 1037 - (2000 * diff);
          plane55.position.x = correct_pos;
          plane55.position.y = 12;
@@ -869,21 +876,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
          sim.scene.add(plane55);
 
+         var plane66 = plane55.clone();
+         plane66.position.x = plane66.position.x + 1.5;
+         plane66.position.z = plane66.position.z - 1;
+         sim.scene.add(plane66);
+
+         var plane77 = plane55.clone();
+         plane77.position.x = plane77.position.x + 1;
+         plane77.position.z = plane77.position.z + 1;
+         sim.scene.add(plane77);
+
          function animation() {
              current++;
              if (current > 6) {
                  current = 0;
              }
              var texture55 = texts[current].tex;
+             current2++;
+             if (current2 > 6) {
+                 current2 = 0;
+             }
+             var texture66 = texts[current2].tex;
+             current3++;
+             if (current3 > 6) {
+                 current3 = 0;
+             }
+             var texture77 = texts[current3].tex;
+
              texture55.needsUpdate = true;
              var material66 = new THREE.MeshBasicMaterial({
                  map: texture55,
                  transparent: true
              });
+
              plane55.material = material66;
              plane55.material.transparent = true;
              plane55.material.needsUpdate = true;
              plane55.needsUpdate = true;
+
+             var material77 = new THREE.MeshBasicMaterial({
+                 map: texture66,
+                 transparent: true
+             });
+             plane66.material = material77;
+             plane66.material.transparent = true;
+             plane66.material.needsUpdate = true;
+             plane66.needsUpdate = true;
+
+             var material88 = new THREE.MeshBasicMaterial({
+                 map: texture77,
+                 transparent: true
+             });
+             plane77.material = material88;
+             plane77.material.transparent = true;
+             plane77.material.needsUpdate = true;
+             plane77.needsUpdate = true;
+
              setTimeout(function() {
 
                  requestAnimationFrame(animation);
@@ -894,10 +942,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
          function animation_fly() {
 
-             plane55.position.x = plane55.position.x - (5 / 45);
-             if (plane55.position.x < -1000) {
-                 plane55.position.x = 1000;
-             }
+             var diff = ((Date.now() - 1485117109000) / 500000) % 1;
+             var correct_pos = 1037 - (2000 * diff);
+             plane55.position.x = correct_pos;
+
+             var birdSound = document.querySelector('#birds');
+             birdSound.setAttribute('position', correct_pos + ' ' + birdSound.getAttribute('position').y + ' ' + birdSound.getAttribute('position').z);
+             plane66.position.x = correct_pos + 1;
+             plane77.position.x = correct_pos + 1.5;
              setTimeout(function() {
 
                  requestAnimationFrame(animation_fly);
@@ -905,6 +957,7 @@ document.addEventListener('DOMContentLoaded', function() {
              }, 1000 / 45);
          }
          requestAnimationFrame(animation_fly);
+     }
      }
 
  });

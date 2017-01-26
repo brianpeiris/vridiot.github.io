@@ -33,7 +33,7 @@
             agent = "mobile";
             audio = "mp3";
         }
-        var timeOfDay = "day"
+        var timeOfDay = "night"
         var d = new Date();
         var n = d.getUTCHours();
         if (n < 12) {
@@ -52,6 +52,9 @@
             <a-asset-item id="cl" src="./assets/collider.dae"></a-asset-item>
             <script>
                 document.write('<a-asset-item id="radio" src="./assets/' + agent + '/' + timeOfDay + '/radio.dae"></a-asset-item>');
+                if (!mobile && timeOfDay == 'night') {
+                    document.write('<img id="glow" src="./assets/glow.png" />');
+                }
             </script>
         </a-assets>
 
@@ -66,18 +69,25 @@
                 minDistance = "1";
             }
 
-             document.write('<a-entity position="39.91627 1.72097 -4.12075" opacity="0" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: ' + minDistance + '; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
+            document.write('<a-entity position="39.91627 1.72097 -4.12075" n-sound="src: http://island.jacobralph.org/assets/playlist/evening/waves.' + audio + '; volume: 1; autoplay: false; loop: true; minDistance: ' + minDistance + '; maxDistance:15;" altspace-cursor-collider="enabled: true" id="song" color="#004010"></a-entity>');
 
-            document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150; shader: flat;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.35 0.0" opacity="' + op + '" id="water1" altspace-cursor-collider="enabled: false"><a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.30 0.0" repeat="indefinite"></a-animation></a-plane>');
-
-            document.write('<a-entity position="26.81583 2.7 -3.8" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="33.13 2.7 -8.81" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="19.1 2.7 -4.35" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="20.46583 2.7 -10.1" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="8.1 2.7 -5.18" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
-            document.write('<a-entity position="9.61583 3.15 -0.55" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+            document.write('<a-entity position="37 12 -30" n-sound="src: http://island.jacobralph.org/assets/seagulls.ogg; volume: 1; autoplay: true; loop: true; minDistance: 1; maxDistance:30; rolloff: linear;" altspace-cursor-collider="enabled: true" id="birds" color="#004010"></a-entity>');
 
             if (!mobile) {
+                document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150; shader: flat;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.35 0.0" opacity="' + op + '" id="water1" altspace-cursor-collider="enabled: false"><a-animation attribute="position" dur="5000" direction="alternate" easing="ease-in-out-sine" to="37.56583 0.30 0.0" repeat="indefinite"></a-animation></a-plane>');
+            } else {
+                document.write('<a-plane transparent=true material="src: url(./assets/' + agent + '/' + timeOfDay + '/water.jpg); repeat: 150 150; shader: flat;" height="790" width="790" rotation="-90 0 0" position="37.56583 0.35 0.0" opacity="' + op + '" id="water1" altspace-cursor-collider="enabled: false"></a-plane>');
+            }
+
+            if (!mobile) {
+
+                document.write('<a-entity position="26.81583 2.7 -3.8" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+                document.write('<a-entity position="33.13 2.7 -8.81" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+                document.write('<a-entity position="19.1 2.7 -4.35" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+                document.write('<a-entity position="20.46583 2.7 -10.1" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+                document.write('<a-entity position="8.1 2.7 -5.18" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+                document.write('<a-entity position="9.61583 3.15 -0.55" width="0.2" height="0.2" depth="0.2" n-object="res: effects/fire" n-sound="src: http://island.jacobralph.org/assets/fire.' + audio + '; autoplay: true; volume: 0.3; loop: true; minDistance: 0.1; maxDistance: 4; rolloff: cosine"></a-entity>');
+
                 document.write('<a-entity id="loop" position="23 1 14" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 21; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 document.write('<a-entity id="loop" position="1 1 15" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 document.write('<a-entity id="loop" position="-1 1 -13" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
@@ -86,6 +96,52 @@
                 document.write('<a-entity id="loop" position="63 1 -9" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 document.write('<a-entity id="loop" position="60 1 17" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
                 document.write('<a-entity id="loop" position="39 1 35" n-sound="src: http://island.jacobralph.org/assets/ocean.' + audio + '; autoplay: true; volume: 0.2; loop: true; minDistance: 0.1; maxDistance: 18; rolloff: cosine" altspace-cursor-collider="enabled: true"></a-entity>');
+
+                if (timeOfDay == 'night') {
+
+                    document.write('<a-plane src="#glow" position="42.3898 2.9112 -5.7919" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="42.2056 2.7993 -5.6869" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="42.0126 2.7071 -5.5768" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="41.8129 2.6363 -5.4629" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="41.6078 2.5896 -5.3460" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="41.3998 2.5672 -5.2274" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="41.1909 2.5660 -5.1083" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.9828 2.5859 -4.9896" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.7775 2.6318 -4.8725" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.5769 2.6998 -4.7581" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.3829 2.7896 -4.6475" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.1992 2.9004 -4.5428" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.0427 2.9847 -4.4329" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.0047 2.9241 -4.2532" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.0040 2.8165 -4.0432" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.0029 2.7201 -3.8236" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.0018 2.6435 -3.5957" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.0006 2.5889 -3.3615" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="39.9994 2.5580 -3.1229" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="39.9982 2.5492 -2.8826" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="39.9970 2.5574 -2.6421" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="39.9958 2.5925 -2.4038" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="39.9947 2.6496 -2.1701" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="39.9935 2.7282 -1.9428" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="39.9925 2.8273 -1.7244" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="39.9907 2.9337 -1.5159" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.0543 2.9596 -1.3522" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.2326 2.8513 -1.2520" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.4188 2.7444 -1.1456" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.6137 2.6573 -1.0343" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="40.8155 2.5937 -0.9191" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="41.0218 2.5538 -0.8012" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="41.2302 2.5385 -0.6822" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="41.4389 2.5420 -0.5630" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="41.6465 2.5676 -0.4444" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="41.8511 2.6169 -0.3275" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="42.0504 2.6885 -0.2137" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="42.2428 2.7817 -0.1038" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="42.4275 2.8917 0.0017" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="42.6101 3.0024 0.1060" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    document.write('<a-plane src="#glow" position="42.5714 3.0241 -5.8955" height="0.25" width="0.25" transparent=true n-billboard></a-plane>');
+                    
+                }
             }
         </script>
 
