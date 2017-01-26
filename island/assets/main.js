@@ -814,7 +814,7 @@ document.addEventListener('DOMContentLoaded', function() {
      setInterval(function(e) {
          var d = new Date();
          var n = d.getUTCHours();
-         if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "night") {
+         if ((n < 12 && timeOfDay != "night") || n > 12 && timeOfDay != "day") {
              window.location.reload();
          }
      }, 15000);
