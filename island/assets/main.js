@@ -857,80 +857,80 @@ document.addEventListener('DOMContentLoaded', function() {
          var current = 0;
          var current2 = 1;
          var current3 = 2;
-         var material55 = new THREE.MeshBasicMaterial({
+         var seagull_mat = new THREE.MeshBasicMaterial({
              map: texts[0].tex,
              transparent: true
          });
-         var plane55 = new THREE.Mesh(new THREE.PlaneGeometry(0.7503, 0.625), material55);
-         plane55.material.side = THREE.DoubleSide;
+         var seagull_1 = new THREE.Mesh(new THREE.PlaneGeometry(0.7503, 0.625), seagull_mat);
+         seagull_1.material.side = THREE.DoubleSide;
          if(timeOfDay == "night"){
-            plane55.material.opacity = 0.5;
+            seagull_1.material.opacity = 0.5;
          }
-         plane55.material.transparent = true;
+         seagull_1.material.transparent = true;
          var diff = ((Date.now() - 1485117109000) / 500000) % 1;
          console.log(diff);
          var correct_pos = 1037 - (2000 * diff);
-         plane55.position.x = correct_pos;
-         plane55.position.y = 12;
-         plane55.position.z = -30;
+         seagull_1.position.x = correct_pos;
+         seagull_1.position.y = 12;
+         seagull_1.position.z = -30;
 
-         sim.scene.add(plane55);
+         sim.scene.add(seagull_1);
 
-         var plane66 = plane55.clone();
-         plane66.position.x = plane66.position.x + 1.5;
-         plane66.position.z = plane66.position.z - 1;
-         sim.scene.add(plane66);
+         var seagull_2 = seagull_1.clone();
+         seagull_2.position.x = seagull_2.position.x + 1.5;
+         seagull_2.position.z = seagull_2.position.z - 1;
+         sim.scene.add(seagull_2);
 
-         var plane77 = plane55.clone();
-         plane77.position.x = plane77.position.x + 1;
-         plane77.position.z = plane77.position.z + 1;
-         sim.scene.add(plane77);
+         var seagull_3 = seagull_1.clone();
+         seagull_3.position.x = seagull_3.position.x + 1;
+         seagull_3.position.z = seagull_3.position.z + 1;
+         sim.scene.add(seagull_3);
 
          function animation() {
              current++;
              if (current > 6) {
                  current = 0;
              }
-             var texture55 = texts[current].tex;
+             var seagull_tex = texts[current].tex;
              current2++;
              if (current2 > 6) {
                  current2 = 0;
              }
-             var texture66 = texts[current2].tex;
+             var seagull_tex2 = texts[current2].tex;
              current3++;
              if (current3 > 6) {
                  current3 = 0;
              }
-             var texture77 = texts[current3].tex;
+             var seagull_tex3 = texts[current3].tex;
 
-             texture55.needsUpdate = true;
-             var material66 = new THREE.MeshBasicMaterial({
-                 map: texture55,
+             seagull_tex.needsUpdate = true;
+             var seagull_mat2 = new THREE.MeshBasicMaterial({
+                 map: seagull_tex,
                  transparent: true
              });
 
-             plane55.material = material66;
-             plane55.material.transparent = true;
-             plane55.material.needsUpdate = true;
-             plane55.needsUpdate = true;
+             seagull_1.material = seagull_mat2;
+             seagull_1.material.transparent = true;
+             seagull_1.material.needsUpdate = true;
+             seagull_1.needsUpdate = true;
 
-             var material77 = new THREE.MeshBasicMaterial({
-                 map: texture66,
+             var seagull_mat3 = new THREE.MeshBasicMaterial({
+                 map: seagull_tex2,
                  transparent: true
              });
-             plane66.material = material77;
-             plane66.material.transparent = true;
-             plane66.material.needsUpdate = true;
-             plane66.needsUpdate = true;
+             seagull_2.material = seagull_mat3;
+             seagull_2.material.transparent = true;
+             seagull_2.material.needsUpdate = true;
+             seagull_2.needsUpdate = true;
 
-             var material88 = new THREE.MeshBasicMaterial({
-                 map: texture77,
+             var seagull_mat2 = new THREE.MeshBasicMaterial({
+                 map: seagull_tex3,
                  transparent: true
              });
-             plane77.material = material88;
-             plane77.material.transparent = true;
-             plane77.material.needsUpdate = true;
-             plane77.needsUpdate = true;
+             seagull_3.material = seagull_mat2;
+             seagull_3.material.transparent = true;
+             seagull_3.material.needsUpdate = true;
+             seagull_3.needsUpdate = true;
 
              setTimeout(function() {
 
@@ -944,12 +944,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
              var diff = ((Date.now() - 1485117109000) / 500000) % 1;
              var correct_pos = 1037 - (2000 * diff);
-             plane55.position.x = correct_pos;
+             seagull_1.position.x = correct_pos;
 
              var birdSound = document.querySelector('#birds');
              birdSound.setAttribute('position', correct_pos + ' ' + birdSound.getAttribute('position').y + ' ' + birdSound.getAttribute('position').z);
-             plane66.position.x = correct_pos + 1;
-             plane77.position.x = correct_pos + 1.5;
+             seagull_2.position.x = correct_pos + 1;
+             seagull_3.position.x = correct_pos + 1.5;
              setTimeout(function() {
 
                  requestAnimationFrame(animation_fly);
