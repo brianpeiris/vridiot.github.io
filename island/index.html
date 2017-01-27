@@ -39,6 +39,19 @@
         if (n < 12) {
             timeOfDay = "night";
         }
+
+        var timeOverride = location.search.match(/[?&]time=(\w+)/i);
+        if (timeOverride) {
+            timeOfDay = timeOverride[1];
+        }
+
+        var mobileOverride = location.search.match(/[?&]mobile=(\w+)/i);
+        if (mobileOverride) {
+            mobile = !!+mobileOverride[1];
+            agent = mobile ? 'mobile' : 'desktop';
+        }
+
+        var autoupdate = !location.search.match(/[?&]noautoupdate\b/i);
     </script>
 </head>
 

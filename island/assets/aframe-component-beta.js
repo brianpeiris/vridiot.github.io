@@ -199,7 +199,9 @@
 
         var oldRenderer = this.el.renderer;
         var renderer = this.el.renderer = this.el.effect = altspace.getThreeJSRenderer({
-          aframeComponentVersion: this.version
+          aframeComponentVersion: this.version,
+          initialSerializationBufferSize: 3500000,
+          profile: true
         });
         var noop = function() {};
         renderer.setSize = noop;

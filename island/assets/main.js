@@ -674,6 +674,7 @@ document.addEventListener('DOMContentLoaded', function() {
          return false;
      }
 
+     var songLength = 15;
      function getTimeForColor(color) {
          for (i = 0; i < songs.length; i++) {
              var object = songs[i];
@@ -794,6 +795,7 @@ document.addEventListener('DOMContentLoaded', function() {
          }
      });*/
 
+    if (autoupdate) {
      setInterval(function(e) {
          $.ajax({
              type: "GET",
@@ -810,7 +812,9 @@ document.addEventListener('DOMContentLoaded', function() {
              }
          });
      }, 5000);
+    }
 
+    if (!timeOverride) {
      setInterval(function(e) {
          var d = new Date();
          var n = d.getUTCHours();
@@ -818,6 +822,7 @@ document.addEventListener('DOMContentLoaded', function() {
              window.location.reload();
          }
      }, 15000);
+    }
 
      if (!mobile) {
      var loader = new THREE.TextureLoader();
